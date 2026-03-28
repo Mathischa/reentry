@@ -7,6 +7,7 @@ import { CheckpointForm } from './components/CheckpointForm';
 import { ReentryBriefing } from './components/ReentryBriefing';
 import { EditModal } from './components/EditModal';
 import { FilterTabs } from './components/FilterTabs';
+import { BottomNav } from './components/BottomNav';
 import { useCheckpoints } from './hooks/useCheckpoints';
 import { sortCheckpoints } from './utils/staleness';
 import { Checkpoint, SortMode, ViewMode, FilterTab } from './types';
@@ -105,13 +106,15 @@ export default function App() {
     <div className="min-h-screen">
       <Header onNewCheckpoint={() => setShowForm(true)} checkpointCount={checkpoints.filter(c => c.status !== 'done').length} />
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pb-24 md:pb-8">
         {!hasAny ? (
           <EmptyState onNewCheckpoint={() => setShowForm(true)} />
         ) : (
           <>
-            {/* Filter tabs */}
-            <FilterTabs active={filterTab} onChange={tab => { setFilterTab(tab); setSearchQuery(''); }} counts={tabCounts} />
+            {/* Filter tabs — desktop/tablet only (mobile uses BottomNav) */}
+            <div className="hidden md:block">
+              <FilterTabs active={filterTab} onChange={tab => { setFilterTab(tab); setSearchQuery(''); }} counts={tabCounts} />
+            </div>
 
             {/* Toolbar */}
             <div className="flex items-center gap-3 mb-5 flex-wrap">
@@ -195,6 +198,13 @@ export default function App() {
           onClose={() => setEditingId(null)}
         />
       )}
+
+      <BottomNav
+        active={filterTab}
+        onChange={tab => { setFilterTab(tab); setSearchQuery(''); }}
+        counts={tabCounts}
+        onNewCheckpoint={() => setShowForm(true)}
+      />
     </div>
   );
 }

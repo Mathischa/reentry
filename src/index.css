@@ -45,6 +45,14 @@ body::before {
 /* Textarea */
 textarea { resize: none; }
 
+/* Tap highlight removal on mobile */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Safe area insets for notched phones */
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 /* Accent left bar for cards */
 .accent-bar {
   position: absolute;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Trash2, Pencil, Clock, Hash, ArrowRight, Pin, PinOff, CheckCircle2, RotateCcw, AlertTriangle, Flame, ArrowUp } from 'lucide-react';
-import { Checkpoint, CheckpointStatus } from '../types';
+import { Checkpoint } from '../types';
 import { getStaleness, getDueInfo, formatTotalTime } from '../utils/staleness';
 
 interface CheckpointCardProps {
@@ -68,7 +68,7 @@ export function CheckpointCard({ checkpoint, onReturn, onEdit, onDelete, onToggl
           {dueInfo && <span style={{ color: dueInfo.color }}>{dueInfo.label}</span>}
           <span className="flex items-center gap-1"><Clock size={10} />{staleness.timeAway}</span>
         </div>
-        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex items-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
           <button onClick={e => { e.stopPropagation(); onTogglePin(checkpoint.id); }} className="p-1.5 rounded-lg hover:bg-white/[0.07] text-slate-600 hover:text-slate-300 transition-all">
             {checkpoint.isPinned ? <PinOff size={12} /> : <Pin size={12} />}
           </button>
@@ -144,7 +144,7 @@ export function CheckpointCard({ checkpoint, onReturn, onEdit, onDelete, onToggl
       </div>
 
       {/* Action buttons (hover) */}
-      <div className="absolute top-3.5 right-3.5 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+      <div className="absolute top-3.5 right-3.5 flex items-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-150">
         <button onClick={e => { e.stopPropagation(); onTogglePin(checkpoint.id); }} className={`p-1.5 rounded-lg transition-all ${checkpoint.isPinned ? 'text-indigo-400 hover:bg-white/[0.08]' : 'text-slate-600 hover:text-slate-300 hover:bg-white/[0.08]'}`} title={checkpoint.isPinned ? 'Unpin' : 'Pin'}>
           {checkpoint.isPinned ? <PinOff size={12} /> : <Pin size={12} />}
         </button>
@@ -198,7 +198,7 @@ export function CheckpointCard({ checkpoint, onReturn, onEdit, onDelete, onToggl
           <div className="flex items-center gap-2 flex-shrink-0">
             <button
               onClick={e => { e.stopPropagation(); onMarkDone(checkpoint.id); }}
-              className="flex items-center gap-1 text-xs text-slate-600 hover:text-emerald-400 transition-colors opacity-0 group-hover:opacity-100"
+              className="flex items-center gap-1 text-xs text-slate-600 hover:text-emerald-400 transition-colors opacity-100 md:opacity-0 md:group-hover:opacity-100"
               title="Mark as done"
             >
               <CheckCircle2 size={12} />Done
