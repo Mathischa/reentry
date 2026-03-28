@@ -8,11 +8,13 @@ import { ReentryBriefing } from './components/ReentryBriefing';
 import { EditModal } from './components/EditModal';
 import { FilterTabs } from './components/FilterTabs';
 import { BottomNav } from './components/BottomNav';
+import { SplashScreen } from './components/SplashScreen';
 import { useCheckpoints } from './hooks/useCheckpoints';
 import { sortCheckpoints } from './utils/staleness';
 import { Checkpoint, SortMode, ViewMode, FilterTab } from './types';
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [activeBriefing, setActiveBriefing] = useState<Checkpoint | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -104,6 +106,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
+      {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
       <Header onNewCheckpoint={() => setShowForm(true)} checkpointCount={checkpoints.filter(c => c.status !== 'done').length} />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pb-24 md:pb-8">

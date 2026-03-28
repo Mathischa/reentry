@@ -63,6 +63,92 @@ body {
   border-radius: 0 3px 3px 0;
 }
 
+/* ============================================
+   SPLASH SCREEN — 3D orbital rings
+   ============================================ */
+
+.splash-orbit {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  transform-style: preserve-3d;
+}
+
+.splash-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+
+/* Ring 1 — large, indigo, tilted 68° on X */
+.sr1 {
+  border: 1.5px solid rgba(99, 102, 241, 0.38);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.18), inset 0 0 16px rgba(99, 102, 241, 0.06);
+  animation: sr1-spin 7.5s linear infinite;
+}
+
+/* Ring 2 — medium, purple, tilted 78° + 22° Y */
+.sr2 {
+  inset: 36px;
+  border: 1px solid rgba(168, 85, 247, 0.30);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.12);
+  animation: sr2-spin 10.5s linear infinite reverse;
+}
+
+/* Ring 3 — outer, fuchsia, wider tilt */
+.sr3 {
+  inset: -44px;
+  border: 1px solid rgba(232, 121, 249, 0.18);
+  box-shadow: 0 0 8px rgba(232, 121, 249, 0.07);
+  animation: sr3-spin 5.8s linear infinite;
+}
+
+/* Orbiting bright nodes */
+.splash-node {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  transform-origin: 160px 160px;
+  transform-style: preserve-3d;
+}
+
+.sn1 {
+  top: 157.5px; left: 0;
+  background: radial-gradient(circle, #a5b4fc, #6366f1);
+  box-shadow: 0 0 8px 2px rgba(165, 180, 252, 0.7);
+  animation: sr1-spin 7.5s linear infinite;
+}
+
+.sn2 {
+  top: calc(50% - 2.5px); right: 36px;
+  background: radial-gradient(circle, #e879f9, #a855f7);
+  box-shadow: 0 0 8px 2px rgba(232, 121, 249, 0.7);
+  animation: sr2-spin 10.5s linear infinite reverse;
+}
+
+@keyframes sr1-spin {
+  from { transform: rotateX(68deg) rotateZ(0deg); }
+  to   { transform: rotateX(68deg) rotateZ(360deg); }
+}
+@keyframes sr2-spin {
+  from { transform: rotateX(78deg) rotateY(22deg) rotateZ(0deg); }
+  to   { transform: rotateX(78deg) rotateY(22deg) rotateZ(360deg); }
+}
+@keyframes sr3-spin {
+  from { transform: rotateX(52deg) rotateY(-18deg) rotateZ(0deg); }
+  to   { transform: rotateX(52deg) rotateY(-18deg) rotateZ(360deg); }
+}
+
+@keyframes sp-bounce {
+  0%, 100% { transform: scale(1) translateY(0);   opacity: 0.35; }
+  50%       { transform: scale(1.7) translateY(-3px); opacity: 1; }
+}
+
+/* ============================================
+   Staleness glow on cards
+   ============================================ */
 /* Staleness glow on cards */
 .glow-fresh   { box-shadow: 0 0 0 1px rgba(52,211,153,0.2), 0 4px 20px rgba(0,0,0,0.5); }
 .glow-warm    { box-shadow: 0 0 0 1px rgba(251,191,36,0.2), 0 4px 20px rgba(0,0,0,0.5); }
