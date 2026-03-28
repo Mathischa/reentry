@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #07070f;
+  color: #f0f0f5;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dot grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.07); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.14); }
+
+/* Textarea */
+textarea { resize: none; }
+
+/* Accent left bar for cards */
+.accent-bar {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Staleness glow on cards */
+.glow-fresh   { box-shadow: 0 0 0 1px rgba(52,211,153,0.2), 0 4px 20px rgba(0,0,0,0.5); }
+.glow-warm    { box-shadow: 0 0 0 1px rgba(251,191,36,0.2), 0 4px 20px rgba(0,0,0,0.5); }
+.glow-cooling { box-shadow: 0 0 0 1px rgba(251,146,60,0.2), 0 4px 20px rgba(0,0,0,0.5); }
+.glow-cold    { box-shadow: 0 0 0 1px rgba(248,113,113,0.3), 0 4px 24px rgba(248,113,113,0.06); }
+.glow-frozen  { box-shadow: 0 0 0 1px rgba(196,181,253,0.3), 0 4px 24px rgba(196,181,253,0.06); }
