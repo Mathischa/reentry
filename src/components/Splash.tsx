@@ -60,44 +60,25 @@ export function Splash({ onDone }: { onDone: () => void }) {
             </svg>
           </div>
 
-          {/* Static logo arcs — appear with scale-in */}
-          <div className="absolute inset-0 flex items-center justify-center" style={{ animation: 'logo-in 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both' }}>
-            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-              <defs>
-                <linearGradient id="lg1" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#00c2ff" /><stop offset="1" stopColor="#1a4fd6" />
-                </linearGradient>
-                <linearGradient id="lg2" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#0ea5e9" /><stop offset="1" stopColor="#6366f1" />
-                </linearGradient>
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <path d="M 95 25 A 52 52 0 1 0 25 95" stroke="url(#lg1)" strokeWidth="9" strokeLinecap="round" fill="none" filter="url(#glow)" />
-              <path d="M 82 35 A 36 36 0 1 0 35 82" stroke="url(#lg1)" strokeWidth="8" strokeLinecap="round" fill="none" opacity="0.8" />
-              <path d="M 68 46 A 20 20 0 1 0 46 68" stroke="url(#lg2)" strokeWidth="7" strokeLinecap="round" fill="none" filter="url(#glow)" />
-              <circle cx="60" cy="60" r="8" fill="url(#lg2)" filter="url(#glow)" style={{ animation: 'dot-pulse 1.2s ease-in-out infinite' }} />
-            </svg>
-          </div>
-
-          {/* Glow halo behind logo */}
+          {/* Glow halo */}
           <div className="absolute rounded-full" style={{
-            width: 100, height: 100,
-            background: 'radial-gradient(circle, rgba(14,165,233,0.18) 0%, transparent 70%)',
+            width: 140, height: 140,
+            background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)',
             animation: 'halo-pulse 1.6s ease-in-out infinite',
           }} />
+
+          {/* Real logo PNG — white card, scale-in */}
+          <div className="absolute inset-0 flex items-center justify-center" style={{ animation: 'logo-in 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both' }}>
+            <div className="rounded-2xl overflow-hidden" style={{ background: 'white', padding: '12px 16px', boxShadow: '0 8px 40px rgba(14,165,233,0.25), 0 2px 12px rgba(0,0,0,0.4)' }}>
+              <img src="/logo.png" alt="Webyra" style={{ height: 90, width: 'auto', display: 'block' }} />
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Brand name */}
-      <div style={{ animation: 'text-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.5s both' }} className="mt-8 flex flex-col items-center gap-1">
-        <span className="text-white font-black text-3xl tracking-[0.18em] uppercase"
-          style={{ background: 'linear-gradient(135deg, #fff 0%, #94b8ff 60%, #c4b5fd 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-          Webyra
-        </span>
-        <span className="text-slate-600 text-xs tracking-[0.35em] uppercase font-medium">Agence Web</span>
+      {/* Tagline */}
+      <div style={{ animation: 'text-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.5s both' }} className="mt-10 flex flex-col items-center gap-1">
+        <span className="text-slate-500 text-xs tracking-[0.35em] uppercase font-medium">Agence Web</span>
       </div>
 
       {/* Loading bar */}

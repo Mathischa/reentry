@@ -18,9 +18,8 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
-          <WebyraLogo size={38} />
-          <span className="font-bold text-xl tracking-tight text-white">Webyra</span>
+        <a href="#" className="flex items-center group">
+          <img src="/logo.png" alt="Webyra" className="h-12 w-auto rounded-xl" style={{ background: 'white', padding: '5px 10px' }} />
         </a>
 
         {/* Desktop links */}
@@ -62,27 +61,3 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
   );
 }
 
-function WebyraLogo({ size = 38 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 120 120" fill="none">
-      <defs>
-        <linearGradient id="wg1" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#00c2ff" />
-          <stop offset="1" stopColor="#1a4fd6" />
-        </linearGradient>
-        <linearGradient id="wg2" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0ea5e9" />
-          <stop offset="1" stopColor="#6366f1" />
-        </linearGradient>
-      </defs>
-      {/* Outer arc */}
-      <path d="M 95 25 A 52 52 0 1 0 25 95" stroke="url(#wg1)" strokeWidth="9" strokeLinecap="round" fill="none" opacity="0.9"/>
-      {/* Middle arc */}
-      <path d="M 82 35 A 36 36 0 1 0 35 82" stroke="url(#wg1)" strokeWidth="8" strokeLinecap="round" fill="none" opacity="0.7"/>
-      {/* Inner arc */}
-      <path d="M 68 46 A 20 20 0 1 0 46 68" stroke="url(#wg2)" strokeWidth="7" strokeLinecap="round" fill="none" opacity="0.95"/>
-      {/* Center dot */}
-      <circle cx="60" cy="60" r="7" fill="url(#wg2)" />
-    </svg>
-  );
-}

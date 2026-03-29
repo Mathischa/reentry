@@ -20,9 +20,8 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           {/* Brand */}
           <div>
-            <a href="#" className="flex items-center gap-3 mb-4">
-              <WebyraLogo size={34} />
-              <span className="font-bold text-xl text-white tracking-tight">Webyra</span>
+            <a href="#" className="inline-flex mb-4">
+              <img src="/logo.png" alt="Webyra" className="h-12 w-auto rounded-xl" style={{ background: 'white', padding: '5px 10px' }} />
             </a>
             <p className="text-slate-500 text-sm leading-relaxed mb-5">
               Agence web spécialisée dans la création de sites vitrines sur-mesure. Design premium, code propre, résultats mesurables.
@@ -66,23 +65,3 @@ export function Footer() {
   );
 }
 
-function WebyraLogo({ size = 34 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 120 120" fill="none">
-      <defs>
-        <linearGradient id="fg1" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#00c2ff" />
-          <stop offset="1" stopColor="#1a4fd6" />
-        </linearGradient>
-        <linearGradient id="fg2" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0ea5e9" />
-          <stop offset="1" stopColor="#6366f1" />
-        </linearGradient>
-      </defs>
-      <path d="M 95 25 A 52 52 0 1 0 25 95" stroke="url(#fg1)" strokeWidth="9" strokeLinecap="round" fill="none" opacity="0.9"/>
-      <path d="M 82 35 A 36 36 0 1 0 35 82" stroke="url(#fg1)" strokeWidth="8" strokeLinecap="round" fill="none" opacity="0.7"/>
-      <path d="M 68 46 A 20 20 0 1 0 46 68" stroke="url(#fg2)" strokeWidth="7" strokeLinecap="round" fill="none" opacity="0.95"/>
-      <circle cx="60" cy="60" r="7" fill="url(#fg2)" />
-    </svg>
-  );
-}
