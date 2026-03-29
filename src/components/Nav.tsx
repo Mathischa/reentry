@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Logo } from './Logo';
 
 const LINKS = [
   { href: '#services', label: 'Services' },
@@ -18,8 +19,8 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center group">
-          <img src="/logo.png" alt="Webyra" className="h-12 w-auto rounded-xl" style={{ background: 'white', padding: '5px 10px' }} />
+        <a href="#" className="flex items-center gap-2.5 group">
+          <Logo height={36} />
         </a>
 
         {/* Desktop links */}

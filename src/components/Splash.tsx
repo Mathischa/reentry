@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Logo } from './Logo';
 
 export function Splash({ onDone }: { onDone: () => void }) {
   const [phase, setPhase] = useState<'in' | 'hold' | 'out'>('in');
@@ -63,15 +64,13 @@ export function Splash({ onDone }: { onDone: () => void }) {
           {/* Glow halo */}
           <div className="absolute rounded-full" style={{
             width: 140, height: 140,
-            background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(14,165,233,0.18) 0%, transparent 70%)',
             animation: 'halo-pulse 1.6s ease-in-out infinite',
           }} />
 
-          {/* Real logo PNG — white card, scale-in */}
+          {/* Real logo — transparent background, scale-in */}
           <div className="absolute inset-0 flex items-center justify-center" style={{ animation: 'logo-in 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both' }}>
-            <div className="rounded-2xl overflow-hidden" style={{ background: 'white', padding: '12px 16px', boxShadow: '0 8px 40px rgba(14,165,233,0.25), 0 2px 12px rgba(0,0,0,0.4)' }}>
-              <img src="/logo.png" alt="Webyra" style={{ height: 90, width: 'auto', display: 'block' }} />
-            </div>
+            <Logo height={110} />
           </div>
         </div>
       </div>

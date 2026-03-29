@@ -1,4 +1,5 @@
 import { Github, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Logo } from './Logo';
 
 const LINKS = {
   Services: ['Site Vitrine Essentiel', 'Site Vitrine Pro', 'SEO & Performance', 'Design & Identité', 'Maintenance'],
@@ -21,7 +22,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <a href="#" className="inline-flex mb-4">
-              <img src="/logo.png" alt="Webyra" className="h-12 w-auto rounded-xl" style={{ background: 'white', padding: '5px 10px' }} />
+              <Logo height={48} />
             </a>
             <p className="text-slate-500 text-sm leading-relaxed mb-5">
               Agence web spécialisée dans la création de sites vitrines sur-mesure. Design premium, code propre, résultats mesurables.
