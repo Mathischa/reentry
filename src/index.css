@@ -2,156 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html { scroll-behavior: smooth; }
 
 html, body, #root {
-  height: 100%;
   margin: 0;
   padding: 0;
 }
 
 body {
-  background: #07070f;
+  background: #07080f;
   color: #f0f0f5;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dot grid background */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
-  z-index: 0;
-}
+#root { position: relative; z-index: 1; }
 
-#root {
-  position: relative;
-  z-index: 1;
-}
-
-/* Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.07); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.14); }
+::-webkit-scrollbar-thumb { background: rgba(14,165,233,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(14,165,233,0.3); }
 
-/* Textarea */
 textarea { resize: none; }
 
-/* Tap highlight removal on mobile */
-* { -webkit-tap-highlight-color: transparent; }
+select option { background: #0e0e1a; color: white; }
 
-/* Safe area insets for notched phones */
-body {
-  padding-bottom: env(safe-area-inset-bottom);
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: white;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+.section-sub {
+  color: #64748b;
+  font-size: 1.05rem;
+  max-width: 38rem;
+  line-height: 1.7;
 }
 
-/* Accent left bar for cards */
-.accent-bar {
-  position: absolute;
-  left: 0;
-  top: 12px;
-  bottom: 12px;
-  width: 3px;
-  border-radius: 0 3px 3px 0;
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-/* ============================================
-   SPLASH SCREEN — 3D orbital rings
-   ============================================ */
-
-.splash-orbit {
-  position: relative;
-  width: 320px;
-  height: 320px;
-  transform-style: preserve-3d;
-}
-
-.splash-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  transform-style: preserve-3d;
-}
-
-/* Ring 1 — large, indigo, tilted 68° on X */
-.sr1 {
-  border: 1.5px solid rgba(99, 102, 241, 0.38);
-  box-shadow: 0 0 16px rgba(99, 102, 241, 0.18), inset 0 0 16px rgba(99, 102, 241, 0.06);
-  animation: sr1-spin 7.5s linear infinite;
-}
-
-/* Ring 2 — medium, purple, tilted 78° + 22° Y */
-.sr2 {
-  inset: 36px;
-  border: 1px solid rgba(168, 85, 247, 0.30);
-  box-shadow: 0 0 10px rgba(168, 85, 247, 0.12);
-  animation: sr2-spin 10.5s linear infinite reverse;
-}
-
-/* Ring 3 — outer, fuchsia, wider tilt */
-.sr3 {
-  inset: -44px;
-  border: 1px solid rgba(232, 121, 249, 0.18);
-  box-shadow: 0 0 8px rgba(232, 121, 249, 0.07);
-  animation: sr3-spin 5.8s linear infinite;
-}
-
-/* Orbiting bright nodes */
-.splash-node {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  transform-origin: 160px 160px;
-  transform-style: preserve-3d;
-}
-
-.sn1 {
-  top: 157.5px; left: 0;
-  background: radial-gradient(circle, #a5b4fc, #6366f1);
-  box-shadow: 0 0 8px 2px rgba(165, 180, 252, 0.7);
-  animation: sr1-spin 7.5s linear infinite;
-}
-
-.sn2 {
-  top: calc(50% - 2.5px); right: 36px;
-  background: radial-gradient(circle, #e879f9, #a855f7);
-  box-shadow: 0 0 8px 2px rgba(232, 121, 249, 0.7);
-  animation: sr2-spin 10.5s linear infinite reverse;
-}
-
-@keyframes sr1-spin {
-  from { transform: rotateX(68deg) rotateZ(0deg); }
-  to   { transform: rotateX(68deg) rotateZ(360deg); }
-}
-@keyframes sr2-spin {
-  from { transform: rotateX(78deg) rotateY(22deg) rotateZ(0deg); }
-  to   { transform: rotateX(78deg) rotateY(22deg) rotateZ(360deg); }
-}
-@keyframes sr3-spin {
-  from { transform: rotateX(52deg) rotateY(-18deg) rotateZ(0deg); }
-  to   { transform: rotateX(52deg) rotateY(-18deg) rotateZ(360deg); }
-}
-
-@keyframes sp-bounce {
-  0%, 100% { transform: scale(1) translateY(0);   opacity: 0.35; }
-  50%       { transform: scale(1.7) translateY(-3px); opacity: 1; }
-}
-
-/* ============================================
-   Staleness glow on cards
-   ============================================ */
-/* Staleness glow on cards */
-.glow-fresh   { box-shadow: 0 0 0 1px rgba(52,211,153,0.2), 0 4px 20px rgba(0,0,0,0.5); }
-.glow-warm    { box-shadow: 0 0 0 1px rgba(251,191,36,0.2), 0 4px 20px rgba(0,0,0,0.5); }
-.glow-cooling { box-shadow: 0 0 0 1px rgba(251,146,60,0.2), 0 4px 20px rgba(0,0,0,0.5); }
-.glow-cold    { box-shadow: 0 0 0 1px rgba(248,113,113,0.3), 0 4px 24px rgba(248,113,113,0.06); }
-.glow-frozen  { box-shadow: 0 0 0 1px rgba(196,181,253,0.3), 0 4px 24px rgba(196,181,253,0.06); }
+.animate-fade-in { animation: fade-in 0.7s ease-out forwards; }

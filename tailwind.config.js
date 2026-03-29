@@ -9,6 +9,12 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
+      colors: {
+        webyra: {
+          navy: '#1a2a6e',
+          cyan: '#00c2ff',
+        },
+      },
       animation: {
         'fade-in-up':   'fadeInUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards',
         'fade-in':      'fadeIn 0.25s ease-out forwards',
