@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Checkpoint, Priority, CheckpointStatus } from '../types';
+import { Checkpoint, Priority, CheckpointStatus, SubTask, CheckpointNote } from '../types';
 import { ACCENT_COLORS } from '../constants/colors';
 
 const V1_KEY = 'reentry_checkpoints_v1';
@@ -16,6 +16,9 @@ function migrate(cp: any): Checkpoint {
     dueDate: null,
     isPinned: false,
     completedAt: null,
+    subTasks: [],
+    notes: [],
+    links: [],
     ...cp,
     sessions: (cp.sessions ?? []).map((s: any) => ({
       startedAt: s.startedAt,
@@ -70,6 +73,9 @@ export function useCheckpoints() {
       dueDate: data.dueDate ?? null,
       isPinned: false,
       completedAt: null,
+      subTasks: [],
+      notes: [],
+      links: [],
       createdAt: now,
       updatedAt: now,
       lastReturnedAt: null,
@@ -158,6 +164,58 @@ export function useCheckpoints() {
     ));
   }, []);
 
+  const addSubTask = useCallback((id: string, text: string) => {
+    const task: SubTask = { id: generateId(), text: text.trim(), done: false };
+    setCheckpoints(prev => prev.map(cp =>
+      cp.id === id ? { ...cp, subTasks: [...cp.subTasks, task], updatedAt: Date.now() } : cp
+    ));
+  }, []);
+
+  const toggleSubTask = useCallback((id: string, taskId: string) => {
+    setCheckpoints(prev => prev.map(cp =>
+      cp.id === id ? {
+        ...cp,
+        subTasks: cp.subTasks.map(t => t.id === taskId ? { ...t, done: !t.done } : t),
+        updatedAt: Date.now(),
+      } : cp
+    ));
+  }, []);
+
+  const deleteSubTask = useCallback((id: string, taskId: string) => {
+    setCheckpoints(prev => prev.map(cp =>
+      cp.id === id ? { ...cp, subTasks: cp.subTasks.filter(t => t.id !== taskId), updatedAt: Date.now() } : cp
+    ));
+  }, []);
+
+  const addNote = useCallback((id: string, text: string) => {
+    const note: CheckpointNote = { id: generateId(), text: text.trim(), createdAt: Date.now() };
+    setCheckpoints(prev => prev.map(cp =>
+      cp.id === id ? { ...cp, notes: [...cp.notes, note], updatedAt: Date.now() } : cp
+    ));
+  }, []);
+
+  const deleteNote = useCallback((id: string, noteId: string) => {
+    setCheckpoints(prev => prev.map(cp =>
+      cp.id === id ? { ...cp, notes: cp.notes.filter(n => n.id !== noteId), updatedAt: Date.now() } : cp
+    ));
+  }, []);
+
+  const addLink = useCallback((id: string, url: string) => {
+    setCheckpoints(prev => prev.map(cp =>
+      cp.id === id && !cp.links.includes(url) ? { ...cp, links: [...cp.links, url], updatedAt: Date.now() } : cp
+    ));
+  }, []);
+
+  const removeLink = useCallback((id: string, url: string) => {
+    setCheckpoints(prev => prev.map(cp =>
+      cp.id === id ? { ...cp, links: cp.links.filter(l => l !== url), updatedAt: Date.now() } : cp
+    ));
+  }, []);
+
+  const setCheckpointsFromImport = useCallback((data: Checkpoint[]) => {
+    setCheckpoints(data.map(migrate));
+  }, []);
+
   return {
     checkpoints,
     addCheckpoint,
@@ -168,5 +226,13 @@ export function useCheckpoints() {
     togglePin,
     setStatus,
     setPriority,
+    addSubTask,
+    toggleSubTask,
+    deleteSubTask,
+    addNote,
+    deleteNote,
+    addLink,
+    removeLink,
+    setCheckpointsFromImport,
   };
 }

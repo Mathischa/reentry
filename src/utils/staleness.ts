@@ -54,6 +54,16 @@ export function formatTotalTime(sessions: Array<{ startedAt: number; endedAt: nu
   return m > 0 ? `${hours}h ${m}m` : `${hours}h`;
 }
 
+export function formatDate(ts: number): string {
+  const d = new Date(ts);
+  const now = new Date();
+  const yesterday = new Date(Date.now() - 86400000);
+  const time = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  if (d.toDateString() === now.toDateString()) return `Today ${time}`;
+  if (d.toDateString() === yesterday.toDateString()) return `Yesterday ${time}`;
+  return d.toLocaleDateString([], { day: 'numeric', month: 'short' }) + ' · ' + time;
+}
+
 export function sortCheckpoints(checkpoints: Checkpoint[], mode: import('../types').SortMode): Checkpoint[] {
   const sorted = [...checkpoints].sort((a, b) => {
     // Pinned always first

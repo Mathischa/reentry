@@ -67,6 +67,12 @@ export function CheckpointCard({ checkpoint, onReturn, onEdit, onDelete, onToggl
         <div className="hidden sm:flex items-center gap-2 flex-shrink-0 text-xs text-slate-600">
           {dueInfo && <span style={{ color: dueInfo.color }}>{dueInfo.label}</span>}
           <span className="flex items-center gap-1"><Clock size={10} />{staleness.timeAway}</span>
+          {checkpoint.subTasks.length > 0 && (
+            <span className="flex items-center gap-1">
+              <CheckCircle2 size={9} />
+              {checkpoint.subTasks.filter(t => t.done).length}/{checkpoint.subTasks.length}
+            </span>
+          )}
         </div>
         <div className="flex items-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
           <button onClick={e => { e.stopPropagation(); onTogglePin(checkpoint.id); }} className="p-1.5 rounded-lg hover:bg-white/[0.07] text-slate-600 hover:text-slate-300 transition-all">
@@ -187,6 +193,12 @@ export function CheckpointCard({ checkpoint, onReturn, onEdit, onDelete, onToggl
           ))}
           {sessionCount > 0 && (
             <span className="text-[10px] text-slate-700">{sessionCount}× · {totalTime}</span>
+          )}
+          {checkpoint.subTasks.length > 0 && (
+            <span className="text-[10px] text-slate-600 flex items-center gap-1">
+              <CheckCircle2 size={9} className={checkpoint.subTasks.filter(t => t.done).length === checkpoint.subTasks.length ? 'text-emerald-500' : 'text-slate-600'} />
+              {checkpoint.subTasks.filter(t => t.done).length}/{checkpoint.subTasks.length}
+            </span>
           )}
         </div>
 

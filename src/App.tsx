@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { SortAsc, Grid, List } from 'lucide-react';
 import { Header } from './components/Header';
 import { EmptyState } from './components/EmptyState';
@@ -9,12 +9,18 @@ import { EditModal } from './components/EditModal';
 import { FilterTabs } from './components/FilterTabs';
 import { BottomNav } from './components/BottomNav';
 import { SplashScreen } from './components/SplashScreen';
+import { StatsModal } from './components/StatsModal';
+import { SettingsModal } from './components/SettingsModal';
+import { CalendarView } from './components/CalendarView';
 import { useCheckpoints } from './hooks/useCheckpoints';
 import { sortCheckpoints } from './utils/staleness';
 import { Checkpoint, SortMode, ViewMode, FilterTab } from './types';
 
+type AppView = 'board' | 'calendar';
+
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
+  const [appView, setAppView] = useState<AppView>('board');
   const [showForm, setShowForm] = useState(false);
   const [activeBriefing, setActiveBriefing] = useState<Checkpoint | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -22,6 +28,8 @@ export default function App() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [searchQuery, setSearchQuery] = useState('');
   const [filterTab, setFilterTab] = useState<FilterTab>('all');
+  const [showStats, setShowStats] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const {
     checkpoints,
@@ -32,9 +40,28 @@ export default function App() {
     deleteCheckpoint,
     togglePin,
     setStatus,
+    addSubTask,
+    toggleSubTask,
+    deleteSubTask,
+    addNote,
+    deleteNote,
+    addLink,
+    removeLink,
+    setCheckpointsFromImport,
   } = useCheckpoints();
 
-  // Tab counts (from all checkpoints, independent of search)
+  // Cmd+K to open new checkpoint
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setShowForm(true);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
+
   const tabCounts = useMemo(() => ({
     all: checkpoints.length,
     open: checkpoints.filter(c => c.status === 'open').length,
@@ -43,21 +70,21 @@ export default function App() {
   }), [checkpoints]);
 
   const filtered = useMemo(() => {
-    // 1. Tab filter
     let result = checkpoints;
     if (filterTab === 'open') result = result.filter(c => c.status === 'open');
     else if (filterTab === 'blocked') result = result.filter(c => c.status === 'blocked');
     else if (filterTab === 'done') result = result.filter(c => c.status === 'done');
-    else result = result.filter(c => c.status !== 'done'); // "all" hides done by default
+    else result = result.filter(c => c.status !== 'done');
 
-    // 2. Search filter
     const q = searchQuery.toLowerCase().trim();
     if (!q) return result;
     return result.filter(cp =>
       cp.title.toLowerCase().includes(q) ||
       cp.context.toLowerCase().includes(q) ||
       cp.nextStep.toLowerCase().includes(q) ||
-      cp.tags.some(t => t.includes(q))
+      cp.tags.some(t => t.includes(q)) ||
+      cp.notes.some(n => n.text.toLowerCase().includes(q)) ||
+      cp.subTasks.some(t => t.text.toLowerCase().includes(q))
     );
   }, [checkpoints, filterTab, searchQuery]);
 
@@ -81,9 +108,7 @@ export default function App() {
     setStatus(id, cp.status === 'blocked' ? 'open' : 'blocked');
   };
 
-  const handleMarkDone = (id: string) => {
-    setStatus(id, 'done');
-  };
+  const handleMarkDone = (id: string) => setStatus(id, 'done');
 
   const handleRestore = (id: string) => {
     setStatus(id, 'open');
@@ -107,77 +132,98 @@ export default function App() {
   return (
     <div className="min-h-screen">
       {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
-      <Header onNewCheckpoint={() => setShowForm(true)} checkpointCount={checkpoints.filter(c => c.status !== 'done').length} />
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pb-24 md:pb-8">
-        {!hasAny ? (
-          <EmptyState onNewCheckpoint={() => setShowForm(true)} />
-        ) : (
+      <Header
+        onNewCheckpoint={() => setShowForm(true)}
+        checkpointCount={checkpoints.filter(c => c.status !== 'done').length}
+        onShowStats={() => setShowStats(true)}
+        onShowSettings={() => setShowSettings(true)}
+        activeView={appView}
+        onViewChange={setAppView}
+      />
+
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pb-24 md:pb-10">
+
+        {/* ─── CALENDAR VIEW ─── */}
+        {appView === 'calendar' && (
+          <CalendarView
+            checkpoints={checkpoints}
+            onReturn={handleReturn}
+            onEdit={setEditingId}
+          />
+        )}
+
+        {/* ─── BOARD VIEW ─── */}
+        {appView === 'board' && (
           <>
-            {/* Filter tabs — desktop/tablet only (mobile uses BottomNav) */}
-            <div className="hidden md:block">
-              <FilterTabs active={filterTab} onChange={tab => { setFilterTab(tab); setSearchQuery(''); }} counts={tabCounts} />
-            </div>
-
-            {/* Toolbar */}
-            <div className="flex items-center gap-3 mb-5 flex-wrap">
-              <input
-                type="search"
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                placeholder={`Search ${filterTab === 'all' ? 'checkpoints' : filterTab}...`}
-                className="flex-1 min-w-[180px] max-w-xs bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-2 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-white/[0.14] focus:bg-white/[0.05] transition-all"
-              />
-              <div className="flex items-center gap-2 ml-auto">
-                <button onClick={cycleSortMode} className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] text-xs text-slate-500 hover:text-slate-300 transition-all">
-                  <SortAsc size={12} />{sortLabels[sortMode]}
-                </button>
-                <div className="flex rounded-xl border border-white/[0.06] overflow-hidden">
-                  <button onClick={() => setViewMode('grid')} className={`p-2 transition-all ${viewMode === 'grid' ? 'bg-white/[0.07] text-white' : 'text-slate-600 hover:text-slate-400 hover:bg-white/[0.04]'}`}>
-                    <Grid size={13} />
-                  </button>
-                  <button onClick={() => setViewMode('list')} className={`p-2 transition-all ${viewMode === 'list' ? 'bg-white/[0.07] text-white' : 'text-slate-600 hover:text-slate-400 hover:bg-white/[0.04]'}`}>
-                    <List size={13} />
-                  </button>
+            {!hasAny ? (
+              <EmptyState onNewCheckpoint={() => setShowForm(true)} />
+            ) : (
+              <>
+                <div className="hidden md:block">
+                  <FilterTabs active={filterTab} onChange={tab => { setFilterTab(tab); setSearchQuery(''); }} counts={tabCounts} />
                 </div>
-              </div>
-            </div>
 
-            {sortMode === 'staleness' && sorted.length > 0 && filterTab !== 'done' && (
-              <p className="text-[11px] text-slate-700 mb-4">Pinned first, then sorted by time since last visit</p>
+                <div className="flex items-center gap-3 mb-5 flex-wrap">
+                  <input
+                    type="search"
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.target.value)}
+                    placeholder={`Search checkpoints, notes, tasks...`}
+                    className="flex-1 min-w-[180px] max-w-xs bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-2 text-sm text-white placeholder-slate-700 focus:outline-none focus:border-white/[0.14] focus:bg-white/[0.05] transition-all"
+                  />
+                  <div className="flex items-center gap-2 ml-auto">
+                    <button onClick={cycleSortMode} className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] text-xs text-slate-500 hover:text-slate-300 transition-all">
+                      <SortAsc size={12} />{sortLabels[sortMode]}
+                    </button>
+                    <div className="flex rounded-xl border border-white/[0.06] overflow-hidden">
+                      <button onClick={() => setViewMode('grid')} className={`p-2 transition-all ${viewMode === 'grid' ? 'bg-white/[0.07] text-white' : 'text-slate-600 hover:text-slate-400 hover:bg-white/[0.04]'}`}>
+                        <Grid size={13} />
+                      </button>
+                      <button onClick={() => setViewMode('list')} className={`p-2 transition-all ${viewMode === 'list' ? 'bg-white/[0.07] text-white' : 'text-slate-600 hover:text-slate-400 hover:bg-white/[0.04]'}`}>
+                        <List size={13} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {sortMode === 'staleness' && sorted.length > 0 && filterTab !== 'done' && (
+                  <p className="text-[11px] text-slate-700 mb-4">Pinned first, then sorted by time since last visit</p>
+                )}
+
+                {sorted.length === 0 && (
+                  <div className="text-center py-20">
+                    <p className="text-slate-600">
+                      {searchQuery ? `No results for "${searchQuery}"` : `No ${filterTab} checkpoints`}
+                    </p>
+                    {searchQuery
+                      ? <button onClick={() => setSearchQuery('')} className="text-indigo-500 text-sm mt-2 hover:underline">Clear search</button>
+                      : filterTab === 'done'
+                      ? <p className="text-slate-700 text-sm mt-2">Complete a checkpoint to see it here</p>
+                      : <button onClick={() => setShowForm(true)} className="text-indigo-500 text-sm mt-2 hover:underline">Add one</button>
+                    }
+                  </div>
+                )}
+
+                <div className={viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3' : 'flex flex-col gap-2'}>
+                  {sorted.map((cp, i) => (
+                    <CheckpointCard
+                      key={cp.id}
+                      checkpoint={cp}
+                      onReturn={handleReturn}
+                      onEdit={setEditingId}
+                      onDelete={deleteCheckpoint}
+                      onTogglePin={togglePin}
+                      onMarkDone={handleMarkDone}
+                      onRestore={handleRestore}
+                      onToggleBlocked={handleToggleBlocked}
+                      listMode={viewMode === 'list'}
+                      style={{ animationDelay: `${i * 40}ms`, opacity: 0 }}
+                    />
+                  ))}
+                </div>
+              </>
             )}
-
-            {sorted.length === 0 && (
-              <div className="text-center py-20">
-                <p className="text-slate-600">
-                  {searchQuery ? `No results for "${searchQuery}"` : `No ${filterTab} checkpoints`}
-                </p>
-                {searchQuery
-                  ? <button onClick={() => setSearchQuery('')} className="text-indigo-500 text-sm mt-2 hover:underline">Clear search</button>
-                  : filterTab === 'done'
-                  ? <p className="text-slate-700 text-sm mt-2">Complete a checkpoint to see it here</p>
-                  : <button onClick={() => setShowForm(true)} className="text-indigo-500 text-sm mt-2 hover:underline">Add one</button>
-                }
-              </div>
-            )}
-
-            <div className={viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3' : 'flex flex-col gap-2'}>
-              {sorted.map((cp, i) => (
-                <CheckpointCard
-                  key={cp.id}
-                  checkpoint={cp}
-                  onReturn={handleReturn}
-                  onEdit={setEditingId}
-                  onDelete={deleteCheckpoint}
-                  onTogglePin={togglePin}
-                  onMarkDone={handleMarkDone}
-                  onRestore={handleRestore}
-                  onToggleBlocked={handleToggleBlocked}
-                  listMode={viewMode === 'list'}
-                  style={{ animationDelay: `${i * 40}ms`, opacity: 0 }}
-                />
-              ))}
-            </div>
           </>
         )}
       </main>
@@ -199,6 +245,26 @@ export default function App() {
           checkpoint={editingCheckpoint}
           onSave={(id, data) => updateCheckpoint(id, data)}
           onClose={() => setEditingId(null)}
+          onAddSubTask={addSubTask}
+          onToggleSubTask={toggleSubTask}
+          onDeleteSubTask={deleteSubTask}
+          onAddNote={addNote}
+          onDeleteNote={deleteNote}
+          onAddLink={addLink}
+          onRemoveLink={removeLink}
+        />
+      )}
+
+      {showStats && (
+        <StatsModal checkpoints={checkpoints} onClose={() => setShowStats(false)} />
+      )}
+
+      {showSettings && (
+        <SettingsModal
+          checkpoints={checkpoints}
+          onImport={setCheckpointsFromImport}
+          onClearAll={() => setCheckpointsFromImport([])}
+          onClose={() => setShowSettings(false)}
         />
       )}
 

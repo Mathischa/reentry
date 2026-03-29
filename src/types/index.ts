@@ -2,6 +2,18 @@ export type Priority = 'urgent' | 'high' | 'normal';
 export type CheckpointStatus = 'open' | 'blocked' | 'done';
 export type FilterTab = 'all' | 'open' | 'blocked' | 'done';
 
+export interface SubTask {
+  id: string;
+  text: string;
+  done: boolean;
+}
+
+export interface CheckpointNote {
+  id: string;
+  text: string;
+  createdAt: number;
+}
+
 export interface Session {
   startedAt: number;
   endedAt: number | null;
@@ -27,6 +39,9 @@ export interface Checkpoint {
   dueDate: number | null;
   isPinned: boolean;
   completedAt: number | null;
+  subTasks: SubTask[];
+  notes: CheckpointNote[];
+  links: string[];
 }
 
 export type StalenessLevel = 'fresh' | 'warm' | 'cooling' | 'cold' | 'frozen';
