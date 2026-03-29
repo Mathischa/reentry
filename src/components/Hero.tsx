@@ -46,7 +46,7 @@ export function Hero() {
       </h1>
 
       <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed">
-        Webyra conçoit des sites vitrine, e-commerce et applications web sur-mesure. Design premium, code propre, résultats mesurables.
+        Webyra conçoit des sites vitrines sur-mesure pour les entrepreneurs et PME. Design premium, code propre, résultats mesurables.
       </p>
 
       {/* CTAs */}

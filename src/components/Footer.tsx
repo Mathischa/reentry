@@ -1,9 +1,9 @@
 import { Github, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 const LINKS = {
-  Services: ['Site Vitrine', 'E-commerce', 'Application Web', 'Landing Page', 'SEO & Performance', 'Maintenance'],
-  Entreprise: ['À propos', 'Portfolio', 'Notre processus', 'Tarifs', 'FAQ'],
-  Contact: ['hello@webyra.fr', '+33 6 00 00 00 00', 'France & International', 'Devis gratuit'],
+  Services: ['Site Vitrine Essentiel', 'Site Vitrine Pro', 'SEO & Performance', 'Design & Identité', 'Maintenance'],
+  Entreprise: ['Portfolio', 'Notre processus', 'Tarifs', 'FAQ'],
+  Contact: ['mathis.chatillon@edu.ece.fr', '07 82 52 25 97', 'France & International', 'Devis gratuit'],
 };
 
 const SOCIALS = [
@@ -25,7 +25,7 @@ export function Footer() {
               <span className="font-bold text-xl text-white tracking-tight">Webyra</span>
             </a>
             <p className="text-slate-500 text-sm leading-relaxed mb-5">
-              Agence web spécialisée dans la création de sites et applications sur-mesure. Design premium, code propre.
+              Agence web spécialisée dans la création de sites vitrines sur-mesure. Design premium, code propre, résultats mesurables.
             </p>
             <div className="flex items-center gap-3">
               {SOCIALS.map(({ icon: Icon, href }) => (

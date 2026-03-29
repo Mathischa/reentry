@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Send, Mail, MessageSquare, User, Phone } from 'lucide-react';
 import { SectionLabel, GradientText } from './Services';
 
-const BUDGETS = ['< 1 000€', '1 000 – 3 000€', '3 000 – 8 000€', '8 000€+', 'Je ne sais pas encore'];
-const TYPES = ['Site vitrine', 'E-commerce', 'Application web', 'Landing page', 'SEO / Performance', 'Autre'];
+const BUDGETS = ['< 500€', '500 – 1 000€', '1 000 – 2 000€', '2 000€+', 'Je ne sais pas encore'];
+const TYPES = ['Site vitrine Essentiel', 'Site vitrine Pro', 'Projet sur-mesure', 'Refonte de site existant', 'Autre'];
 
 export function Contact() {
   const [sent, setSent] = useState(false);
@@ -28,8 +28,8 @@ export function Contact() {
           {/* Info cards */}
           <div className="lg:col-span-2 space-y-4">
             {[
-              { icon: Mail, title: 'Email', val: 'hello@webyra.fr', color: '#0ea5e9' },
-              { icon: Phone, title: 'Téléphone', val: '+33 6 00 00 00 00', color: '#6366f1' },
+              { icon: Mail, title: 'Email', val: 'mathis.chatillon@edu.ece.fr', color: '#0ea5e9' },
+              { icon: Phone, title: 'Téléphone', val: '07 82 52 25 97', color: '#6366f1' },
               { icon: MessageSquare, title: 'Réponse', val: 'Sous 48h en semaine', color: '#a855f7' },
             ].map(item => {
               const Icon = item.icon;
