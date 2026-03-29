@@ -3,11 +3,12 @@ import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 
 const LINKS = [
-  { href: '#services', label: 'Services' },
+  { href: '#services',  label: 'Services'  },
+  { href: '#stack',     label: 'Stack'     },
   { href: '#processus', label: 'Processus' },
   { href: '#portfolio', label: 'Portfolio' },
-  { href: '#tarifs', label: 'Tarifs' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#tarifs',    label: 'Tarifs'    },
+  { href: '#contact',   label: 'Contact'   },
 ];
 
 export function Nav({ scrolled }: { scrolled: boolean }) {
@@ -19,8 +20,9 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
-          <Logo height={36} />
+        <a href="#" className="flex items-center gap-2 group">
+          <Logo size={34} />
+          <span className="font-extrabold text-lg tracking-tight text-white leading-none">Webyra</span>
         </a>
 
         {/* Desktop links */}

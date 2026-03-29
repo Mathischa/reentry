@@ -83,3 +83,12 @@ select option { background: #0e0e1a; color: white; }
   from { width: 0%; }
   to   { width: 100%; }
 }
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% / 3)); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(calc(-100% / 3)); }
+  to   { transform: translateX(0); }
+}

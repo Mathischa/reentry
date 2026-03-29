@@ -21,8 +21,9 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           {/* Brand */}
           <div>
-            <a href="#" className="inline-flex mb-4">
-              <Logo height={48} />
+            <a href="#" className="flex items-center gap-2.5 mb-4">
+              <Logo size={38} />
+              <span className="font-extrabold text-xl tracking-tight text-white">Webyra</span>
             </a>
             <p className="text-slate-500 text-sm leading-relaxed mb-5">
               Agence web spécialisée dans la création de sites vitrines sur-mesure. Design premium, code propre, résultats mesurables.

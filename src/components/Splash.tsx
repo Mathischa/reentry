@@ -70,14 +70,15 @@ export function Splash({ onDone }: { onDone: () => void }) {
 
           {/* Real logo — transparent background, scale-in */}
           <div className="absolute inset-0 flex items-center justify-center" style={{ animation: 'logo-in 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both' }}>
-            <Logo height={110} />
+            <Logo size={110} />
           </div>
         </div>
       </div>
 
-      {/* Tagline */}
-      <div style={{ animation: 'text-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.5s both' }} className="mt-10 flex flex-col items-center gap-1">
-        <span className="text-slate-500 text-xs tracking-[0.35em] uppercase font-medium">Agence Web</span>
+      {/* Brand + tagline */}
+      <div style={{ animation: 'text-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.5s both' }} className="mt-8 flex flex-col items-center gap-1.5">
+        <span className="text-white font-extrabold text-3xl tracking-tight">Webyra</span>
+        <span className="text-slate-600 text-xs tracking-[0.3em] uppercase font-medium">Agence Web</span>
       </div>
 
       {/* Loading bar */}
