@@ -1,5 +1,7 @@
 import { Check, ArrowRight } from 'lucide-react';
 import { SectionLabel, GradientText } from './Services';
+import { SectionTitle } from './SectionTitle';
+import { useCountUp } from '../hooks';
 
 const FEATURES = [
   'Site vitrine jusqu\'à 8 pages',
@@ -13,11 +15,13 @@ const FEATURES = [
 ];
 
 export function Pricing() {
+  const priceRef = useCountUp(700, { duration: 2.5 });
+
   return (
     <section id="tarifs" className="py-24 px-5 sm:px-8">
       <div className="max-w-6xl mx-auto">
         <SectionLabel>Tarifs</SectionLabel>
-        <h2 className="section-title">Un prix <GradientText>clair et honnête</GradientText></h2>
+        <SectionTitle>Un prix <GradientText>clair et honnête</GradientText></SectionTitle>
         <p className="section-sub">Pas de frais cachés. Pas de surprise. Un investissement transparent pour un résultat durable.</p>
 
         <div className="flex justify-center mt-14">
@@ -35,7 +39,9 @@ export function Pricing() {
 
             <div className="mb-8">
               <div className="flex items-end gap-2">
-                <span className="text-5xl font-black text-white">700€</span>
+                <span className="text-5xl font-black text-white">
+                  <span ref={priceRef}>0</span>€
+                </span>
                 <span className="text-slate-600 text-sm mb-2">HT</span>
               </div>
               <p className="text-slate-600 text-xs mt-1">Paiement en 2 fois disponible</p>

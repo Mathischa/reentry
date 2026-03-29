@@ -15,7 +15,13 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
   return (
     <nav
       className="fixed top-0 inset-x-0 z-50 transition-all duration-300"
-      style={scrolled ? { background: 'rgba(7,8,15,0.92)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.05)' } : {}}
+      style={scrolled ? {
+        background: 'rgba(7, 8, 15, 0.8)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+      } : {}}
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
         {/* Logo */}

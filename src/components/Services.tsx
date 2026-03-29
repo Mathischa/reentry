@@ -1,5 +1,11 @@
 import { Globe, Zap, BarChart2, Wrench, Search, Palette } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SectionTitle } from './SectionTitle';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SERVICES = [
   {
@@ -35,41 +41,69 @@ const SERVICES = [
 ];
 
 export function Services() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const cards = containerRef.current.querySelectorAll('[data-service-card]');
+    gsap.fromTo(
+      cards,
+      { y: 80, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 70%',
+          once: true,
+        },
+      }
+    );
+  }, []);
+
   return (
     <section id="services" className="py-24 px-5 sm:px-8">
       <div className="max-w-6xl mx-auto">
         <SectionLabel>Services</SectionLabel>
-        <h2 className="section-title">Tout ce qu'il faut pour <br /><GradientText>réussir en ligne</GradientText></h2>
+        <SectionTitle>Tout ce qu'il faut pour <br /><GradientText>réussir en ligne</GradientText></SectionTitle>
         <p className="section-sub">Nous créons des sites vitrines professionnels qui reflètent votre image et attirent de nouveaux clients.</p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-14">
-          {SERVICES.map(s => {
-            const Icon = s.icon;
-            return (
-              <div key={s.title}
-                className="group relative p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.1] transition-all duration-300 overflow-hidden">
-                <div className="absolute inset-x-0 top-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: `linear-gradient(90deg, transparent, ${s.color}60, transparent)` }} />
-                <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-5"
-                  style={{ background: `${s.color}15`, border: `1px solid ${s.color}30` }}>
-                  <Icon size={20} style={{ color: s.color }} />
-                </div>
-                <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed mb-4">{s.desc}</p>
-                <ul className="space-y-1.5">
-                  {s.features.map(f => (
-                    <li key={f} className="flex items-center gap-2 text-xs text-slate-500">
-                      <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: s.color }} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+        <div ref={containerRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-14">
+          {SERVICES.map(s => (
+            <ServiceCard key={s.title} service={s} />
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function ServiceCard({ service: s }: { service: typeof SERVICES[0] }) {
+  const Icon = s.icon;
+  return (
+    <div data-service-card
+      className="group relative p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.1] transition-all duration-300 overflow-hidden">
+      <div className="absolute inset-x-0 top-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: `linear-gradient(90deg, transparent, ${s.color}60, transparent)` }} />
+      <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-5"
+        style={{ background: `${s.color}15`, border: `1px solid ${s.color}30` }}>
+        <Icon size={20} style={{ color: s.color }} />
+      </div>
+      <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
+      <p className="text-slate-500 text-sm leading-relaxed mb-4">{s.desc}</p>
+      <ul className="space-y-1.5">
+        {s.features.map(f => (
+          <li key={f} className="flex items-center gap-2 text-xs text-slate-500">
+            <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: s.color }} />
+            {f}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

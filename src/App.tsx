@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useLenis } from './hooks';
 import { Nav } from './components/Nav';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
@@ -9,11 +10,14 @@ import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Splash } from './components/Splash';
+import { CustomCursor } from './components/CustomCursor';
+import { ProgressBar } from './components/ProgressBar';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [scrolled, setScrolled] = useState(false);
 
+  useLenis();
   const onDone = useCallback(() => setShowSplash(false), []);
 
   useEffect(() => {
@@ -25,7 +29,9 @@ export default function App() {
   return (
     <>
       {showSplash && <Splash onDone={onDone} />}
-      <div className="min-h-screen bg-[#07080f] text-white overflow-x-hidden">
+      <ProgressBar />
+      <CustomCursor />
+      <div className="min-h-screen bg-[#07080f] text-white overflow-x-hidden cursor-none">
         <Nav scrolled={scrolled} />
         <Hero />
         <Services />
