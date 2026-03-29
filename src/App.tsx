@@ -10,8 +10,11 @@ import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Splash } from './components/Splash';
-import { CustomCursor } from './components/CustomCursor';
+import { AnimatedBlobCursor } from './components/AnimatedBlobCursor';
 import { ProgressBar } from './components/ProgressBar';
+import { CanvasParticleBackground } from './components/CanvasParticleBackground';
+import { InteractiveMeshGradient } from './components/InteractiveMeshGradient';
+import { ScrollVelocityEffect } from './components/ScrollVelocityEffect';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -30,8 +33,11 @@ export default function App() {
     <>
       {showSplash && <Splash onDone={onDone} />}
       <ProgressBar />
-      <CustomCursor />
-      <div className="min-h-screen bg-[#07080f] text-white overflow-x-hidden cursor-none">
+      <AnimatedBlobCursor />
+      <CanvasParticleBackground />
+      <InteractiveMeshGradient />
+      <ScrollVelocityEffect />
+      <div className="min-h-screen bg-[#07080f] text-white overflow-x-hidden cursor-none relative">
         <Nav scrolled={scrolled} />
         <Hero />
         <Services />
