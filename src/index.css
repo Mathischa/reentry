@@ -92,3 +92,20 @@ select option { background: #0e0e1a; color: white; }
   from { transform: translateX(calc(-100% / 3)); }
   to   { transform: translateX(0); }
 }
+
+@keyframes scan-line {
+  from { transform: translateY(-10px); }
+  to   { transform: translateY(100vh); }
+}
+
+@keyframes splash-glitch {
+  0%, 78%, 100% { text-shadow: none; transform: none; }
+  79% { text-shadow: -3px 0 #0ea5e9, 3px 0 #a855f7; transform: skewX(-4deg); }
+  81% { text-shadow: 3px 0 #0ea5e9, -2px 0 #6366f1; transform: skewX(2deg); }
+  83% { text-shadow: none; transform: none; }
+  84% { text-shadow: -1px 0 #0ea5e9; transform: translateX(2px); }
+  86% { text-shadow: 1px 0 #a855f7; transform: translateX(-2px); }
+  88% { text-shadow: none; transform: none; }
+}
+
+.splash-glitch { animation: splash-glitch 4s 2s infinite; }
