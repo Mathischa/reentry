@@ -41,7 +41,7 @@ export function Contact() {
         EMAILJS_TEMPLATE,
         {
           from_name:    form.name,
-          from_email:   form.email,
+          reply_to:     form.email,
           phone:        form.phone   || 'Non renseigne',
           project_type: form.type    || 'Non precise',
           budget:       form.budget  || 'Non precise',
