@@ -7,6 +7,7 @@ const LINKS = [
   { href: '#processus', label: 'Processus' },
   { href: '#portfolio', label: 'Portfolio' },
   { href: '#tarifs',    label: 'Tarifs'    },
+  { href: '#contact',   label: 'Contact'   },
 ];
 
 export function Nav({ scrolled }: { scrolled: boolean }) {
@@ -32,7 +33,7 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
 
         {/* CTA + burger */}
         <div className="flex items-center gap-3">
-          <a href="#tarifs" className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all active:scale-95"
+          <a href="#contact" className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all active:scale-95"
             style={{ background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', boxShadow: '0 0 20px rgba(14,165,233,0.25)' }}>
             Démarrer un projet
           </a>
@@ -51,7 +52,7 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
               {l.label}
             </a>
           ))}
-          <a href="#tarifs" onClick={() => setOpen(false)}
+          <a href="#contact" onClick={() => setOpen(false)}
             className="block mt-3 py-3 px-4 rounded-xl text-center text-sm font-semibold text-white"
             style={{ background: 'linear-gradient(135deg, #0ea5e9, #6366f1)' }}>
             Démarrer un projet
