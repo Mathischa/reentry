@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useInView } from '../hooks';
 import { BANKS, BETTING, type Platform } from '../data/platforms';
-import { CheckCircle, AlertTriangle, Smartphone, Monitor } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock } from 'lucide-react';
 
 export function Services() {
   return (
@@ -76,7 +76,13 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 0 0 0 transparent'; }}
     >
       {/* Top gradient line */}
-      <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background: p.gradient }} />
+      <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background: p.suspended ? '#6b7280' : p.gradient }} />
+      {/* Suspended overlay badge */}
+      {p.suspended && (
+        <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-[10px] font-bold">
+          <PauseCircle size={10} /> Offre suspendue
+        </div>
+      )}
 
       <div className="p-7">
         {/* Header */}
@@ -129,6 +135,13 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
           <span className="text-slate-500">{p.minDeposit}</span>
           <span className="text-slate-600 text-[10px]">{p.timeline.slice(0, 35)}...</span>
         </div>
+
+        {/* Last checked */}
+        {p.lastChecked && (
+          <p className="text-[10px] text-slate-600 flex items-center gap-1 mb-3">
+            <CalendarClock size={9} /> Vérifié sur site officiel · {p.lastChecked}
+          </p>
+        )}
 
         {/* CTA */}
         <a href={`#tuto-${p.id}`}

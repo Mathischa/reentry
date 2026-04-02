@@ -1,5 +1,5 @@
 import { PLATFORMS } from '../data/platforms';
-import { Check, Smartphone, Monitor } from 'lucide-react';
+import { Check, Smartphone, Monitor, ExternalLink, AlertCircle } from 'lucide-react';
 
 export function Pricing() {
   return (
@@ -11,6 +11,10 @@ export function Pricing() {
           </div>
           <h2 className="section-title">Tableau comparatif des parrainages</h2>
           <p className="section-sub mx-auto">Toutes les offres côte à côte pour choisir les plus rentables selon ta situation.</p>
+          <div className="inline-flex items-center gap-2 mt-4 px-3 py-2 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] text-emerald-400/80 text-xs">
+            <AlertCircle size={12} />
+            Données vérifiées sur les sites officiels · Avril 2026 · Les montants peuvent changer à tout moment
+          </div>
         </div>
 
         {/* Desktop table */}
@@ -72,11 +76,17 @@ export function Pricing() {
                     </span>
                   </td>
                   <td className="px-4 py-5 text-center">
-                    <a href={`#tuto-${p.id}`}
-                      className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-xl transition-all hover:opacity-90"
-                      style={{ background: p.gradient, color: 'white' }}>
-                      Voir →
-                    </a>
+                    <div className="flex flex-col items-center gap-1.5">
+                      <a href={`#tuto-${p.id}`}
+                        className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-xl transition-all hover:opacity-90"
+                        style={{ background: p.gradient, color: 'white' }}>
+                        Tuto →
+                      </a>
+                      <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-0.5 text-[10px] text-slate-600 hover:text-slate-400 transition-colors">
+                        <ExternalLink size={9} /> Source officielle
+                      </a>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -133,22 +143,22 @@ export function Pricing() {
             emoji="🏆"
             title="Meilleur bonus total"
             value="Winamax"
-            sub="jusqu'à 600€ cumulables"
+            sub="20€ parrainage + 350€ bienvenue cumulables"
             color="#d97706"
           />
           <SummaryCard
-            emoji="🎯"
-            title="Plus simple à obtenir"
-            value="Revolut"
-            sub="Inscription 5 min, 100% app"
-            color="#7c3aed"
+            emoji="💚"
+            title="Meilleure banque active"
+            value="Fortuneo"
+            sub="80€ à 160€ selon la carte choisie"
+            color="#00c07f"
           />
           <SummaryCard
-            emoji="🏦"
-            title="Meilleure banque"
-            value="Boursorama"
-            sub="80€ sans dépôt, n°1 France"
-            color="#00b4d8"
+            emoji="⚡"
+            title="Le plus rapide"
+            value="Revolut"
+            sub="5 min, 100% app, bonus immédiat"
+            color="#7c3aed"
           />
         </div>
       </div>

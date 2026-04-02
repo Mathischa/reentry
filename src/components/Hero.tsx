@@ -53,7 +53,7 @@ export function Hero() {
       <h1 ref={titleRef} className="text-5xl sm:text-6xl lg:text-[4.5rem] font-black tracking-tight leading-[1.05] mb-6 max-w-5xl">
         <div className="overflow-hidden mb-1">
           <span data-word className="text-white inline-block">Gagnez</span>{' '}
-          <span data-word className="inline-block" style={{ background: 'linear-gradient(135deg,#10b981 0%,#0ea5e9 60%,#6366f1 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>jusqu'à 600€</span>
+          <span data-word className="inline-block" style={{ background: 'linear-gradient(135deg,#10b981 0%,#0ea5e9 60%,#6366f1 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>jusqu'à 370€</span>
         </div>
         <div className="overflow-hidden">
           <span data-word className="text-white inline-block">grâce aux</span>{' '}
@@ -96,10 +96,10 @@ export function Hero() {
 
       {/* Stats */}
       <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
-        <StatCard icon={<TrendingUp size={15} />} end={600} suffix="€" label="Bonus max cumulable" color="#10b981" />
-        <StatCard icon={<span className="text-sm">🏦</span>} end={3} suffix=" banques" label="Sans dépôt minimum" color="#0ea5e9" />
+        <StatCard icon={<TrendingUp size={15} />} end={370} suffix="€+" label="Bonus max cumulable (vérifié)" color="#10b981" />
+        <StatCard icon={<span className="text-sm">🏦</span>} end={2} suffix=" banques" label="Parrainage actif (Fortuneo, Revolut)" color="#0ea5e9" />
         <StatCard icon={<span className="text-sm">🎯</span>} end={5} suffix=" plateformes" label="Tutoriels complets" color="#6366f1" />
-        <StatCard icon={<Shield size={15} />} end={100} suffix="%" label="Offres légales & vérifiées" color="#a855f7" />
+        <StatCard icon={<Shield size={15} />} end={100} suffix="%" label="Offres vérifiées sur site officiel" color="#a855f7" />
       </div>
     </section>
   );
