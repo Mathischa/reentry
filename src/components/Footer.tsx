@@ -1,40 +1,32 @@
-import { Github, Twitter, Linkedin, Instagram } from 'lucide-react';
 import { Logo } from './Logo';
 
 const LINKS = {
-  Services: ['Site Vitrine Essentiel', 'Site Vitrine Pro', 'SEO & Performance', 'Design & Identité', 'Maintenance'],
-  Entreprise: ['Portfolio', 'Notre processus', 'Tarifs', 'FAQ'],
-  Contact: ['mathis.chatillon@edu.ece.fr', '07 82 52 25 97', 'France & International', 'Devis gratuit'],
+  Banques: ['Boursorama', 'Fortuneo', 'Revolut'],
+  'Paris Sportifs': ['Betclic', 'Winamax'],
+  Navigation: ['Comment ça marche', 'Tutoriels', 'Comparatif', 'FAQ'],
+  Légal: ['Mentions légales', 'Politique de confidentialité', 'Jeu responsable'],
 };
-
-const SOCIALS = [
-  { icon: Twitter, href: '#' },
-  { icon: Linkedin, href: '#' },
-  { icon: Instagram, href: '#' },
-  { icon: Github, href: '#' },
-];
 
 export function Footer() {
   return (
     <footer className="border-t border-white/[0.05] pt-16 pb-8 px-5 sm:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
           {/* Brand */}
-          <div>
+          <div className="lg:col-span-2">
             <a href="#" className="flex items-center gap-2.5 mb-4">
-              <Logo size={38} />
-              <span className="font-extrabold text-xl tracking-tight text-white">Webyra</span>
+              <Logo size={34} />
+              <span className="font-extrabold text-xl tracking-tight">
+                Parrain<span style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Boost</span>
+              </span>
             </a>
-            <p className="text-slate-500 text-sm leading-relaxed mb-5">
-              Agence web spécialisée dans la création de sites vitrines sur-mesure. Design premium, code propre, résultats mesurables.
+            <p className="text-slate-500 text-sm leading-relaxed mb-4">
+              Guide complet des meilleures offres de parrainage bancaires et de paris sportifs en France. Tutoriels, conditions et alertes bonus.
             </p>
-            <div className="flex items-center gap-3">
-              {SOCIALS.map(({ icon: Icon, href }) => (
-                <a key={href + Icon.name} href={href}
-                  className="w-9 h-9 rounded-xl flex items-center justify-center bg-white/[0.04] border border-white/[0.06] text-slate-500 hover:text-white hover:bg-white/[0.08] transition-all">
-                  <Icon size={15} />
-                </a>
-              ))}
+            <div className="p-3 rounded-xl border border-amber-500/20 bg-amber-500/[0.05]">
+              <p className="text-amber-500/70 text-xs leading-relaxed">
+                ⚠️ Les montants des offres de parrainage sont susceptibles de changer à tout moment. Vérifiez toujours les conditions sur le site officiel de chaque plateforme.
+              </p>
             </div>
           </div>
 
@@ -55,15 +47,10 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-7 border-t border-white/[0.05]">
-          <p className="text-slate-600 text-xs">© {new Date().getFullYear()} Webyra. Tous droits réservés.</p>
-          <div className="flex items-center gap-5">
-            {['Mentions légales', 'Politique de confidentialité', 'CGV'].map(l => (
-              <a key={l} href="#" className="text-slate-600 text-xs hover:text-slate-400 transition-colors">{l}</a>
-            ))}
-          </div>
+          <p className="text-slate-600 text-xs">© {new Date().getFullYear()} ParrainBoost. Tous droits réservés. Site indépendant, non affilié aux plateformes mentionnées.</p>
+          <p className="text-slate-700 text-xs">18+ — Jeux d'argent interdits aux mineurs</p>
         </div>
       </div>
     </footer>
   );
 }
-

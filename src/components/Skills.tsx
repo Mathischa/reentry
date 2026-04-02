@@ -1,4 +1,3 @@
-import { SectionLabel, GradientText } from './Services';
 
 // ─── Tech data ──────────────────────────────────────────────────────────────
 
@@ -82,6 +81,13 @@ const STATS = [
 ];
 
 // ─── Section ────────────────────────────────────────────────────────────────
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return <p className="text-sky-400 text-sm font-semibold tracking-widest uppercase mb-3">{children}</p>;
+}
+function GradientText({ children }: { children: React.ReactNode }) {
+  return <span style={{ background: 'linear-gradient(135deg,#00c2ff,#6366f1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{children}</span>;
+}
 
 export function Skills() {
   return (

@@ -202,8 +202,10 @@ export function Splash({ onDone }: { onDone: () => void }) {
       {/* Brand + tagline */}
       <div style={{ animation: 'text-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.7s both' }}
         className="mt-10 flex flex-col items-center gap-2 relative z-10">
-        <span className="text-white font-extrabold text-3xl tracking-tight splash-glitch">Webyra</span>
-        <span className="text-slate-600 text-[11px] tracking-[0.38em] uppercase font-medium">Agence Web</span>
+        <span className="text-white font-extrabold text-3xl tracking-tight splash-glitch">
+          Parrain<span style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Boost</span>
+        </span>
+        <span className="text-slate-600 text-[11px] tracking-[0.38em] uppercase font-medium">Guide Parrainages</span>
       </div>
 
       {/* Loading bar */}

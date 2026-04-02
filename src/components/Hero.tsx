@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, TrendingUp, Shield, Zap } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useCountUp } from '../hooks';
@@ -9,128 +9,113 @@ export function Hero() {
 
   useEffect(() => {
     const el = ref.current; if (!el) return;
-    const orbTop = el.querySelector('[data-orb-top]') as HTMLElement;
-    const orbBottom = el.querySelector('[data-orb-bottom]') as HTMLElement;
-
     const move = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 30;
-      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 30;
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 24;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 24;
       el.style.setProperty('--mx', `${x}px`);
       el.style.setProperty('--my', `${y}px`);
-
-      // Extra parallax on orbs
-      if (orbTop) orbTop.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
-      if (orbBottom) orbBottom.style.transform = `translate(${x * -0.3}px, ${y * -0.3}px)`;
     };
     window.addEventListener('mousemove', move);
     return () => window.removeEventListener('mousemove', move);
   }, []);
 
-  // Titre reveal effect au montage
   useEffect(() => {
     if (!titleRef.current) return;
     const spans = titleRef.current.querySelectorAll('span[data-word]');
-
-    gsap.fromTo(
-      spans,
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power2.out',
-        delay: 0.2,
-      }
+    gsap.fromTo(spans,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.9, stagger: 0.1, ease: 'power3.out', delay: 0.1 }
     );
   }, []);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex flex-col items-center justify-center text-center px-5 pt-24 pb-16 overflow-hidden">
-      {/* Background orbs */}
+    <section ref={ref} className="relative min-h-screen flex flex-col items-center justify-center text-center px-5 pt-28 pb-20 overflow-hidden">
+      {/* Orbs */}
       <div className="absolute inset-0 pointer-events-none">
-        <div data-orb-top className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full opacity-10 blur-[120px] transition-transform duration-300"
-          style={{ background: 'radial-gradient(circle, #0ea5e9, #1a4fd6)', transform: 'translate(var(--mx,0), var(--my,0))' }} />
-        <div data-orb-bottom className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full opacity-[0.08] blur-[100px] transition-transform duration-300"
-          style={{ background: 'radial-gradient(circle, #6366f1, #a855f7)', transform: 'translate(calc(var(--mx,0) * -0.6), calc(var(--my,0) * -0.6))' }} />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full opacity-[0.07] blur-[130px]"
+          style={{ background: 'radial-gradient(circle, #10b981, #0ea5e9)', transform: 'translate(var(--mx,0), var(--my,0))', transition: 'transform 0.4s ease' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full opacity-[0.06] blur-[100px]"
+          style={{ background: 'radial-gradient(circle, #6366f1, #a855f7)', transition: 'transform 0.4s ease' }} />
       </div>
 
       {/* Dot grid */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: 'radial-gradient(circle, rgba(14,165,233,0.07) 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+        style={{ backgroundImage: 'radial-gradient(circle, rgba(16,185,129,0.06) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
 
       {/* Badge */}
-      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-sky-500/25 bg-sky-500/[0.08] text-sky-400 text-sm mb-8 animate-fade-in">
-        <Sparkles size={14} />
-        Agence web &amp; digital — France
+      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/25 bg-emerald-500/[0.08] text-emerald-400 text-sm mb-8 animate-fade-in">
+        <Zap size={13} className="fill-emerald-400" />
+        Mis à jour en temps réel — Offres vérifiées Avril 2026
       </div>
 
       {/* Headline */}
-      <h1 ref={titleRef} className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-6 max-w-4xl">
-        <div className="overflow-hidden">
-          <span data-word className="text-white inline-block">Des</span> <span data-word className="text-white inline-block">sites</span> <span data-word className="text-white inline-block">web</span> <span data-word className="text-white inline-block">qui</span>
+      <h1 ref={titleRef} className="text-5xl sm:text-6xl lg:text-[4.5rem] font-black tracking-tight leading-[1.05] mb-6 max-w-5xl">
+        <div className="overflow-hidden mb-1">
+          <span data-word className="text-white inline-block">Gagnez</span>{' '}
+          <span data-word className="inline-block" style={{ background: 'linear-gradient(135deg,#10b981 0%,#0ea5e9 60%,#6366f1 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>jusqu'à 600€</span>
         </div>
-        <br />
         <div className="overflow-hidden">
-          <span data-word style={{ background: 'linear-gradient(135deg, #00c2ff 0%, #6366f1 60%, #a855f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }} className="inline-block">
-            convertissent
-          </span>
-          {' '}
-          <span data-word style={{ background: 'linear-gradient(135deg, #00c2ff 0%, #6366f1 60%, #a855f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }} className="inline-block">
-            vraiment
-          </span>
+          <span data-word className="text-white inline-block">grâce aux</span>{' '}
+          <span data-word className="inline-block" style={{ background: 'linear-gradient(135deg,#10b981 0%,#0ea5e9 60%,#6366f1 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>parrainages</span>
         </div>
       </h1>
 
-      <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed">
-        Webyra conçoit des sites vitrines sur-mesure pour les entrepreneurs et PME. Design premium, code propre, résultats mesurables.
+      <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mb-5 leading-relaxed">
+        Guides complets, conditions réelles et tutoriels pas-à-pas pour encaisser les meilleures primes de parrainage des banques et sites de paris.
       </p>
+
+      {/* Platform logos row */}
+      <div className="flex items-center gap-3 sm:gap-4 mb-10 flex-wrap justify-center">
+        {[
+          { name: 'Boursorama', color: '#00b4d8', emoji: '🏦' },
+          { name: 'Fortuneo', color: '#00c07f', emoji: '💚' },
+          { name: 'Revolut', color: '#7c3aed', emoji: '⚡' },
+          { name: 'Betclic', color: '#e8001c', emoji: '⚽' },
+          { name: 'Winamax', color: '#d97706', emoji: '🃏' },
+        ].map(p => (
+          <span key={p.name} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border"
+            style={{ borderColor: `${p.color}33`, background: `${p.color}11`, color: p.color }}>
+            {p.emoji} {p.name}
+          </span>
+        ))}
+      </div>
 
       {/* CTAs */}
       <div className="flex flex-col sm:flex-row items-center gap-4 mb-20">
-        <a href="#contact"
+        <a href="#banques"
           className="flex items-center gap-2.5 px-7 py-4 rounded-2xl text-base font-bold text-white transition-all active:scale-95 hover:scale-[1.03]"
-          style={{ background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', boxShadow: '0 8px 32px rgba(14,165,233,0.3), inset 0 1px 0 rgba(255,255,255,0.15)' }}>
-          Démarrer mon projet <ArrowRight size={18} />
+          style={{ background: 'linear-gradient(135deg, #10b981, #0ea5e9)', boxShadow: '0 8px 32px rgba(16,185,129,0.3), inset 0 1px 0 rgba(255,255,255,0.15)' }}>
+          Voir les offres banques <ArrowRight size={18} />
         </a>
-        <a href="#portfolio"
+        <a href="#comparatif"
           className="flex items-center gap-2.5 px-7 py-4 rounded-2xl text-base font-medium text-slate-300 border border-white/[0.08] hover:border-white/[0.15] hover:text-white transition-all bg-white/[0.03] hover:bg-white/[0.06]">
-          Voir nos réalisations
+          Tableau comparatif
         </a>
       </div>
 
       {/* Stats */}
-      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-        <StatCounter end={50} suffix="+" label="Projets livrés" />
-        <StatCounter end={100} suffix="%" label="Clients satisfaits" />
-        <Stat48h label="Réponse garantie" />
-        <StatCounter end={3} suffix=" ans" label="d'expérience" />
+      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
+        <StatCard icon={<TrendingUp size={15} />} end={600} suffix="€" label="Bonus max cumulable" color="#10b981" />
+        <StatCard icon={<span className="text-sm">🏦</span>} end={3} suffix=" banques" label="Sans dépôt minimum" color="#0ea5e9" />
+        <StatCard icon={<span className="text-sm">🎯</span>} end={5} suffix=" plateformes" label="Tutoriels complets" color="#6366f1" />
+        <StatCard icon={<Shield size={15} />} end={100} suffix="%" label="Offres légales & vérifiées" color="#a855f7" />
       </div>
     </section>
   );
 }
 
-function StatCounter({ end, suffix = '', label }: { end: number; suffix?: string; label: string }) {
+function StatCard({ icon, end, suffix, label, color }: { icon: React.ReactNode; end: number; suffix: string; label: string; color: string }) {
   const ref = useCountUp(end, { duration: 2 });
-
   return (
-    <div className="px-5 py-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center">
-      <p className="text-2xl font-black" style={{ background: 'linear-gradient(135deg,#00c2ff,#6366f1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-        <span ref={ref}>0</span>{suffix}
-      </p>
-      <p className="text-xs text-slate-600 mt-0.5">{label}</p>
-    </div>
-  );
-}
-
-function Stat48h({ label }: { label: string }) {
-  return (
-    <div className="px-5 py-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center">
-      <p className="text-2xl font-black text-white" style={{ background: 'linear-gradient(135deg,#00c2ff,#6366f1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-        &lt; 48h
-      </p>
-      <p className="text-xs text-slate-600 mt-0.5">{label}</p>
+    <div className="px-5 py-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center min-w-[130px]">
+      <div className="flex items-center justify-center gap-1 mb-0.5" style={{ color }}>
+        {icon}
+        <p className="text-xl font-black">
+          <span ref={ref}>0</span>{suffix}
+        </p>
+      </div>
+      <p className="text-xs text-slate-600">{label}</p>
     </div>
   );
 }

@@ -1,60 +1,76 @@
-import { Mail, Phone, MessageSquare } from 'lucide-react';
-import { SectionLabel, GradientText } from './Services';
+import { useState } from 'react';
+import { Bell, CheckCircle, TrendingUp, Zap } from 'lucide-react';
 
 export function Contact() {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setSubmitted(true);
+    setEmail('');
+  };
+
   return (
-    <section id="contact" className="py-24 px-5 sm:px-8">
-      <div className="max-w-6xl mx-auto text-center">
-        <SectionLabel>Contact</SectionLabel>
-        <h2 className="section-title">Parlons de votre <GradientText>projet</GradientText></h2>
-        <p className="section-sub mx-auto">
-          Une question, une idée, un projet ? Contactez-nous directement — réponse garantie sous 48h.
+    <section id="newsletter" className="py-24 px-5 sm:px-8" style={{ background: 'rgba(255,255,255,0.01)' }}>
+      <div className="max-w-2xl mx-auto text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-6 border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+          <Bell size={12} /> Alertes bonus
+        </div>
+
+        <h2 className="section-title mb-4">Sois le premier informé des nouvelles offres</h2>
+        <p className="section-sub mx-auto mb-10">
+          Les montants de parrainage changent souvent. Inscris-toi pour recevoir une alerte dès qu'une offre est boostée ou qu'un nouveau parrainage est disponible.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-14">
-          <a href="mailto:mathis.chatillon@edu.ece.fr"
-            className="flex items-center gap-4 px-7 py-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] hover:border-sky-500/30 hover:bg-sky-500/[0.04] transition-all group w-full sm:w-auto">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
-              style={{ background: 'rgba(14,165,233,0.1)', border: '1px solid rgba(14,165,233,0.2)' }}>
-              <Mail size={20} className="text-sky-400" />
+        {/* Benefits */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+          {[
+            { icon: <Bell size={16} />, title: 'Alertes immédiates', desc: 'Dès qu\'une offre change ou est boostée', color: '#10b981' },
+            { icon: <TrendingUp size={16} />, title: 'Offres exclusives', desc: 'Bonus boostés réservés aux inscrits', color: '#0ea5e9' },
+            { icon: <Zap size={16} />, title: 'Tutos mis à jour', desc: 'Guides actualisés en temps réel', color: '#6366f1' },
+          ].map((b, i) => (
+            <div key={i} className="rounded-2xl p-4 border border-white/[0.06] bg-white/[0.02]">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center mx-auto mb-3" style={{ background: `${b.color}15`, color: b.color }}>
+                {b.icon}
+              </div>
+              <p className="text-white font-semibold text-sm mb-1">{b.title}</p>
+              <p className="text-slate-500 text-xs">{b.desc}</p>
             </div>
-            <div className="text-left">
-              <p className="text-xs text-slate-600 mb-0.5">Email</p>
-              <p className="text-white text-sm font-semibold group-hover:text-sky-400 transition-colors">
-                mathis.chatillon@edu.ece.fr
-              </p>
-            </div>
-          </a>
+          ))}
+        </div>
 
-          <a href="tel:+33782522597"
-            className="flex items-center gap-4 px-7 py-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] hover:border-indigo-500/30 hover:bg-indigo-500/[0.04] transition-all group w-full sm:w-auto">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
-              style={{ background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.2)' }}>
-              <Phone size={20} className="text-indigo-400" />
-            </div>
-            <div className="text-left">
-              <p className="text-xs text-slate-600 mb-0.5">Téléphone</p>
-              <p className="text-white text-sm font-semibold group-hover:text-indigo-400 transition-colors">
-                07 82 52 25 97
-              </p>
-            </div>
-          </a>
-
-          <div className="flex items-center gap-4 px-7 py-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] w-full sm:w-auto">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
-              style={{ background: 'rgba(168,85,247,0.1)', border: '1px solid rgba(168,85,247,0.2)' }}>
-              <MessageSquare size={20} className="text-purple-400" />
-            </div>
-            <div className="text-left">
-              <p className="text-xs text-slate-600 mb-0.5">Réponse</p>
-              <p className="text-white text-sm font-semibold">Sous 48h en semaine</p>
-            </div>
+        {/* Form */}
+        {!submitted ? (
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="ton@email.fr"
+              required
+              className="flex-1 px-5 py-4 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500/40 focus:bg-white/[0.06] transition-all text-sm"
+            />
+            <button
+              type="submit"
+              className="px-6 py-4 rounded-2xl text-sm font-bold text-white transition-all hover:opacity-90 active:scale-95 whitespace-nowrap"
+              style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', boxShadow: '0 8px 24px rgba(16,185,129,0.25)' }}
+            >
+              M'alerter →
+            </button>
+          </form>
+        ) : (
+          <div className="flex flex-col items-center gap-3 py-8">
+            <CheckCircle size={40} className="text-emerald-400" />
+            <p className="text-white font-bold text-lg">C'est noté !</p>
+            <p className="text-slate-400 text-sm">Tu recevras une alerte dès qu'une offre intéressante arrive.</p>
           </div>
-        </div>
+        )}
 
-        <div className="mt-10 inline-flex items-center gap-2 px-5 py-3 rounded-full border border-sky-500/15 bg-sky-500/[0.04] text-sky-400 text-xs font-medium">
-          Premier échange gratuit et sans engagement
-        </div>
+        <p className="text-slate-600 text-xs mt-4">
+          Pas de spam. Désabonnement en 1 clic. 0 vente de données.
+        </p>
       </div>
     </section>
   );

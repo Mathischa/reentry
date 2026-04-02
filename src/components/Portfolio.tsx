@@ -1,168 +1,206 @@
-import { ExternalLink, Star } from 'lucide-react';
-import { SectionLabel, GradientText } from './Services';
-import { SectionTitle } from './SectionTitle';
-import { useRef, useEffect } from 'react';
-import VanillaTilt from 'vanilla-tilt';
+import { useState, useRef } from 'react';
+import { useInView } from '../hooks';
+import { PLATFORMS, type Platform } from '../data/platforms';
+import { ChevronDown, ChevronUp, Smartphone, Monitor, AlertTriangle, Lightbulb, FileText, CheckCircle2 } from 'lucide-react';
 
 export function Portfolio() {
-  return (
-    <section id="portfolio" className="py-24 px-5 sm:px-8">
-      <div className="max-w-6xl mx-auto">
-        <SectionLabel>Portfolio</SectionLabel>
-        <SectionTitle>Notre <GradientText>première réalisation</GradientText></SectionTitle>
-        <p className="section-sub">Un projet livré avec soin. D'autres sont en cours — le vôtre pourrait être le prochain.</p>
+  const [activeId, setActiveId] = useState<string | null>('boursorama');
 
-        <div className="mt-14 max-w-2xl mx-auto">
-          <PortfolioCard />
+  return (
+    <section id="tutoriels" className="py-24 px-5 sm:px-8">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-sky-500/30 bg-sky-500/10 text-sky-400">
+            📖 Guides pas-à-pas
+          </div>
+          <h2 className="section-title">Tutoriels détaillés</h2>
+          <p className="section-sub mx-auto">Chaque étape expliquée clairement — conditions exactes, documents requis, et astuces pour ne rater aucune prime.</p>
         </div>
 
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <p className="text-slate-500 text-sm mb-5">Vous voulez un site comme celui-là ?</p>
-          <a href="#contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-bold text-white transition-all hover:scale-[1.03] active:scale-95"
-            style={{ background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', boxShadow: '0 6px 24px rgba(14,165,233,0.28)' }}>
-            Démarrer mon projet <ExternalLink size={15} />
-          </a>
+        {/* Platform selector tabs */}
+        <div className="flex flex-wrap gap-2 justify-center mb-10">
+          {PLATFORMS.map(p => (
+            <button
+              key={p.id}
+              onClick={() => setActiveId(activeId === p.id ? null : p.id)}
+              className="flex items-center gap-2 px-4 py-2 rounded-2xl text-sm font-semibold transition-all"
+              style={activeId === p.id
+                ? { background: p.gradient, color: 'white', boxShadow: `0 4px 20px -4px ${p.color}60` }
+                : { background: `${p.color}10`, color: p.color, border: `1px solid ${p.color}30` }}
+            >
+              {p.emoji} {p.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Tutorial panels */}
+        <div className="space-y-4">
+          {PLATFORMS.map(p => (
+            <TutorialPanel key={p.id} platform={p} open={activeId === p.id} onToggle={() => setActiveId(activeId === p.id ? null : p.id)} />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function PortfolioCard() {
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const spotlightRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    VanillaTilt.init(card, {
-      max: 8,
-      scale: 1.02,
-      speed: 300,
-    });
-
-    return () => {
-      if ((card as any).vanillaTilt) {
-        (card as any).vanillaTilt.destroy();
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const card = cardRef.current;
-    const spotlight = spotlightRef.current;
-    if (!card || !spotlight) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      spotlight.style.left = x + 'px';
-      spotlight.style.top = y + 'px';
-      spotlight.style.opacity = '0.6';
-    };
-
-    const handleMouseLeave = () => {
-      spotlight.style.opacity = '0';
-    };
-
-    card.addEventListener('mousemove', handleMouseMove);
-    card.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      card.removeEventListener('mousemove', handleMouseMove);
-      card.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, []);
+function TutorialPanel({ platform: p, open, onToggle }: { platform: Platform; open: boolean; onToggle: () => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [, inView] = useInView(ref, { threshold: 0.05 });
 
   return (
-    <a
-      ref={cardRef}
-      href="https://www.rongfa.fr"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group block rounded-3xl overflow-hidden border border-white/[0.07] bg-white/[0.02] transition-all duration-300"
-      style={{ boxShadow: '0 8px 32px rgba(14,165,233,0.1)' }}
+    <div
+      id={`tuto-${p.id}`}
+      ref={ref}
+      className="rounded-3xl border overflow-hidden transition-all duration-300"
+      style={{
+        borderColor: open ? `${p.color}40` : `${p.color}15`,
+        background: open ? `${p.color}06` : 'rgba(255,255,255,0.015)',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(16px)',
+        transition: 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, background 0.3s',
+        boxShadow: open ? `0 0 40px -16px ${p.color}30` : 'none',
+      }}
     >
-      {/* Browser chrome mockup */}
-      <div className="relative h-64 sm:h-80 overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #0ea5e915, #6366f110)' }}>
-        {/* Spotlight */}
-        <div
-          ref={spotlightRef}
-          className="absolute w-40 h-40 rounded-full pointer-events-none opacity-0 transition-opacity duration-300"
-          style={{
-            background: 'radial-gradient(circle, rgba(14,165,233,0.4), transparent)',
-            transform: 'translate(-50%, -50%)',
-            filter: 'blur(40px)',
-          }}
-        />
-
-        <div className="absolute inset-5 rounded-xl border border-white/[0.07] bg-[#0a0b14] overflow-hidden shadow-2xl">
-          {/* Browser bar */}
-          <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/[0.05] bg-white/[0.02]">
-            <div className="flex gap-1.5">
-              {['#f43f5e', '#f59e0b', '#10b981'].map(c => <div key={c} className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c }} />)}
-            </div>
-            <div className="flex-1 mx-3 px-3 py-1 rounded-md bg-white/[0.04] border border-white/[0.05] flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500/60 flex-shrink-0" />
-              <span className="text-slate-500 text-xs font-mono">www.rongfa.fr</span>
+      {/* Header (always visible — clickable) */}
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between p-6 text-left"
+      >
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0"
+            style={{ background: `${p.color}15`, border: `1px solid ${p.color}30` }}>
+            {p.emoji}
+          </div>
+          <div>
+            <h3 className="font-bold text-white text-lg">{p.name}</h3>
+            <div className="flex items-center gap-3 mt-1 flex-wrap">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={{ color: p.color, background: `${p.color}15` }}>
+                Filleul : {p.bonusFilleul}
+              </span>
+              <span className="text-xs text-slate-500">Parrain : {p.bonusParrain}</span>
+              <span className="text-xs flex items-center gap-1 text-slate-500">
+                {p.badge === 'App uniquement' ? <Smartphone size={10} /> : <Monitor size={10} />}
+                {p.badge}
+              </span>
             </div>
           </div>
-          {/* Fake page content */}
-          <div className="p-5 space-y-3">
-            <div className="h-6 rounded-lg w-1/2" style={{ background: 'linear-gradient(90deg, #0ea5e930, #6366f120)' }} />
-            <div className="h-3 rounded w-3/4 bg-white/[0.04]" />
-            <div className="h-3 rounded w-2/3 bg-white/[0.03]" />
-            <div className="grid grid-cols-3 gap-3 mt-5">
-              {['#0ea5e9', '#6366f1', '#a855f7'].map((c, i) => (
-                <div key={i} className="rounded-lg h-16" style={{ background: `${c}12`, border: `1px solid ${c}20` }}>
-                  <div className="m-2 h-2 rounded" style={{ background: `${c}30`, width: '60%' }} />
-                  <div className="m-2 mt-1 h-2 rounded" style={{ background: `${c}18`, width: '40%' }} />
+        </div>
+        <div style={{ color: p.color }}>
+          {open ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+        </div>
+      </button>
+
+      {/* Expanded content */}
+      {open && (
+        <div className="px-6 pb-8 space-y-8">
+
+          {/* Quick info strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { label: 'Dépôt min.', value: p.minDeposit },
+              { label: 'Délai prime', value: p.timeline.split(' ').slice(0, 4).join(' ') },
+              { label: 'Catégorie', value: p.category === 'bank' ? '🏦 Banque' : '🎯 Paris' },
+              { label: 'Accès', value: p.badge },
+            ].map(info => (
+              <div key={info.label} className="rounded-2xl p-3 text-center" style={{ background: `${p.color}08`, border: `1px solid ${p.color}15` }}>
+                <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">{info.label}</p>
+                <p className="text-xs font-semibold text-white">{info.value}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Steps */}
+          <div>
+            <h4 className="text-white font-bold text-base mb-5 flex items-center gap-2">
+              <span style={{ color: p.color }}>📋</span> Tutoriel pas-à-pas
+            </h4>
+            <div className="space-y-4">
+              {p.steps.map(step => (
+                <div key={step.num} className="flex gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center text-xs font-black text-white"
+                    style={{ background: p.gradient }}>
+                    {step.num}
+                  </div>
+                  <div className="flex-1 pb-4 border-b border-white/[0.04] last:border-0">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <h5 className="font-semibold text-white text-sm">{step.title}</h5>
+                      {step.tag && (
+                        <span className="text-[9px] px-1.5 py-0.5 rounded-full font-semibold flex items-center gap-1"
+                          style={{ background: step.tag === 'App' ? '#7c3aed20' : step.tag === 'Web' ? '#0ea5e920' : '#10b98120',
+                                   color: step.tag === 'App' ? '#a78bfa' : step.tag === 'Web' ? '#38bdf8' : '#34d399' }}>
+                          {step.tag === 'App' ? <Smartphone size={8} /> : step.tag === 'Web' ? <Monitor size={8} /> : null}
+                          {step.tag}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
-            <div className="h-8 rounded-lg w-36 mt-2" style={{ background: 'linear-gradient(135deg, #0ea5e930, #6366f125)' }} />
           </div>
-        </div>
 
-        {/* Hover overlay */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
-          style={{ background: 'linear-gradient(135deg, rgba(14,165,233,0.15), rgba(99,102,241,0.12))' }}>
-          <div className="flex items-center gap-2.5 px-6 py-3 rounded-2xl text-white font-bold text-sm"
-            style={{ background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', boxShadow: '0 4px 24px rgba(14,165,233,0.4)' }}>
-            <ExternalLink size={15} /> Visiter le site
-          </div>
-        </div>
-      </div>
+          {/* Documents required */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <h4 className="text-white font-bold text-sm mb-3 flex items-center gap-2">
+                <FileText size={15} style={{ color: p.color }} /> Documents requis
+              </h4>
+              <div className="space-y-2">
+                {p.documents.map((doc, i) => (
+                  <div key={i} className="flex items-start gap-2">
+                    <CheckCircle2 size={13} className="mt-0.5 flex-shrink-0" style={{ color: p.color }} />
+                    <span className="text-slate-400 text-xs leading-snug">{doc}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-      {/* Info */}
-      <div className="p-6 flex items-start justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-3 mb-2">
-            <h3 className="text-white font-bold text-xl">Rongfa</h3>
-            <span className="text-[11px] px-2.5 py-1 rounded-full font-semibold"
-              style={{ background: 'rgba(14,165,233,0.12)', color: '#0ea5e9', border: '1px solid rgba(14,165,233,0.2)' }}>
-              Site Vitrine
-            </span>
+            {/* Conditions complètes */}
+            <div>
+              <h4 className="text-white font-bold text-sm mb-3 flex items-center gap-2">
+                <CheckCircle2 size={15} style={{ color: p.color }} /> Conditions complètes
+              </h4>
+              <div className="space-y-2">
+                {p.conditions.map((c, i) => (
+                  <div key={i} className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: p.color }} />
+                    <span className="text-slate-400 text-xs leading-snug">{c}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <p className="text-slate-500 text-sm leading-relaxed max-w-md">
-            Création complète du site vitrine pour Rongfa. Design sur-mesure, optimisation SEO et intégration d'un espace de contact performant.
-          </p>
-          <div className="flex flex-wrap gap-2 mt-4">
-            {['React', 'Tailwind CSS', 'SEO', 'Figma', 'Mobile-first'].map(t => (
-              <span key={t} className="text-[11px] px-2.5 py-1 rounded-lg bg-white/[0.04] text-slate-500 border border-white/[0.06]">{t}</span>
-            ))}
+
+          {/* Tips */}
+          <div className="rounded-2xl p-5" style={{ background: `${p.color}08`, border: `1px solid ${p.color}20` }}>
+            <h4 className="font-bold text-sm mb-3 flex items-center gap-2" style={{ color: p.color }}>
+              <Lightbulb size={14} /> Astuces & conseils
+            </h4>
+            <div className="space-y-2">
+              {p.tips.map((tip, i) => (
+                <p key={i} className="text-slate-400 text-xs leading-relaxed flex items-start gap-2">
+                  <span className="flex-shrink-0 mt-0.5">→</span> {tip}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Warning if exists */}
+          {p.warning && (
+            <div className="rounded-2xl p-4 border border-amber-500/25 bg-amber-500/[0.05] flex items-start gap-3">
+              <AlertTriangle size={16} className="text-amber-400 flex-shrink-0 mt-0.5" />
+              <p className="text-amber-400/90 text-sm leading-relaxed">{p.warning}</p>
+            </div>
+          )}
+
+          {/* Timeline */}
+          <div className="text-center py-3 rounded-2xl" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+            <p className="text-slate-500 text-xs">⏱ {p.timeline}</p>
           </div>
         </div>
-        <div className="flex-shrink-0 flex items-center gap-1">
-          {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#f59e0b" color="#f59e0b" />)}
-        </div>
-      </div>
-    </a>
+      )}
+    </div>
   );
 }
