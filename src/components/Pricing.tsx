@@ -1,5 +1,5 @@
 import { PLATFORMS } from '../data/platforms';
-import { Check, Smartphone, Monitor, ExternalLink, AlertCircle } from 'lucide-react';
+import { Check, Smartphone, Monitor, ExternalLink, AlertCircle, Info } from 'lucide-react';
 
 export function Pricing() {
   return (
@@ -45,7 +45,21 @@ export function Pricing() {
                         style={{ background: `${p.color}15`, border: `1px solid ${p.color}30` }}>
                         {p.emoji}
                       </div>
-                      <span className="font-semibold text-white text-sm">{p.name}</span>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-semibold text-white text-sm">{p.name}</span>
+                          {p.recommended && (
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                              ⭐ Recommandé
+                            </span>
+                          )}
+                        </div>
+                        {p.reliability && (
+                          <div className="text-[10px] text-slate-500">
+                            Fiabilité: {p.reliability === 'élevée' ? '🟢 Élevée' : p.reliability === 'moyenne' ? '🟡 Moyenne' : '🔴 Basse'}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </td>
                   <td className="px-4 py-5 text-center">
@@ -55,8 +69,18 @@ export function Pricing() {
                       {p.category === 'bank' ? '🏦 Banque' : '🎯 Paris'}
                     </span>
                   </td>
-                  <td className="px-4 py-5 text-center">
-                    <span className="font-black text-base" style={{ color: p.color }}>{p.bonusFilleul}</span>
+                  <td className="px-4 py-5 text-center relative group">
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="font-black text-base" style={{ color: p.color }}>{p.bonusFilleul}</span>
+                      {p.offerNote && (
+                        <>
+                          <Info size={14} className="text-slate-500 cursor-help flex-shrink-0" />
+                          <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block bg-slate-900 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap border border-slate-700 z-50">
+                            {p.offerNote}
+                          </div>
+                        </>
+                      )}
+                    </div>
                   </td>
                   <td className="px-4 py-5 text-center">
                     <span className="font-semibold text-slate-300 text-sm">{p.bonusParrain}</span>
@@ -98,20 +122,37 @@ export function Pricing() {
         <div className="md:hidden space-y-4">
           {PLATFORMS.map(p => (
             <div key={p.id} className="rounded-2xl border p-5" style={{ borderColor: `${p.color}20`, background: `${p.color}05` }}>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
-                  style={{ background: `${p.color}15`, border: `1px solid ${p.color}30` }}>
-                  {p.emoji}
+              <div className="flex items-start justify-between gap-3 mb-4">
+                <div className="flex items-center gap-3 flex-1">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
+                    style={{ background: `${p.color}15`, border: `1px solid ${p.color}30` }}>
+                    {p.emoji}
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-bold text-white text-sm">{p.name}</p>
+                    <p className="text-xs text-slate-500">{p.category === 'bank' ? '🏦 Banque' : '🎯 Paris'}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-bold text-white text-sm">{p.name}</p>
-                  <p className="text-xs text-slate-500">{p.category === 'bank' ? '🏦 Banque' : '🎯 Paris'}</p>
-                </div>
+                {p.recommended && (
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex-shrink-0">
+                    ⭐
+                  </span>
+                )}
               </div>
+              {p.reliability && (
+                <p className="text-xs text-slate-500 mb-3">
+                  Fiabilité: {p.reliability === 'élevée' ? '🟢 Élevée' : p.reliability === 'moyenne' ? '🟡 Moyenne' : '🔴 Basse'}
+                </p>
+              )}
               <div className="grid grid-cols-3 gap-2 mb-4">
-                <div className="text-center p-2 rounded-xl" style={{ background: `${p.color}10` }}>
+                <div className="text-center p-2 rounded-xl relative group" style={{ background: `${p.color}10` }}>
                   <p className="text-[9px] text-slate-500 mb-0.5">Tu reçois</p>
                   <p className="font-black text-sm" style={{ color: p.color }}>{p.bonusFilleul}</p>
+                  {p.offerNote && (
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 hidden group-hover:block bg-slate-900 text-white text-xs px-2 py-1 rounded-lg whitespace-nowrap border border-slate-700 z-50 pointer-events-none">
+                      {p.offerNote}
+                    </div>
+                  )}
                 </div>
                 <div className="text-center p-2 rounded-xl bg-white/[0.03]">
                   <p className="text-[9px] text-slate-500 mb-0.5">Parrain</p>
