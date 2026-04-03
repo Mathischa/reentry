@@ -16,7 +16,7 @@ const FAQS = [
   },
   {
     q: 'Combien de temps faut-il attendre pour recevoir sa prime ?',
-    a: 'Ça dépend de la plateforme. Pour les banques (Monabanq, BNP, Fortuneo) : 2-3 mois après validation. Pour Trade Republic & Revolut : sous 30 jours. Pour les paris sportifs (Betclic, Winamax, PMU) : 72h à 30 jours. Pour PMU : crédit immédiat le jour de l\\'inscription.',
+    a: 'Ça dépend de la plateforme. Pour les banques (Monabanq, BNP, Fortuneo) : 2-3 mois après validation. Pour Trade Republic & Revolut : sous 30 jours. Pour les paris sportifs (Betclic, Winamax, PMU) : 72h à 30 jours. Pour PMU : crédit immédiat le jour de l\'inscription.',
   },
   {
     q: 'Est-ce que je dois déclarer ces primes aux impôts ?',
