@@ -37,7 +37,7 @@ export default function App() {
       <CanvasParticleBackground />
       <InteractiveMeshGradient />
       <ScrollVelocityEffect />
-      <div className="min-h-screen bg-[#07080f] text-white overflow-x-hidden cursor-none relative">
+      <div className="min-h-screen bg-[#07080f] text-white overflow-x-hidden md:cursor-none relative">
         <Nav scrolled={scrolled} />
         <Hero />
         <Services />

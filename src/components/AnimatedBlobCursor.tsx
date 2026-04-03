@@ -1,13 +1,14 @@
 import { useEffect, useRef } from 'react';
 
 export function AnimatedBlobCursor() {
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
   const cursorRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const cursor = cursorRef.current;
     const dot = dotRef.current;
-    if (!cursor || !dot) return;
+    if (!cursor || !dot || isTouchDevice) return;
 
     let mouseX = 0;
     let mouseY = 0;
@@ -74,6 +75,8 @@ export function AnimatedBlobCursor() {
       });
     };
   }, []);
+
+  if (isTouchDevice) return null;
 
   return (
     <>
