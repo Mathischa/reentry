@@ -31,6 +31,8 @@ export type Platform = {
   reliability?: 'élevée' | 'moyenne' | 'basse';
   recommended?: boolean;
   offerNote?: string;
+  referralCode?: string;
+  referralUrl?: string;
 };
 
 export const PLATFORMS: Platform[] = [
@@ -343,6 +345,7 @@ export const PLATFORMS: Platform[] = [
     sourceUrl: 'https://www.fortuneo.fr/parrainage',
     reliability: 'élevée',
     recommended: true,
+    referralCode: '140641174',
     offerNote: 'Parrain : 150 € (Gold CB), 100 € (AV), 80 € (Fosfo/PEA), 30 € (CTO). Filleul : 120 € (AV, versement initial ≥ 1 000 €). Autres filleuls non précisés officiellement.',
     conditions: [
       'Ne jamais avoir souscrit aucun produit Fortuneo',
@@ -393,6 +396,7 @@ export const PLATFORMS: Platform[] = [
     lastChecked: 'Avril 2026',
     sourceUrl: 'https://www.revolut.com/fr-FR/referral/',
     reliability: 'moyenne',
+    referralUrl: 'https://www.revolut.com/fr-FR/referral/?referral-code=mathistt8p%21APR1-26-AR-H1',
     offerNote: 'La prime parrain est attribuée de façon aléatoire (10 €–80 €), sans garantie de montant. Le filleul ne reçoit rien.',
     conditions: [
       'Seul le parrain reçoit une prime — montant aléatoire entre 10 € et 80 €',
@@ -444,6 +448,7 @@ export const PLATFORMS: Platform[] = [
     sourceUrl: 'https://www.betclic.fr/content/spo_par',
     reliability: 'élevée',
     recommended: true,
+    referralCode: 'MATCWAL7',
     offerNote: 'Freebets valables 6 mois, uniquement paris sportifs (non utilisables poker ou hippique). Max 5 filleuls/an = 200 € max pour le parrain.',
     conditions: [
       'Filleul : saisir le code parrainage à l\'inscription',
@@ -496,6 +501,7 @@ export const PLATFORMS: Platform[] = [
     sourceUrl: 'https://www.winamax.fr/parrainage',
     reliability: 'élevée',
     recommended: true,
+    referralCode: 'MAT5QL',
     offerNote: 'Bonus progressifs parrain : Noob → Rookie → Star → King → Légende → GOAT — jusqu\'à 150 € additionnels selon nombre de filleuls validés. Max 5/mois.',
     conditions: [
       'Filleul : créer un compte, vérifier identité, effectuer dépôt minimum 10 €',
@@ -595,6 +601,7 @@ export const PLATFORMS: Platform[] = [
     sourceUrl: 'https://www.unibet.fr/paris-sportifs/parrainage',
     reliability: 'élevée',
     recommended: true,
+    referralUrl: 'https://www.unibet.fr/inscription/?campaign=240326&parrain=0778F4D99E1DAE61',
     offerNote: 'Offre boostée 30 € valable du 24/03 au 06/04/2026. Après cette date, vérifier le montant sur unibet.fr.',
     conditions: [
       'Filleul doit passer par le lien parrainage du parrain',

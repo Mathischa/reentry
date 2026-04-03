@@ -1,7 +1,7 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useInView } from '../hooks';
 import { BANKS, BETTING, type Platform } from '../data/platforms';
-import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock, ExternalLink } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock, ExternalLink, Copy, Check } from 'lucide-react';
 
 export function Services() {
   return (
@@ -61,6 +61,14 @@ function SectionHeader({ badge, badgeColor, title, sub }: { badge: string; badge
 function PlatformCard({ platform: p, index }: { platform: Platform; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [, inView] = useInView(ref, { threshold: 0.1 });
+  const [copied, setCopied] = useState(false);
+
+  function handleCopy() {
+    if (!p.referralCode) return;
+    navigator.clipboard.writeText(p.referralCode);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
 
   return (
     <div
@@ -141,6 +149,30 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
           <p className="text-[10px] text-slate-600 flex items-center gap-1 mb-3">
             <CalendarClock size={9} /> Vérifié sur site officiel · {p.lastChecked}
           </p>
+        )}
+
+        {/* Referral code / link */}
+        {p.referralCode && (
+          <div className="flex items-center justify-between gap-2 mb-3 px-3 py-2 rounded-xl border border-white/[0.08] bg-white/[0.03]">
+            <div>
+              <p className="text-[9px] text-slate-500 uppercase tracking-wider mb-0.5">Code parrain</p>
+              <span className="font-mono font-bold text-sm tracking-widest" style={{ color: p.color }}>{p.referralCode}</span>
+            </div>
+            <button
+              onClick={handleCopy}
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[10px] font-semibold transition-all"
+              style={{ background: copied ? '#10b98120' : `${p.color}15`, color: copied ? '#10b981' : p.color, border: `1px solid ${copied ? '#10b98130' : `${p.color}30`}` }}
+            >
+              {copied ? <><Check size={10} /> Copié</> : <><Copy size={10} /> Copier</>}
+            </button>
+          </div>
+        )}
+        {p.referralUrl && !p.referralCode && (
+          <a href={p.referralUrl} target="_blank" rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold transition-all hover:opacity-90 mb-3"
+            style={{ background: `${p.color}18`, color: p.color, border: `1px solid ${p.color}30` }}>
+            🔗 S'inscrire avec mon lien parrain
+          </a>
         )}
 
         {/* CTA */}
