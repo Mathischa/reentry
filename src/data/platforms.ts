@@ -388,53 +388,6 @@ export const PLATFORMS: Platform[] = [
     warning: 'Les jeux d\'argent comportent des risques. Joue avec des montants que tu peux te permettre de perdre. 18+ uniquement.',
   },
 
-  /* ─── PARIONS SPORT FDJ ───────────────────────────────── */
-  {
-    id: 'pariossport',
-    name: 'Parions Sport (FDJ)',
-    category: 'betting',
-    emoji: '🎯',
-    color: '#1d4ed8',
-    gradient: 'linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 60%, #3b82f6 100%)',
-    bonusFilleul: '1er dépôt doublé (max 30 €)',
-    bonusParrain: '30 € en crédits',
-    bonusTotal: '60 €',
-    highlight: 'Parrain : 30 € en crédits de jeu. Filleul : 1er dépôt doublé jusqu\'à 30 €. Offre boostée valable jusqu\'au 06/04/2026.',
-    badge: 'Web & App',
-    badgeColor: '#1d4ed8',
-    minDeposit: 'Dépôt minimum 20 €',
-    timeline: 'Crédits accordés après validation compte et 1er dépôt',
-    lastChecked: 'Avril 2026',
-    sourceUrl: 'https://enligne.parionssport.fdj.fr',
-    reliability: 'élevée',
-    offerNote: 'Offre boostée 30 € valable du 24/03 au 06/04/2026. Filleul exclu s\'il a parié en argent réel dans les 24 derniers mois. Même structure qu\'Unibet (groupe FDJ).',
-    conditions: [
-      'Inscription via lien parrainage obligatoire',
-      'Filleul : validation du compte sous 30 jours',
-      'Dépôt minimum 20 € pour déclencher l\'offre',
-      'Filleul exclu s\'il a parié en argent réel sur Parions Sport dans les 24 derniers mois',
-      'Maximum 5 filleuls par année civile',
-      'Offre boostée à 30 € valable jusqu\'au 06/04/2026 — vérifier montant après cette date',
-    ],
-    documents: [
-      'Pièce d\'identité valide (CNI ou passeport)',
-      'Justificatif de domicile',
-      'RIB pour les retraits',
-    ],
-    steps: [
-      { num: 1, title: 'Vérifie l\'offre en cours', desc: 'L\'offre boostée à 30 € expire le 06/04/2026. Vérifier le montant sur parionssport.fdj.fr après cette date.', tag: 'Web' },
-      { num: 2, title: 'Obtiens le lien parrainage', desc: 'Demande le lien à ton parrain. Inscription obligatoirement via ce lien.', tag: 'Web' },
-      { num: 3, title: 'Crée ton compte', desc: 'Inscription et vérification KYC sous 30 jours.', tag: 'App ou Web' },
-      { num: 4, title: 'Premier dépôt (min 20 €)', desc: 'Dépose minimum 20 €. Ton dépôt est doublé jusqu\'à 30 € en crédits.', tag: 'App ou Web' },
-      { num: 5, title: 'Cumul bienvenue', desc: 'Cumulable avec l\'offre de bienvenue Parions Sport.', tag: 'App ou Web' },
-    ],
-    tips: [
-      'Offre boostée expire le 06/04/2026 — vérifier après cette date',
-      'Parions Sport fait partie du groupe FDJ, même structure qu\'Unibet',
-      'Le filleul exclu s\'il a joué dans les 24 derniers mois — bien vérifier avant de s\'inscrire',
-    ],
-    warning: 'Offre boostée jusqu\'au 06/04/2026. Les crédits de jeu ne sont pas retirables. 18+ uniquement.',
-  },
 
   /* ─── UNIBET ───────────────────────────────────────────── */
   {
