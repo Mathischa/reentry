@@ -21,7 +21,7 @@ export function Contact() {
 
         <h2 className="section-title mb-4">Sois le premier informé des nouvelles offres</h2>
         <p className="section-sub mx-auto mb-10">
-          Les montants de parrainage changent souvent. Inscris-toi pour recevoir une alerte dès qu'une offre est boostée ou qu'un nouveau parrainage est disponible.
+          Max 680€ en cumulant BNP Paribas (350€) + Monabanq (330€). Sois alerté des boosts, nouvelles offres et mises à jour.
         </p>
 
         {/* Benefits */}

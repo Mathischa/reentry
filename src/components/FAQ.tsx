@@ -16,7 +16,7 @@ const FAQS = [
   },
   {
     q: 'Combien de temps faut-il attendre pour recevoir sa prime ?',
-    a: 'Ça dépend de la plateforme. Pour les banques (Boursorama, Fortuneo) : comptez 2 à 3 mois après validation des conditions. Pour Revolut : généralement sous 30 jours. Pour les paris sportifs (Betclic) : le remboursement du 1er pari est versé sous 72h. Pour Winamax : le bonus est débloqué progressivement selon l\'activité.',
+    a: 'Ça dépend de la plateforme. Pour les banques (Monabanq, BNP, Fortuneo) : 2-3 mois après validation. Pour Trade Republic & Revolut : sous 30 jours. Pour les paris sportifs (Betclic, Winamax, PMU) : 72h à 30 jours. Pour PMU : crédit immédiat le jour de l\\'inscription.',
   },
   {
     q: 'Est-ce que je dois déclarer ces primes aux impôts ?',
