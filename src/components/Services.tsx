@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useInView } from '../hooks';
 import { BANKS, BETTING, type Platform } from '../data/platforms';
-import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock, ExternalLink } from 'lucide-react';
 
 export function Services() {
   return (
@@ -148,6 +148,10 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
           className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-bold transition-all hover:opacity-90 active:scale-95"
           style={{ background: p.gradient, color: 'white' }}>
           Voir le tutoriel complet →
+        </a>
+        <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer"
+          className="w-full flex items-center justify-center gap-1.5 py-2 rounded-2xl text-xs font-semibold text-slate-400 border border-white/[0.07] hover:border-white/20 hover:text-slate-200 transition-all mt-2">
+          <ExternalLink size={11} /> Voir l'offre officielle
         </a>
       </div>
     </div>
