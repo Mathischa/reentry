@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useInView } from '../hooks';
 import { BANKS, BETTING, CRYPTO, type Platform } from '../data/platforms';
 import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock, ExternalLink, Copy, Check } from 'lucide-react';
+import { PlatformLogo } from './PlatformLogo';
 
 export function Services() {
   return (
@@ -117,10 +118,7 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
         {/* Header */}
         <div className="flex items-start justify-between mb-5">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
-              style={{ background: `${p.color}15`, border: `1px solid ${p.color}30` }}>
-              {p.emoji}
-            </div>
+            <PlatformLogo logo={p.logo} emoji={p.emoji} name={p.name} color={p.color} size={48} className="rounded-2xl flex-shrink-0" />
             <div>
               <h3 className="font-bold text-white text-lg leading-tight">{p.name}</h3>
               <span className="text-[10px] font-medium px-2 py-0.5 rounded-full mt-1 inline-flex items-center gap-1"

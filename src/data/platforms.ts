@@ -33,6 +33,7 @@ export type Platform = {
   offerNote?: string;
   referralCode?: string;
   referralUrl?: string;
+  logo?: string;
 };
 
 export const PLATFORMS: Platform[] = [
@@ -43,6 +44,7 @@ export const PLATFORMS: Platform[] = [
     name: 'BoursoBank',
     category: 'bank',
     emoji: '🏦',
+    logo: 'https://logo.clearbit.com/boursobank.com',
     color: '#00b4d8',
     gradient: 'linear-gradient(135deg, #0077b6 0%, #00b4d8 100%)',
     bonusFilleul: '—',
@@ -87,6 +89,7 @@ export const PLATFORMS: Platform[] = [
     name: 'Hello bank!',
     category: 'bank',
     emoji: '👋',
+    logo: 'https://logo.clearbit.com/hellobank.fr',
     color: '#0ea5e9',
     gradient: 'linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%)',
     bonusFilleul: '40 €',
@@ -141,6 +144,7 @@ export const PLATFORMS: Platform[] = [
     name: 'Fortuneo',
     category: 'bank',
     emoji: '🍀',
+    logo: 'https://logo.clearbit.com/fortuneo.fr',
     color: '#00c07f',
     gradient: 'linear-gradient(135deg, #007a52 0%, #00c07f 100%)',
     bonusFilleul: '120 € (Assurance-Vie)',
@@ -193,6 +197,7 @@ export const PLATFORMS: Platform[] = [
     name: 'Trade Republic',
     category: 'crypto',
     emoji: '📈',
+    logo: 'https://logo.clearbit.com/traderepublic.com',
     color: '#6366f1',
     gradient: 'linear-gradient(135deg, #4338ca 0%, #6366f1 100%)',
     bonusFilleul: '10 € en actions',
@@ -238,6 +243,7 @@ export const PLATFORMS: Platform[] = [
     name: 'Revolut',
     category: 'bank',
     emoji: '⚡',
+    logo: 'https://logo.clearbit.com/revolut.com',
     color: '#7c3aed',
     gradient: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 60%, #0ea5e9 100%)',
     bonusFilleul: 'Aucune prime',
@@ -289,6 +295,7 @@ export const PLATFORMS: Platform[] = [
     name: 'Betclic',
     category: 'betting',
     emoji: '⚽',
+    logo: 'https://logo.clearbit.com/betclic.fr',
     color: '#e8001c',
     gradient: 'linear-gradient(135deg, #9b0000 0%, #e8001c 60%, #ff4444 100%)',
     bonusFilleul: '40 € en freebets',
@@ -342,6 +349,7 @@ export const PLATFORMS: Platform[] = [
     name: 'Winamax',
     category: 'betting',
     emoji: '🃏',
+    logo: 'https://logo.clearbit.com/winamax.fr',
     color: '#f59e0b',
     gradient: 'linear-gradient(135deg, #78350f 0%, #d97706 60%, #f59e0b 100%)',
     bonusFilleul: '10 € bonus + 10 € freebets',
@@ -395,6 +403,7 @@ export const PLATFORMS: Platform[] = [
     name: 'Unibet',
     category: 'betting',
     emoji: '🎰',
+    logo: 'https://logo.clearbit.com/unibet.fr',
     color: '#e60000',
     gradient: 'linear-gradient(135deg, #8b0000 0%, #e60000 60%, #ff4444 100%)',
     bonusFilleul: '1er dépôt doublé (max 30 €)',
@@ -448,6 +457,7 @@ export const PLATFORMS: Platform[] = [
     name: 'PMU Sport',
     category: 'betting',
     emoji: '🐎',
+    logo: 'https://logo.clearbit.com/pmu.fr',
     color: '#15803d',
     gradient: 'linear-gradient(135deg, #14532d 0%, #15803d 60%, #22c55e 100%)',
     bonusFilleul: '5 € cash',
@@ -498,6 +508,7 @@ export const PLATFORMS: Platform[] = [
     name: 'Betsson',
     category: 'betting',
     emoji: '🎱',
+    logo: 'https://logo.clearbit.com/betsson.com',
     color: '#ff6b00',
     gradient: 'linear-gradient(135deg, #cc5200 0%, #ff6b00 60%, #ffaa44 100%)',
     bonusFilleul: '10 € en freebets',
@@ -547,6 +558,7 @@ export const PLATFORMS: Platform[] = [
     name: 'Feelingbet',
     category: 'betting',
     emoji: '💚',
+    logo: 'https://logo.clearbit.com/feelingbet.fr',
     color: '#22c55e',
     gradient: 'linear-gradient(135deg, #15803d 0%, #22c55e 100%)',
     bonusFilleul: 'Variable',
@@ -591,6 +603,7 @@ export const PLATFORMS: Platform[] = [
     name: 'OKX',
     category: 'crypto',
     emoji: '🟡',
+    logo: 'https://logo.clearbit.com/okx.com',
     color: '#f0b90b',
     gradient: 'linear-gradient(135deg, #b45309 0%, #f0b90b 60%, #fde68a 100%)',
     bonusFilleul: 'jusqu\'à 200 €',

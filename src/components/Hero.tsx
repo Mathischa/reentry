@@ -1,17 +1,17 @@
 import { ArrowRight, TrendingUp, ChevronDown } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useCountUp } from '../hooks';
 
 const PLATFORMS = [
-  { name: 'Hello bank!',      color: '#0ea5e9', emoji: '👋', href: '#banques'  },
-  { name: 'Fortuneo',         color: '#00c07f', emoji: '🍀', href: '#banques'  },
-  { name: 'Revolut',          color: '#7c3aed', emoji: '⚡', href: '#banques'  },
-  { name: 'Trade Republic',   color: '#6366f1', emoji: '📈', href: '#crypto'   },
-  { name: 'OKX',              color: '#f0b90b', emoji: '🟡', href: '#crypto'   },
-  { name: 'Betclic',          color: '#e8001c', emoji: '⚽', href: '#paris'    },
-  { name: 'Winamax',          color: '#d97706', emoji: '🃏', href: '#paris'    },
-  { name: 'Unibet',           color: '#e60000', emoji: '🎰', href: '#paris'    },
+  { name: 'Hello bank!',    color: '#0ea5e9', logo: 'https://logo.clearbit.com/hellobank.fr',      href: '#banques' },
+  { name: 'Fortuneo',       color: '#00c07f', logo: 'https://logo.clearbit.com/fortuneo.fr',       href: '#banques' },
+  { name: 'Revolut',        color: '#7c3aed', logo: 'https://logo.clearbit.com/revolut.com',       href: '#banques' },
+  { name: 'Trade Republic', color: '#6366f1', logo: 'https://logo.clearbit.com/traderepublic.com', href: '#crypto'  },
+  { name: 'OKX',            color: '#f0b90b', logo: 'https://logo.clearbit.com/okx.com',           href: '#crypto'  },
+  { name: 'Betclic',        color: '#e8001c', logo: 'https://logo.clearbit.com/betclic.fr',        href: '#paris'   },
+  { name: 'Winamax',        color: '#d97706', logo: 'https://logo.clearbit.com/winamax.fr',        href: '#paris'   },
+  { name: 'Unibet',         color: '#e60000', logo: 'https://logo.clearbit.com/unibet.fr',         href: '#paris'   },
 ];
 
 export function Hero() {
@@ -115,12 +115,13 @@ export function Hero() {
       <div ref={pillsRef} className="flex items-center gap-2 sm:gap-3 mb-9 sm:mb-10 flex-wrap justify-center px-2">
         {PLATFORMS.map(p => (
           <a key={p.name} href={p.href}
-            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold border transition-all hover:scale-105 hover:shadow-lg"
-            style={{ borderColor: `${p.color}33`, background: `${p.color}11`, color: p.color, boxShadow: 'none' }}
-            onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = `0 0 16px ${p.color}33`}
+            className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold border transition-all hover:scale-105"
+            style={{ borderColor: `${p.color}33`, background: `${p.color}11`, color: p.color }}
+            onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = `0 0 14px ${p.color}30`}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = 'none'}
           >
-            <span>{p.emoji}</span> {p.name}
+            <LogoPill logo={p.logo} name={p.name} color={p.color} />
+            {p.name}
           </a>
         ))}
       </div>
@@ -152,6 +153,12 @@ export function Hero() {
       </a>
     </section>
   );
+}
+
+function LogoPill({ logo, name }: { logo: string; name: string; color: string }) {
+  const [err, setErr] = useState(false);
+  if (!err) return <img src={logo} alt={name} width={16} height={16} className="rounded-sm object-contain" style={{ width: 16, height: 16 }} onError={() => setErr(true)} />;
+  return <span style={{ fontSize: 13 }}>{name[0]}</span>;
 }
 
 function StatCard({ icon, end, suffix, label, color }: { icon: React.ReactNode; end: number; suffix: string; label: string; color: string }) {
