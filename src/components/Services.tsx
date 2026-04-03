@@ -51,7 +51,7 @@ export function Services() {
             title="Offres de parrainage paris & poker"
             sub="Profite des offres de bienvenue et des primes de parrainage sur les plateformes de jeux agréées ANJ (ex-ARJEL)."
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {BETTING.map((p, i) => <PlatformCard key={p.id} platform={p} index={i} />)}
           </div>
           <div className="mt-8 p-4 rounded-2xl border border-amber-500/20 bg-amber-500/[0.04] max-w-2xl mx-auto text-center">
