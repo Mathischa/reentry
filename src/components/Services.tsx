@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useInView } from '../hooks';
-import { BANKS, BETTING, type Platform } from '../data/platforms';
+import { BANKS, BETTING, CRYPTO, type Platform } from '../data/platforms';
 import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock, ExternalLink, Copy, Check } from 'lucide-react';
 
 export function Services() {
@@ -17,6 +17,27 @@ export function Services() {
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {BANKS.map((p, i) => <PlatformCard key={p.id} platform={p} index={i} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* CRYPTO */}
+      <section id="crypto" className="py-24 px-5 sm:px-8">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader
+            badge="🟡 Crypto"
+            badgeColor="#f0b90b"
+            title="Offres de parrainage crypto"
+            sub="Inscris-toi sur les plus grands exchanges et reçois des bonus de bienvenue. Investis uniquement ce que tu peux perdre."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {CRYPTO.map((p, i) => <PlatformCard key={p.id} platform={p} index={i} />)}
+          </div>
+          <div className="mt-8 p-4 rounded-2xl border border-yellow-500/20 bg-yellow-500/[0.04] max-w-2xl mx-auto text-center">
+            <p className="text-yellow-400/80 text-sm flex items-center justify-center gap-2">
+              <AlertTriangle size={15} />
+              Les cryptomonnaies sont des actifs volatils. Investissez de manière responsable.
+            </p>
           </div>
         </div>
       </section>

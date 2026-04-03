@@ -8,7 +8,7 @@ export type Step = {
 export type Platform = {
   id: string;
   name: string;
-  category: 'bank' | 'betting';
+  category: 'bank' | 'betting' | 'crypto';
   emoji: string;
   color: string;
   gradient: string;
@@ -185,6 +185,51 @@ export const PLATFORMS: Platform[] = [
       'Le versement dans les 6 jours est strict pour les comptes bancaires',
     ],
     warning: 'Les montants filleul pour les produits bancaires (hors AV) n\'étaient pas précisés officiellement lors de la dernière vérification. Confirmez sur fortuneo.fr avant de souscrire.',
+  },
+
+  /* ─── TRADE REPUBLIC ─────────────────────────────────── */
+  {
+    id: 'traderepublic',
+    name: 'Trade Republic',
+    category: 'bank',
+    emoji: '📈',
+    color: '#6366f1',
+    gradient: 'linear-gradient(135deg, #4338ca 0%, #6366f1 100%)',
+    bonusFilleul: 'jusqu\'à 200 € en actions',
+    bonusParrain: 'jusqu\'à 200 € en espèces',
+    bonusTotal: 'jusqu\'à 400 €',
+    highlight: 'Parrain : jusqu\'à 200 € en espèces. Filleul : jusqu\'à 200 € en actions fractionnées. 4% d\'intérêt annuel sur les liquidités.',
+    badge: 'App uniquement',
+    badgeColor: '#6366f1',
+    minDeposit: 'Aucun minimum — 1er investissement requis',
+    timeline: 'Prime versée après validation du compte et 1er investissement',
+    lastChecked: 'Avril 2026',
+    sourceUrl: 'https://traderepublic.com/fr-fr',
+    reliability: 'élevée',
+    recommended: true,
+    offerNote: 'Parrain reçoit des espèces, filleul reçoit des actions fractionnées. Partage du lien interdit sur réseaux sociaux et forums.',
+    conditions: [
+      'Filleul : jamais eu de compte Trade Republic',
+      'Compte validé + 1er investissement effectué (même 1 €)',
+      'Parrain reçoit jusqu\'à 200 € en espèces, filleul jusqu\'à 200 € en actions',
+      'Partage du lien uniquement en direct (SMS, email) — jamais sur réseaux sociaux',
+    ],
+    documents: [
+      'Pièce d\'identité valide (CNI ou passeport)',
+      'Vérification biométrique via l\'app',
+    ],
+    steps: [
+      { num: 1, title: 'Obtiens le lien en direct', desc: 'Le partage sur réseaux sociaux ou forums est INTERDIT. Le parrain partage uniquement par SMS, email ou en personne.', tag: 'App' },
+      { num: 2, title: 'Télécharge l\'app et crée ton compte', desc: 'Télécharge Trade Republic depuis le lien parrain. Remplis ton état civil et vérification biométrique.', tag: 'App' },
+      { num: 3, title: 'Effectue ton 1er investissement', desc: 'Dépose et investis (même 1 €). Cette étape est obligatoire pour valider le parrainage.', tag: 'App' },
+      { num: 4, title: 'Reçois tes actions', desc: 'Le filleul reçoit jusqu\'à 200 € en actions fractionnées. Le parrain reçoit jusqu\'à 200 € en espèces.', tag: 'App' },
+    ],
+    tips: [
+      'Trade Republic offre 4% d\'intérêt annuel sur les liquidités non investies',
+      'Les actions reçues peuvent être conservées ou vendues directement',
+      'Excellent pour débuter en bourse : interface simple, frais 1 €/ordre',
+    ],
+    warning: 'Partage du lien INTERDIT sur réseaux sociaux, forums ou plateformes de parrainage. Exclusion définitive du programme en cas de non-respect.',
   },
 
   /* ─── REVOLUT ─────────────────────────────────────────── */
@@ -587,7 +632,54 @@ export const PLATFORMS: Platform[] = [
     warning: 'Montants variables non confirmés. Toujours vérifier les conditions sur le site officiel avant inscription. 18+ uniquement.',
   },
 
+  /* ─── OKX ─────────────────────────────────────────────── */
+  {
+    id: 'okx',
+    name: 'OKX',
+    category: 'crypto',
+    emoji: '🟡',
+    color: '#f0b90b',
+    gradient: 'linear-gradient(135deg, #b45309 0%, #f0b90b 60%, #fde68a 100%)',
+    bonusFilleul: 'jusqu\'à 10 000 $ en bonus',
+    bonusParrain: 'jusqu\'à 50% des frais',
+    bonusTotal: 'Variable',
+    highlight: 'Filleul : bonus de bienvenue jusqu\'à 10 000 $ selon dépôt/volume. Parrain : commission sur les frais de trading du filleul à vie.',
+    badge: 'Web & App',
+    badgeColor: '#f0b90b',
+    minDeposit: 'Aucun minimum',
+    timeline: 'Bonus débloqués progressivement selon activité de trading',
+    lastChecked: 'Avril 2026',
+    sourceUrl: 'https://www.okx.com/fr/join',
+    reliability: 'élevée',
+    recommended: true,
+    offerNote: 'OKX est l\'un des plus grands exchanges crypto mondiaux. Les bonus varient selon les campagnes en cours.',
+    conditions: [
+      'Créer un compte via le lien de parrainage',
+      'Vérifier son identité (KYC niveau 1 minimum)',
+      'Effectuer un dépôt ou un premier trade pour activer les bonus',
+      'Bonus échelonnés selon le volume de trading',
+    ],
+    documents: [
+      'Pièce d\'identité valide (CNI ou passeport)',
+      'Selfie biométrique',
+      'Adresse email et numéro de téléphone',
+    ],
+    steps: [
+      { num: 1, title: 'Inscris-toi via le lien parrain', desc: 'Clique sur le lien de parrainage. Sans lien, le code parrain ne sera pas appliqué.', tag: 'Web' },
+      { num: 2, title: 'Vérifie ton identité (KYC)', desc: 'Pièce ID + selfie biométrique. Nécessaire pour débloquer les dépôts/retraits et les bonus.', tag: 'App ou Web' },
+      { num: 3, title: 'Effectue ton 1er dépôt', desc: 'Dépose des cryptos ou via virement/carte. Le montant influence le tier de bonus.', tag: 'App ou Web' },
+      { num: 4, title: 'Trade et débloque les bonus', desc: 'Les bonus sont débloqués progressivement selon ton volume. Consulte Récompenses dans l\'app.', tag: 'App' },
+    ],
+    tips: [
+      'OKX propose aussi du staking et des produits financiers DeFi',
+      'L\'app mobile est très complète : spot, futures, options, Web3',
+      'Les frais sont parmi les plus bas du marché (0.08% maker / 0.1% taker)',
+    ],
+    warning: 'Les cryptomonnaies sont des actifs très volatils. N\'investis que ce que tu peux te permettre de perdre. 18+ uniquement.',
+  },
+
 ];
 
 export const BANKS = PLATFORMS.filter(p => p.category === 'bank');
 export const BETTING = PLATFORMS.filter(p => p.category === 'betting');
+export const CRYPTO = PLATFORMS.filter(p => p.category === 'crypto');
