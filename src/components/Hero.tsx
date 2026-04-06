@@ -12,6 +12,7 @@ const PLATFORMS = [
   { name: 'Betclic',        color: '#e8001c', logo: 'https://logo.clearbit.com/betclic.fr',        href: '#paris'   },
   { name: 'Winamax',        color: '#d97706', logo: 'https://logo.clearbit.com/winamax.fr',        href: '#paris'   },
   { name: 'Unibet',         color: '#e60000', logo: 'https://logo.clearbit.com/unibet.fr',         href: '#paris'   },
+  { name: 'Betsson',        color: '#ff6b00', logo: 'https://logo.clearbit.com/betsson.com',       href: '#paris'   },
 ];
 
 export function Hero() {
@@ -99,7 +100,7 @@ export function Hero() {
       >
         <div className="overflow-hidden mb-1">
           <span data-word className="text-white inline-block">Gagnez&nbsp;</span>
-          <span data-word className="inline-block hero-gradient-text">jusqu'à 460€</span>
+          <span data-word className="inline-block hero-gradient-text">jusqu'à 430€</span>
         </div>
         <div className="overflow-hidden">
           <span data-word className="text-white inline-block">grâce aux&nbsp;</span>
@@ -141,9 +142,9 @@ export function Hero() {
 
       {/* Stats */}
       <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-3xl px-2">
-        <StatCard icon={<TrendingUp size={14} />}   end={460}  suffix="€"         label="Max cumulable filleul"         color="#10b981" />
+        <StatCard icon={<TrendingUp size={14} />}   end={430}  suffix="€"         label="Max cumulable filleul"         color="#10b981" />
         <StatCard icon={<span className="text-sm">🏦</span>} end={3} suffix=" banques" label="Banques actives avril 2026"  color="#0ea5e9" />
-        <StatCard icon={<span className="text-sm">🎯</span>} end={6} suffix=" paris"   label="Bookmakers agréés ANJ"         color="#6366f1" />
+        <StatCard icon={<span className="text-sm">🎯</span>} end={4} suffix=" paris"   label="Bookmakers agréés ANJ"         color="#6366f1" />
         <StatCard icon={<span className="text-sm">🟡</span>} end={2} suffix=" crypto"  label="Exchanges vérifiés"            color="#f0b90b" />
       </div>
 
