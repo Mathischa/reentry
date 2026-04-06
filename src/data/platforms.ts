@@ -452,57 +452,6 @@ export const PLATFORMS: Platform[] = [
     warning: 'Offre boostée jusqu\'au 06/04/2026 à 23h59. 18+ uniquement. Jeu responsable.',
   },
 
-  /* ─── PMU SPORT ────────────────────────────────────────── */
-  {
-    id: 'pmu',
-    name: 'PMU Sport',
-    category: 'betting',
-    emoji: '🐎',
-    logo: 'https://logo.clearbit.com/pmu.fr',
-    color: '#15803d',
-    gradient: 'linear-gradient(135deg, #14532d 0%, #15803d 60%, #22c55e 100%)',
-    bonusFilleul: '5 € cash',
-    bonusParrain: '10 € cash',
-    bonusTotal: '15 € cash',
-    highlight: '100% cash — seul bookmaker avec versement intégral en argent réel. Compte crédité le jour de la création obligatoirement.',
-    badge: 'Web & App',
-    badgeColor: '#15803d',
-    minDeposit: '5 € minimum — le jour de la création du compte',
-    timeline: 'Bonus crédités sous 10 jours ouvrés après validation',
-    lastChecked: 'Avril 2026',
-    sourceUrl: 'https://www.pmu.fr/turf/static/offre-parrainage/',
-    reliability: 'élevée',
-    offerNote: 'SEUL bookmaker 100% cash. Max 5 filleuls/mois pour le parrain (max 50 €/mois). Le compte doit être crédité le jour même de sa création.',
-    conditions: [
-      'Filleul : créer et confirmer son compte PMU',
-      'Créditer son compte le jour même de la création (pas le lendemain)',
-      'Dépôt minimum : 5 €',
-      'Parrain : max 5 filleuls par mois calendaire (max 50 €/mois)',
-      'Filleul valide son compte sous 30 jours (pièces justificatives + code d\'activation)',
-      'Cumulable avec bonus bienvenue : 1er pari perdant remboursé jusqu\'à 100 € en cash',
-    ],
-    documents: [
-      'Pièce d\'identité valide (CNI ou passeport)',
-      'Justificatif de domicile de moins de 3 mois',
-      'RIB à ton nom',
-    ],
-    steps: [
-      { num: 1, title: 'Obtiens le code parrainage', desc: 'Demande le code à ton parrain. Il se trouve dans Mon compte PMU → Parrainage.', tag: 'Web' },
-      { num: 2, title: 'Crée ton compte PMU', desc: 'Inscris-toi sur pmu.fr avec le code parrainage. Remplis toutes les informations.', tag: 'Web' },
-      { num: 3, title: 'CRUCIAL : crédite le jour même', desc: 'Tu DOIS créditer ton compte le jour même de sa création. Tout dépôt le lendemain = parrainage annulé. Dépose minimum 5 €.', tag: 'Web' },
-      { num: 4, title: 'Valide ton identité sous 30 jours', desc: 'Upload pièce ID + justificatif domicile + code d\'activation. Vérification dans les 30 jours.', tag: 'Web' },
-      { num: 5, title: 'Reçois 5 € cash', desc: 'Les 5 € sont crédités en argent réel sous 10 jours ouvrés. Retirables directement.', tag: 'App' },
-      { num: 6, title: 'Cumul bonus bienvenue', desc: 'Cumulable avec le bonus bienvenue PMU : 1er pari perdant remboursé jusqu\'à 100 € en cash.', tag: 'App ou Web' },
-    ],
-    tips: [
-      'SEUL bookmaker 100% cash — avantage majeur par rapport aux freebets',
-      'Crédite absolument le jour J — ne remets pas au lendemain',
-      'Parrain : 5 filleuls max/mois soit 50 € max en cash mensuel',
-      'Le cash PMU est directement retirable sans condition de mise',
-    ],
-    warning: 'Le compte DOIT être crédité le jour même de sa création. Tout dépôt le lendemain entraîne l\'annulation du parrainage.',
-  },
-
   /* ─── BETSSON ──────────────────────────────────────────── */
   {
     id: 'betsson',
@@ -554,50 +503,6 @@ export const PLATFORMS: Platform[] = [
     warning: 'Les jeux d\'argent comportent des risques. Joue de manière responsable. 18+ uniquement.',
   },
 
-  /* ─── FEELINGBET ───────────────────────────────────────── */
-  {
-    id: 'feelingbet',
-    name: 'Feelingbet',
-    category: 'betting',
-    emoji: '💚',
-    logo: 'https://logo.clearbit.com/feelingbet.fr',
-    color: '#22c55e',
-    gradient: 'linear-gradient(135deg, #15803d 0%, #22c55e 100%)',
-    bonusFilleul: 'Variable',
-    bonusParrain: 'Variable',
-    bonusTotal: 'Variable',
-    highlight: 'Montants variables selon les conditions en vigueur sur le site Feelingbet. Vérifier avant toute inscription.',
-    badge: 'Web & App',
-    badgeColor: '#22c55e',
-    minDeposit: 'Variable selon conditions',
-    timeline: 'Variable selon conditions en vigueur',
-    lastChecked: 'Avril 2026',
-    sourceUrl: 'https://www.feelingbet.fr',
-    reliability: 'moyenne',
-    offerNote: 'Montants non précisés publiquement — à vérifier sur le site officiel Feelingbet avant inscription.',
-    conditions: [
-      'Conditions et montants variables selon les offres en vigueur sur le site',
-      'Bookmaker agréé ANJ',
-      'KYC obligatoire (pièce d\'identité + justificatif domicile + RIB)',
-      'Vérifier impérativement les conditions officielles avant de s\'inscrire',
-    ],
-    documents: [
-      'Pièce d\'identité valide (CNI ou passeport)',
-      'Justificatif de domicile de moins de 3 mois',
-      'RIB à ton nom',
-    ],
-    steps: [
-      { num: 1, title: 'Vérifie les conditions sur le site', desc: 'Consulte feelingbet.fr pour les montants exacts et conditions actuels. Les offres changent régulièrement.', tag: 'Web' },
-      { num: 2, title: 'Obtiens le lien parrainage', desc: 'Demande le lien ou code à ton parrain.', tag: 'Web' },
-      { num: 3, title: 'Inscris-toi via le lien', desc: 'Crée ton compte en cliquant sur le lien parrainage.', tag: 'Web' },
-      { num: 4, title: 'Valide ton identité', desc: 'KYC obligatoire : pièce ID + justificatif domicile.', tag: 'Web' },
-    ],
-    tips: [
-      'Vérifier toujours les montants sur feelingbet.fr avant de s\'inscrire',
-      'Feelingbet est agréé ANJ — partenaire fiable',
-    ],
-    warning: 'Montants variables non confirmés. Toujours vérifier les conditions sur le site officiel avant inscription. 18+ uniquement.',
-  },
 
   /* ─── OKX ─────────────────────────────────────────────── */
   {
