@@ -147,6 +147,30 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
         {/* Highlight */}
         <p className="text-slate-400 text-sm leading-relaxed mb-4">{p.highlight}</p>
 
+        {/* Referral code / link — always visible */}
+        {p.referralCode && (
+          <div className="flex items-center justify-between gap-2 mb-4 px-3 py-2 rounded-xl border border-white/[0.08] bg-white/[0.03]">
+            <div>
+              <p className="text-[9px] text-slate-500 uppercase tracking-wider mb-0.5">Code parrain</p>
+              <span className="font-mono font-bold text-sm tracking-widest" style={{ color: p.color }}>{p.referralCode}</span>
+            </div>
+            <button
+              onClick={handleCopy}
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[10px] font-semibold transition-all"
+              style={{ background: copied ? '#10b98120' : `${p.color}15`, color: copied ? '#10b981' : p.color, border: `1px solid ${copied ? '#10b98130' : `${p.color}30`}` }}
+            >
+              {copied ? <><Check size={10} /> Copié</> : <><Copy size={10} /> Copier</>}
+            </button>
+          </div>
+        )}
+        {p.referralUrl && !p.referralCode && (
+          <a href={p.referralUrl} target="_blank" rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold transition-all hover:opacity-90 mb-4"
+            style={{ background: `${p.color}18`, color: p.color, border: `1px solid ${p.color}30` }}>
+            🔗 S'inscrire avec mon lien parrain
+          </a>
+        )}
+
         {/* Toggle button */}
         <button
           onClick={() => setExpanded(v => !v)}
@@ -182,30 +206,6 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
               <p className="text-[10px] text-slate-600 flex items-center gap-1 mb-3">
                 <CalendarClock size={9} /> Vérifié sur site officiel · {p.lastChecked}
               </p>
-            )}
-
-            {/* Referral code / link */}
-            {p.referralCode && (
-              <div className="flex items-center justify-between gap-2 mb-3 px-3 py-2 rounded-xl border border-white/[0.08] bg-white/[0.03]">
-                <div>
-                  <p className="text-[9px] text-slate-500 uppercase tracking-wider mb-0.5">Code parrain</p>
-                  <span className="font-mono font-bold text-sm tracking-widest" style={{ color: p.color }}>{p.referralCode}</span>
-                </div>
-                <button
-                  onClick={handleCopy}
-                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[10px] font-semibold transition-all"
-                  style={{ background: copied ? '#10b98120' : `${p.color}15`, color: copied ? '#10b981' : p.color, border: `1px solid ${copied ? '#10b98130' : `${p.color}30`}` }}
-                >
-                  {copied ? <><Check size={10} /> Copié</> : <><Copy size={10} /> Copier</>}
-                </button>
-              </div>
-            )}
-            {p.referralUrl && !p.referralCode && (
-              <a href={p.referralUrl} target="_blank" rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold transition-all hover:opacity-90 mb-3"
-                style={{ background: `${p.color}18`, color: p.color, border: `1px solid ${p.color}30` }}>
-                🔗 S'inscrire avec mon lien parrain
-              </a>
             )}
 
             {/* CTA */}
