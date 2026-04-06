@@ -3,10 +3,13 @@ import { useInView } from '../hooks';
 import { BANKS, BETTING, CRYPTO, type Platform } from '../data/platforms';
 import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock, ExternalLink, Copy, Check, ChevronDown } from 'lucide-react';
 import { PlatformLogo } from './PlatformLogo';
+import { SocialProof } from './SocialProof';
 
 export function Services() {
   return (
     <>
+      <SocialProof />
+
       {/* BANQUES */}
       <section id="banques" className="py-24 px-5 sm:px-8">
         <div className="max-w-6xl mx-auto">
