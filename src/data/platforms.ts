@@ -248,9 +248,9 @@ export const PLATFORMS: Platform[] = [
     color: '#7c3aed',
     gradient: 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 60%, #0ea5e9 100%)',
     bonusFilleul: 'Aucune prime',
-    bonusParrain: '10 € – 80 € (aléatoire)',
-    bonusTotal: '10 € – 80 € parrain',
-    highlight: 'Seul le parrain reçoit une prime — entre 10 € et 80 € attribuée de façon aléatoire. Le filleul ne reçoit aucune prime.',
+    bonusParrain: '80 €',
+    bonusTotal: '80 € parrain',
+    highlight: 'Seul le parrain reçoit une prime — 80 € fixes. Le filleul ne reçoit aucune prime.',
     badge: 'App uniquement',
     badgeColor: '#7c3aed',
     minDeposit: 'Aucun dépôt minimum',
@@ -259,7 +259,7 @@ export const PLATFORMS: Platform[] = [
     sourceUrl: 'https://www.revolut.com/fr-FR/referral/',
     reliability: 'moyenne',
     referralUrl: 'https://www.revolut.com/fr-FR/referral/?referral-code=mathistt8p%21APR1-26-AR-H1',
-    offerNote: 'La prime parrain est attribuée de façon aléatoire (10 €–80 €), sans garantie de montant. Le filleul ne reçoit rien.',
+    offerNote: 'Le parrain reçoit 80 € fixes. Le filleul ne reçoit rien.',
     conditions: [
       'Seul le parrain reçoit une prime — montant aléatoire entre 10 € et 80 €',
       'Le filleul n\'obtient aucune prime de parrainage',
@@ -274,7 +274,7 @@ export const PLATFORMS: Platform[] = [
       'Numéro de téléphone mobile valide',
     ],
     steps: [
-      { num: 1, title: 'Parrain : vérifie le bonus dans l\'app', desc: 'Avant de partager, le parrain vérifie le montant dans l\'app : Menu → Inviter des amis → Voir le bonus. Le montant est aléatoire et change selon les campagnes.', tag: 'App' },
+      { num: 1, title: 'Parrain : partage son lien depuis l\'app', desc: 'Va dans l\'app : Menu → Inviter des amis → Partager le lien. Le parrain reçoit 80 € fixes dès que les conditions sont remplies.', tag: 'App' },
       { num: 2, title: 'Partage le lien depuis l\'app', desc: 'Le filleul DOIT télécharger l\'app en cliquant sur ce lien — pas en cherchant Revolut dans le store. Sinon le parrainage ne sera pas lié.', tag: 'App' },
       { num: 3, title: 'Crée ton compte en 5 minutes', desc: 'Numéro de téléphone, code PIN, infos personnelles. Interface guidée et en français.', tag: 'App' },
       { num: 4, title: 'Vérifie ton identité (KYC)', desc: 'Photographie ta CNI/passeport puis fais un selfie. Vérification par IA en quelques minutes généralement.', tag: 'App' },
@@ -282,12 +282,12 @@ export const PLATFORMS: Platform[] = [
       { num: 6, title: 'Atteins l\'objectif de paiements', desc: 'Effectue le nombre de paiements requis (affiché dans app → Récompenses). Le parrain reçoit son bonus une fois les conditions remplies.', tag: 'App' },
     ],
     tips: [
-      'La prime parrain varie aléatoirement — vérifier le montant avant de partager',
+      'La prime parrain est fixe à 80 € — l\'une des meilleures du marché',
       'Le filleul ne reçoit rien : préfère Monabanq ou Fortuneo si tu cherches un bonus filleul',
       'Revolut Standard est 100% gratuit et excellent pour les voyages (0% frais de change)',
       'La carte virtuelle est disponible immédiatement en Apple Pay / Google Pay',
     ],
-    warning: 'La prime parrain est attribuée de façon ALÉATOIRE entre 10 € et 80 €, sans garantie de montant. Le filleul ne reçoit AUCUNE prime.',
+    warning: 'Seul le parrain reçoit une prime (80 €). Le filleul ne reçoit AUCUNE prime.',
   },
 
   /* ─── BETCLIC ─────────────────────────────────────────── */
