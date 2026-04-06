@@ -8,7 +8,7 @@ export type Step = {
 export type Platform = {
   id: string;
   name: string;
-  category: 'bank' | 'betting' | 'crypto';
+  category: 'bank' | 'betting' | 'crypto' | 'other';
   emoji: string;
   color: string;
   gradient: string;
@@ -549,8 +549,83 @@ export const PLATFORMS: Platform[] = [
     warning: 'Les cryptomonnaies sont des actifs très volatils. N\'investis que ce que tu peux te permettre de perdre. 18+ uniquement.',
   },
 
+  /* ─── SCRAMBLY ────────────────────────────────────────── */
+  {
+    id: 'scrambly',
+    name: 'Scrambly',
+    category: 'other',
+    emoji: '🎮',
+    logo: 'https://logo.clearbit.com/scrambly.app',
+    color: '#a855f7',
+    gradient: 'linear-gradient(135deg, #7e22ce 0%, #a855f7 60%, #d946ef 100%)',
+    bonusFilleul: 'Bonus parrainage',
+    bonusParrain: 'Bonus parrainage',
+    bonusTotal: 'Variable',
+    highlight: 'App de cashback et récompenses. Utilise le code parrainage pour démarrer avec un bonus.',
+    badge: 'App uniquement',
+    badgeColor: '#a855f7',
+    minDeposit: 'Aucun dépôt minimum',
+    timeline: 'Bonus crédité après validation du compte',
+    lastChecked: 'Avril 2026',
+    sourceUrl: 'https://scrambly.app',
+    reliability: 'élevée',
+    referralCode: 'M08WQ9A',
+    conditions: [
+      'Télécharger l\'app Scrambly',
+      'Créer un compte et saisir le code parrainage à l\'inscription',
+      'Valider son compte pour activer le bonus',
+    ],
+    documents: [],
+    steps: [
+      { num: 1, title: 'Télécharge l\'app', desc: 'Télécharge Scrambly depuis l\'App Store ou Google Play.', tag: 'App' },
+      { num: 2, title: 'Crée ton compte', desc: 'Inscris-toi et saisis le code parrainage M08WQ9A lors de l\'inscription.', tag: 'App' },
+      { num: 3, title: 'Reçois ton bonus', desc: 'Ton bonus est crédité automatiquement après validation du compte.', tag: 'App' },
+    ],
+    tips: [
+      'Saisis le code dès l\'inscription — impossible de l\'ajouter après',
+    ],
+  },
+
+  /* ─── JOKO ────────────────────────────────────────────── */
+  {
+    id: 'joko',
+    name: 'Joko',
+    category: 'other',
+    emoji: '💳',
+    logo: 'https://logo.clearbit.com/joko.com',
+    color: '#ec4899',
+    gradient: 'linear-gradient(135deg, #be185d 0%, #ec4899 60%, #f9a8d4 100%)',
+    bonusFilleul: 'Bonus parrainage',
+    bonusParrain: 'Bonus parrainage',
+    bonusTotal: 'Variable',
+    highlight: 'App de cashback sur tes achats en ligne. Utilise le code parrainage pour débuter avec un bonus.',
+    badge: 'App uniquement',
+    badgeColor: '#ec4899',
+    minDeposit: 'Aucun dépôt minimum',
+    timeline: 'Bonus crédité après validation du compte',
+    lastChecked: 'Avril 2026',
+    sourceUrl: 'https://www.joko.com',
+    reliability: 'élevée',
+    referralCode: 'kdssls',
+    conditions: [
+      'Télécharger l\'app Joko',
+      'Créer un compte et saisir le code parrainage à l\'inscription',
+      'Valider son compte pour activer le bonus',
+    ],
+    documents: [],
+    steps: [
+      { num: 1, title: 'Télécharge l\'app', desc: 'Télécharge Joko depuis l\'App Store ou Google Play.', tag: 'App' },
+      { num: 2, title: 'Crée ton compte', desc: 'Inscris-toi et saisis le code parrainage kdssls lors de l\'inscription.', tag: 'App' },
+      { num: 3, title: 'Reçois ton bonus', desc: 'Ton bonus est crédité automatiquement après validation du compte.', tag: 'App' },
+    ],
+    tips: [
+      'Saisis le code dès l\'inscription — impossible de l\'ajouter après',
+    ],
+  },
+
 ];
 
 export const BANKS = PLATFORMS.filter(p => p.category === 'bank');
 export const BETTING = PLATFORMS.filter(p => p.category === 'betting');
 export const CRYPTO = PLATFORMS.filter(p => p.category === 'crypto');
+export const OTHER = PLATFORMS.filter(p => p.category === 'other');
