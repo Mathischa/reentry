@@ -147,10 +147,10 @@ export const PLATFORMS: Platform[] = [
     logo: 'https://logo.clearbit.com/fortuneo.fr',
     color: '#00c07f',
     gradient: 'linear-gradient(135deg, #007a52 0%, #00c07f 100%)',
-    bonusFilleul: '120 € (Assurance-Vie)',
-    bonusParrain: '30 € – 150 €',
-    bonusTotal: 'jusqu\'à 270 €',
-    highlight: 'Parrain : 150 € (Gold), 100 € (AV), 80 € (Fosfo/PEA), 30 € (CTO). Filleul : 120 € confirmé pour l\'Assurance-Vie. Valable 01–30/04/2026.',
+    bonusFilleul: '80 €',
+    bonusParrain: '80 €',
+    bonusTotal: '160 €',
+    highlight: '80 € pour le parrain et 80 € pour le filleul. Valable 01–30/04/2026.',
     badge: 'Web & App',
     badgeColor: '#00c07f',
     minDeposit: 'Variable selon produit',
@@ -212,6 +212,7 @@ export const PLATFORMS: Platform[] = [
     sourceUrl: 'https://traderepublic.com/fr-fr',
     reliability: 'élevée',
     recommended: true,
+    referralUrl: 'https://refnocode.trade.re/x4l2x4l4',
     offerNote: 'Parrain reçoit des espèces, filleul reçoit des actions fractionnées. Partage du lien interdit sur réseaux sociaux et forums.',
     conditions: [
       'Filleul : jamais eu de compte Trade Republic',
@@ -523,6 +524,7 @@ export const PLATFORMS: Platform[] = [
     sourceUrl: 'https://www.betsson.fr/promotions',
     reliability: 'élevée',
     recommended: true,
+    referralUrl: 'https://betsson.fr/fr/%23register?language=fr&referralCode=t3OAyb',
     offerNote: 'Pas de pari obligatoire pour débloquer le bonus — un simple dépôt suffit. Code VERIF10 : 10 € sans dépôt à l\'inscription.',
     conditions: [
       'Compte vérifié (identité + adresse) pour parrain et filleul',
@@ -618,6 +620,7 @@ export const PLATFORMS: Platform[] = [
     sourceUrl: 'https://www.okx.com/fr/join',
     reliability: 'élevée',
     recommended: true,
+    referralCode: '49834320',
     offerNote: 'OKX est l\'un des plus grands exchanges crypto mondiaux. Les bonus varient selon les campagnes en cours.',
     conditions: [
       'Créer un compte via le lien de parrainage',
