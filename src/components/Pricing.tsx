@@ -173,7 +173,7 @@ export function Pricing() {
             emoji="🏆"
             title="Meilleur bonus total"
             value="OKX"
-            sub="jusqu'à 200€ de bonus de bienvenue"
+            sub="jusqu'à 300€ filleul · 80€/ami pour le parrain"
             color="#f0b90b"
           />
           <SummaryCard
