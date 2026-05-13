@@ -9,6 +9,11 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
+      borderRadius: {
+        'xl':  '6px',
+        '2xl': '10px',
+        '3xl': '14px',
+      },
       colors: {
         webyra: {
           navy: '#1a2a6e',

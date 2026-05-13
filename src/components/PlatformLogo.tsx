@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import fortuneoImg    from '../img/fortuneo.png';
-import helloBankImg   from '../img/hellobank.png';
-import okxImg         from '../img/okx.png';
-import robinhoodImg   from '../img/robinhood.png';
+import fortuneoImg       from '../img/fortuneo.png';
+import helloBankImg      from '../img/hellobank.png';
+import okxImg            from '../img/okx.png';
+import robinhoodImg      from '../img/robinhood.png';
+import revolutImg        from '../img/revolut.jpg';
+import tradeRepublicImg  from '../img/trade_repu.jpg';
 
 const LOCAL: Record<string, string> = {
-  fortuneo:      fortuneoImg,
-  hellobank:     helloBankImg,
-  okx:           okxImg,
-  robinhood:     robinhoodImg,
+  fortuneo:       fortuneoImg,
+  hellobank:      helloBankImg,
+  okx:            okxImg,
+  robinhood:      robinhoodImg,
+  revolut:        revolutImg,
+  traderepublic:  tradeRepublicImg,
 };
 
 interface PlatformLogoProps {

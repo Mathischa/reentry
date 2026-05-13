@@ -13,7 +13,7 @@ export function Services() {
       <section id="parrainages" className="py-24 px-5 sm:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-amber-500/30 bg-amber-500/10 text-amber-400">
               🎁 Parrainages actifs
             </div>
             <h2 className="section-title">Mes parrainages</h2>

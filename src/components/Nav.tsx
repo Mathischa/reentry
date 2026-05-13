@@ -50,7 +50,7 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
         <a href="#" className="flex items-center gap-2 sm:gap-2.5 group shrink-0">
           <Logo size={30} />
           <span className="font-extrabold text-base sm:text-lg tracking-tight text-white leading-none">
-            Parrain<span style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Boost</span>
+            Parrain<span style={{ background: 'linear-gradient(135deg,#e8952a,#c47a3a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Boost</span>
           </span>
         </a>
 
@@ -60,7 +60,7 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
             <a key={l.href} href={l.href}
               className="relative text-sm text-slate-400 hover:text-white transition-colors whitespace-nowrap group">
               {l.label}
-              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gradient-to-r from-emerald-400 to-sky-400 transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gradient-to-r from-amber-400 to-orange-400 transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </div>
@@ -69,7 +69,7 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <a href="#parrainages"
             className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-[1.04] active:scale-95 whitespace-nowrap"
-            style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', boxShadow: '0 0 20px rgba(16,185,129,0.25)' }}>
+            style={{ background: 'linear-gradient(135deg,#e8952a,#c47a3a)', boxShadow: '0 0 20px rgba(232,149,42,0.3)' }}>
             Voir les bonus
           </a>
           <button
@@ -93,7 +93,7 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
           ))}
           <a href="#parrainages" onClick={() => setOpen(false)}
             className="flex items-center justify-center mt-3 py-3.5 px-4 rounded-xl text-sm font-bold text-white transition-all active:scale-95"
-            style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', boxShadow: '0 4px 16px rgba(16,185,129,0.3)' }}>
+            style={{ background: 'linear-gradient(135deg,#e8952a,#c47a3a)', boxShadow: '0 4px 16px rgba(232,149,42,0.35)' }}>
             Voir les bonus
           </a>
         </div>

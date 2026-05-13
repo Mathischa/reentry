@@ -8,7 +8,6 @@ import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Splash } from './components/Splash';
-import { AnimatedBlobCursor } from './components/AnimatedBlobCursor';
 import { ProgressBar } from './components/ProgressBar';
 import { CanvasParticleBackground } from './components/CanvasParticleBackground';
 import { InteractiveMeshGradient } from './components/InteractiveMeshGradient';
@@ -31,11 +30,10 @@ export default function App() {
     <>
       {showSplash && <Splash onDone={onDone} />}
       <ProgressBar />
-      <AnimatedBlobCursor />
       <CanvasParticleBackground />
       <InteractiveMeshGradient />
       <ScrollVelocityEffect />
-      <div className="min-h-screen bg-[#07080f] text-white overflow-x-hidden md:cursor-none relative">
+      <div className="min-h-screen bg-[#0d0b08] text-white overflow-x-hidden relative">
         <Nav scrolled={scrolled} />
         <Hero />
         <Services />

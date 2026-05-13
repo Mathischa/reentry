@@ -7,12 +7,12 @@ export function Pricing() {
     <section id="comparatif" className="py-24 px-5 sm:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-violet-500/30 bg-violet-500/10 text-violet-400">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-amber-500/30 bg-amber-500/10 text-amber-400">
             📊 Comparatif complet
           </div>
           <h2 className="section-title">Tableau comparatif des parrainages</h2>
           <p className="section-sub mx-auto">Toutes les offres côte à côte pour choisir les plus rentables selon ta situation.</p>
-          <div className="inline-flex items-center gap-2 mt-4 px-3 py-2 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] text-emerald-400/80 text-xs">
+          <div className="inline-flex items-center gap-2 mt-4 px-3 py-2 rounded-xl border border-amber-500/20 bg-amber-500/[0.06] text-amber-400/80 text-xs">
             <AlertCircle size={12} />
             Données vérifiées sur les sites officiels · Avril 2026 · Les montants peuvent changer à tout moment
           </div>
@@ -47,7 +47,7 @@ export function Pricing() {
                         <div className="flex items-center gap-2 mb-1">
                           <span className="font-semibold text-white text-sm">{p.name}</span>
                           {p.recommended && (
-                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
                               ⭐ Recommandé
                             </span>
                           )}
@@ -63,8 +63,8 @@ export function Pricing() {
                   <td className="px-4 py-5 text-center">
                     <span className="text-xs px-2 py-1 rounded-full font-medium"
                       style={{
-                        background: p.category === 'bank' ? '#0ea5e915' : p.category === 'crypto' ? '#f0b90b15' : '#a855f715',
-                        color: p.category === 'bank' ? '#38bdf8' : p.category === 'crypto' ? '#fbbf24' : '#c084fc',
+                        background: p.category === 'bank' ? '#e8952a15' : p.category === 'crypto' ? '#f0b90b15' : '#c47a3a15',
+                        color: p.category === 'bank' ? '#e8952a' : p.category === 'crypto' ? '#fbbf24' : '#c47a3a',
                       }}>
                       {p.category === 'bank' ? '🏦 Banque' : p.category === 'crypto' ? '🟡 Crypto' : '📱 App'}
                     </span>
@@ -86,11 +86,11 @@ export function Pricing() {
                     <span className="font-semibold text-slate-300 text-sm">{p.bonusParrain}</span>
                   </td>
                   <td className="px-4 py-5 text-center">
-                    <span className="font-black text-base text-emerald-400">{p.bonusTotal}</span>
+                    <span className="font-black text-base text-amber-400">{p.bonusTotal}</span>
                   </td>
                   <td className="px-4 py-5 text-center">
                     {p.minDeposit === 'Aucun dépôt minimum' || p.minDeposit === 'Aucun dépôt minimum obligatoire'
-                      ? <span className="inline-flex items-center gap-1 text-emerald-400 text-xs font-medium"><Check size={12} /> Aucun</span>
+                      ? <span className="inline-flex items-center gap-1 text-amber-400 text-xs font-medium"><Check size={12} /> Aucun</span>
                       : <span className="text-slate-400 text-xs">{p.minDeposit}</span>}
                   </td>
                   <td className="px-4 py-5 text-center">
@@ -124,7 +124,7 @@ export function Pricing() {
                   </div>
                 </div>
                 {p.recommended && (
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex-shrink-0">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex-shrink-0">
                     ⭐
                   </span>
                 )}
@@ -150,7 +150,7 @@ export function Pricing() {
                 </div>
                 <div className="text-center p-2 rounded-xl bg-emerald-500/10">
                   <p className="text-[9px] text-slate-500 mb-0.5">Total</p>
-                  <p className="font-black text-sm text-emerald-400">{p.bonusTotal}</p>
+                  <p className="font-black text-sm text-amber-400">{p.bonusTotal}</p>
                 </div>
               </div>
               <div className="flex items-center justify-between">

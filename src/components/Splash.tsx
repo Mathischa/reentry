@@ -43,7 +43,7 @@ export function Splash({ onDone }: { onDone: () => void }) {
       const cx = w / 2, cy = h / 2;
       const p = phaseRef.current;
       const speed = p === 'warp' ? 0.030 : p === 'settle' ? 0.008 : p === 'hold' ? 0.0018 : 0.009;
-      const trail = p === 'warp' ? 'rgba(7,8,15,0.16)' : 'rgba(7,8,15,0.28)';
+      const trail = p === 'warp' ? 'rgba(13,11,8,0.16)' : 'rgba(13,11,8,0.28)';
 
       ctx.fillStyle = trail;
       ctx.fillRect(0, 0, w, h);
@@ -61,10 +61,11 @@ export function Splash({ onDone }: { onDone: () => void }) {
         const brightness = 1 - s.z;
         const size = Math.max(0.3, brightness * 2.6);
         const alpha = Math.min(1, brightness * 1.9);
-        const r = Math.round(100 + 155 * brightness);
-        const g = Math.round(155 + 100 * brightness);
+        const r = Math.round(180 + 75 * brightness);
+        const g = Math.round(100 + 80 * brightness);
+        const b = Math.round(20 + 40 * brightness);
 
-        ctx.strokeStyle = `rgba(${r},${g},255,${alpha})`;
+        ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
         ctx.lineWidth = size;
         ctx.beginPath();
         ctx.moveTo(px, py);
@@ -83,7 +84,7 @@ export function Splash({ onDone }: { onDone: () => void }) {
     <div
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden"
       style={{
-        background: '#07080f',
+        background: '#0d0b08',
         opacity: phase === 'out' ? 0 : 1,
         transition: phase === 'out' ? 'opacity 0.8s cubic-bezier(0.4,0,0.2,1)' : 'none',
         pointerEvents: phase === 'out' ? 'none' : 'all',
@@ -96,17 +97,17 @@ export function Splash({ onDone }: { onDone: () => void }) {
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute" style={{
           top: '5%', left: '5%', width: 700, height: 700,
-          background: 'radial-gradient(circle, rgba(14,165,233,0.06) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(232,149,42,0.07) 0%, transparent 65%)',
           borderRadius: '50%',
         }} />
         <div className="absolute" style={{
           bottom: '5%', right: '5%', width: 600, height: 600,
-          background: 'radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(154,107,62,0.08) 0%, transparent 65%)',
           borderRadius: '50%',
         }} />
         <div className="absolute" style={{
           top: '35%', right: '15%', width: 400, height: 400,
-          background: 'radial-gradient(circle, rgba(168,85,247,0.04) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(196,122,58,0.05) 0%, transparent 65%)',
           borderRadius: '50%',
         }} />
       </div>
@@ -118,8 +119,8 @@ export function Splash({ onDone }: { onDone: () => void }) {
           position: 'absolute', inset: 0,
           transform: 'rotateX(75deg) translateZ(-20px)',
           backgroundImage:
-            'linear-gradient(rgba(14,165,233,0.10) 1px, transparent 1px),' +
-            'linear-gradient(90deg, rgba(14,165,233,0.10) 1px, transparent 1px)',
+            'linear-gradient(rgba(232,149,42,0.10) 1px, transparent 1px),' +
+            'linear-gradient(90deg, rgba(232,149,42,0.10) 1px, transparent 1px)',
           backgroundSize: '55px 55px',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.9) 100%)',
           maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.9) 100%)',
@@ -144,7 +145,7 @@ export function Splash({ onDone }: { onDone: () => void }) {
           {/* Large ambient glow */}
           <div className="absolute rounded-full pointer-events-none" style={{
             width: 260, height: 260,
-            background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 65%)',
+            background: 'radial-gradient(circle, rgba(232,149,42,0.09) 0%, transparent 65%)',
             animation: 'halo-pulse 2.2s ease-in-out infinite',
           }} />
 
@@ -154,7 +155,7 @@ export function Splash({ onDone }: { onDone: () => void }) {
               <circle cx="105" cy="105" r="92" stroke="url(#rs1)" strokeWidth="1.5" strokeDasharray="14 8" opacity="0.45" />
               <defs>
                 <linearGradient id="rs1" x1="0" y1="0" x2="210" y2="210" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#00c2ff"/><stop offset="1" stopColor="#6366f1"/>
+                  <stop stopColor="#f0a040"/><stop offset="1" stopColor="#9a6b3e"/>
                 </linearGradient>
               </defs>
             </svg>
@@ -166,7 +167,7 @@ export function Splash({ onDone }: { onDone: () => void }) {
               <circle cx="80" cy="80" r="68" stroke="url(#rs2)" strokeWidth="1.5" strokeDasharray="20 6" opacity="0.55" />
               <defs>
                 <linearGradient id="rs2" x1="0" y1="0" x2="160" y2="160" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#0ea5e9"/><stop offset="1" stopColor="#a855f7"/>
+                  <stop stopColor="#e8952a"/><stop offset="1" stopColor="#c47a3a"/>
                 </linearGradient>
               </defs>
             </svg>
@@ -178,7 +179,7 @@ export function Splash({ onDone }: { onDone: () => void }) {
               <circle cx="56" cy="56" r="46" stroke="url(#rs3)" strokeWidth="1.5" strokeDasharray="8 10" opacity="0.7" />
               <defs>
                 <linearGradient id="rs3" x1="0" y1="0" x2="112" y2="112" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#00c2ff"/><stop offset="1" stopColor="#1a4fd6"/>
+                  <stop stopColor="#f0c060"/><stop offset="1" stopColor="#b05e28"/>
                 </linearGradient>
               </defs>
             </svg>
@@ -187,7 +188,7 @@ export function Splash({ onDone }: { onDone: () => void }) {
           {/* Halo */}
           <div className="absolute rounded-full" style={{
             width: 155, height: 155,
-            background: 'radial-gradient(circle, rgba(14,165,233,0.20) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(232,149,42,0.18) 0%, transparent 70%)',
             animation: 'halo-pulse 1.6s ease-in-out infinite',
           }} />
 
@@ -203,7 +204,7 @@ export function Splash({ onDone }: { onDone: () => void }) {
       <div style={{ animation: 'text-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.7s both' }}
         className="mt-10 flex flex-col items-center gap-2 relative z-10">
         <span className="text-white font-extrabold text-3xl tracking-tight splash-glitch">
-          Parrain<span style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Boost</span>
+          Parrain<span style={{ background: 'linear-gradient(135deg,#e8952a,#c47a3a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Boost</span>
         </span>
         <span className="text-slate-600 text-[11px] tracking-[0.38em] uppercase font-medium">Guide Parrainages</span>
       </div>
@@ -211,9 +212,9 @@ export function Splash({ onDone }: { onDone: () => void }) {
       {/* Loading bar */}
       <div className="mt-10 w-44 h-px bg-white/[0.05] rounded-full overflow-hidden relative z-10">
         <div className="h-full rounded-full" style={{
-          background: 'linear-gradient(90deg, #0ea5e9, #6366f1, #a855f7)',
+          background: 'linear-gradient(90deg, #e8952a, #c47a3a, #9a6b3e)',
           animation: 'load-bar 2.8s cubic-bezier(0.4,0,0.2,1) 0.2s both',
-          boxShadow: '0 0 12px rgba(14,165,233,0.7), 0 0 24px rgba(99,102,241,0.4)',
+          boxShadow: '0 0 12px rgba(232,149,42,0.6), 0 0 24px rgba(196,122,58,0.35)',
         }} />
       </div>
 

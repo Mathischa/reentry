@@ -64,27 +64,27 @@ export function Hero() {
     >
       {/* Background orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div ref={orb1Ref} className="absolute top-[15%] left-[10%] w-[500px] sm:w-[700px] h-[500px] sm:h-[700px] rounded-full opacity-[0.06] blur-[120px]"
-          style={{ background: 'radial-gradient(circle, #10b981, #0ea5e9)' }} />
+        <div ref={orb1Ref} className="absolute top-[15%] left-[10%] w-[500px] sm:w-[700px] h-[500px] sm:h-[700px] rounded-full opacity-[0.07] blur-[120px]"
+          style={{ background: 'radial-gradient(circle, #e8952a, #c47a3a)' }} />
         <div ref={orb2Ref} className="absolute bottom-[10%] right-[5%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full opacity-[0.05] blur-[100px]"
-          style={{ background: 'radial-gradient(circle, #6366f1, #a855f7)' }} />
+          style={{ background: 'radial-gradient(circle, #9a6b3e, #6b3a1e)' }} />
         <div ref={orb3Ref} className="absolute top-[55%] left-[50%] w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-full opacity-[0.04] blur-[90px]"
-          style={{ background: 'radial-gradient(circle, #f0b90b, #e60000)' }} />
+          style={{ background: 'radial-gradient(circle, #f0c060, #c47a3a)' }} />
       </div>
 
       {/* Dot grid */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: 'radial-gradient(circle, rgba(16,185,129,0.055) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+        style={{ backgroundImage: 'radial-gradient(circle, rgba(232,149,42,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
 
       {/* Noise overlay for texture */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.015]"
         style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
 
       {/* Badge */}
-      <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/25 bg-emerald-500/[0.08] text-emerald-400 text-xs sm:text-sm mb-7 sm:mb-8">
+      <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/25 bg-amber-500/[0.08] text-amber-400 text-xs sm:text-sm mb-7 sm:mb-8">
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
         </span>
         Mis à jour — Offres vérifiées Avril 2026
       </div>
@@ -128,7 +128,7 @@ export function Hero() {
       <div ref={ctaRef} className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-16 sm:mb-20 w-full sm:w-auto px-4">
         <a href="#parrainages"
           className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 sm:px-8 py-4 rounded-2xl text-sm sm:text-base font-bold text-white transition-all hover:scale-[1.03] active:scale-95"
-          style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', boxShadow: '0 8px 32px rgba(16,185,129,0.35), inset 0 1px 0 rgba(255,255,255,0.15)' }}>
+          style={{ background: 'linear-gradient(135deg,#e8952a,#c47a3a)', boxShadow: '0 8px 32px rgba(232,149,42,0.35), inset 0 1px 0 rgba(255,255,255,0.1)' }}>
           Voir les offres <ArrowRight size={17} />
         </a>
         <a href="#comparatif"
@@ -139,10 +139,10 @@ export function Hero() {
 
       {/* Stats */}
       <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-3xl px-2">
-        <StatCard icon={<TrendingUp size={14} />}            end={510} suffix="€"       label="Max cumulable filleul"       color="#10b981" />
-        <StatCard icon={<span className="text-sm">🎁</span>} end={6}   suffix=" offres" label="Parrainages actifs"           color="#0ea5e9" />
-        <StatCard icon={<span className="text-sm">✅</span>} end={100} suffix="%"       label="Offres vérifiées en direct"  color="#6366f1" />
-        <StatCard icon={<span className="text-sm">🔒</span>} end={100} suffix="%"       label="Liens officiels vérifiés"    color="#f0b90b" />
+        <StatCard icon={<TrendingUp size={14} />}            end={510} suffix="€"       label="Max cumulable filleul"       color="#e8952a" />
+        <StatCard icon={<span className="text-sm">🎁</span>} end={6}   suffix=" offres" label="Parrainages actifs"           color="#c47a3a" />
+        <StatCard icon={<span className="text-sm">✅</span>} end={100} suffix="%"       label="Offres vérifiées en direct"  color="#d4b080" />
+        <StatCard icon={<span className="text-sm">🔒</span>} end={100} suffix="%"       label="Liens officiels vérifiés"    color="#9a6b3e" />
       </div>
 
       {/* Scroll cue */}

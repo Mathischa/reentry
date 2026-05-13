@@ -28,16 +28,16 @@ export function Logo({ size = 40, className = '' }: LogoProps) {
     >
       <defs>
         <linearGradient id="wlg1" x1="90" y1="28" x2="12" y2="65" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#00c2ff" />
-          <stop offset="1" stopColor="#1a6ed6" />
+          <stop stopColor="#f0a040" />
+          <stop offset="1" stopColor="#c47a3a" />
         </linearGradient>
         <linearGradient id="wlg2" x1="81" y1="40" x2="27" y2="65" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0ea5e9" />
-          <stop offset="1" stopColor="#2563eb" />
+          <stop stopColor="#e8952a" />
+          <stop offset="1" stopColor="#b05e28" />
         </linearGradient>
         <linearGradient id="wlg3" x1="72" y1="51" x2="41" y2="65" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#38bdf8" />
-          <stop offset="1" stopColor="#6366f1" />
+          <stop stopColor="#f0b060" />
+          <stop offset="1" stopColor="#9a6b3e" />
         </linearGradient>
         <filter id="wglow" x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="2.5" result="blur" />
