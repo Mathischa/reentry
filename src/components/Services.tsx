@@ -3,13 +3,10 @@ import { useInView } from '../hooks';
 import { PLATFORMS, type Platform } from '../data/platforms';
 import { CheckCircle, Smartphone, Monitor, CalendarClock, ExternalLink, Copy, Check, ChevronDown } from 'lucide-react';
 import { PlatformLogo } from './PlatformLogo';
-import { SocialProof } from './SocialProof';
 
 export function Services() {
   return (
     <>
-      <SocialProof />
-
       <section id="parrainages" className="py-28 px-5 sm:px-8" style={{ borderTop: '1px solid rgba(212,168,67,0.06)' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
