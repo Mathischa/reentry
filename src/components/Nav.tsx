@@ -6,7 +6,6 @@ import gsap from 'gsap';
 const LINKS = [
   { href: '#banques',    label: 'Banques'    },
   { href: '#crypto',     label: 'Crypto'     },
-  { href: '#autres',     label: 'Autres apps'},
   { href: '#comparatif', label: 'Comparatif' },
   { href: '#faq',        label: 'FAQ'        },
 ];

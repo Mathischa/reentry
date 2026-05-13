@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useInView } from '../hooks';
-import { BANKS, CRYPTO, OTHER, type Platform } from '../data/platforms';
+import { BANKS, CRYPTO, type Platform } from '../data/platforms';
 import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock, ExternalLink, Copy, Check, ChevronDown } from 'lucide-react';
 import { PlatformLogo } from './PlatformLogo';
 import { SocialProof } from './SocialProof';
@@ -46,20 +46,6 @@ export function Services() {
         </div>
       </section>
 
-      {/* AUTRES APPS */}
-      <section id="autres" className="py-24 px-5 sm:px-8">
-        <div className="max-w-6xl mx-auto">
-          <SectionHeader
-            badge="📱 Autres apps"
-            badgeColor="#a855f7"
-            title="Autres applications"
-            sub="Cashback, récompenses et autres apps avec des codes parrainage exclusifs."
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {OTHER.map((p, i) => <PlatformCard key={p.id} platform={p} index={i} />)}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

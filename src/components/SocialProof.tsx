@@ -20,10 +20,10 @@ const TESTIMONIALS = [
   {
     name: 'Camille T.',
     avatar: 'C',
-    color: '#ec4899',
-    platform: 'Joko',
-    amount: '30 €',
-    text: 'Bonus crédité le lendemain de l\'inscription. Les infos sont toujours à jour, j\'ai rien eu à chercher.',
+    color: '#f0b90b',
+    platform: 'OKX',
+    amount: '200 €',
+    text: 'KYC validé en 5 min, bonus débloqué progressivement. Zéro friction, exactement comme décrit.',
   },
 ];
 
@@ -36,7 +36,7 @@ export function SocialProof() {
         <div className="flex items-center justify-around gap-2 mb-10 px-2 py-4 rounded-2xl border border-white/[0.05] bg-white/[0.02]">
           <Stat icon={<Users size={14} />} value="100+" label="parrainages" color="#10b981" />
           <div className="w-px h-7 bg-white/[0.07]" />
-          <Stat icon={<TrendingUp size={14} />} value="370 €" label="max cumulable" color="#0ea5e9" />
+          <Stat icon={<TrendingUp size={14} />} value="330 €" label="max cumulable" color="#0ea5e9" />
           <div className="w-px h-7 bg-white/[0.07]" />
           <Stat icon={<ShieldCheck size={14} />} value="100%" label="vérifiés" color="#6366f1" />
           <div className="w-px h-7 bg-white/[0.07]" />

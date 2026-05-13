@@ -9,8 +9,6 @@ const PLATFORMS = [
   { name: 'Revolut',        color: '#7c3aed', logo: 'https://logo.clearbit.com/revolut.com',       href: '#banques' },
   { name: 'Trade Republic', color: '#6366f1', logo: 'https://logo.clearbit.com/traderepublic.com', href: '#crypto'  },
   { name: 'OKX',            color: '#f0b90b', logo: 'https://logo.clearbit.com/okx.com',           href: '#crypto'  },
-  { name: 'Scrambly',       color: '#a855f7', logo: 'https://logo.clearbit.com/scrambly.app',      href: '#autres'  },
-  { name: 'Joko',           color: '#ec4899', logo: 'https://logo.clearbit.com/joko.com',          href: '#autres'  },
 ];
 
 export function Hero() {
@@ -98,7 +96,7 @@ export function Hero() {
       >
         <div className="overflow-hidden mb-1">
           <span data-word className="text-white inline-block">Gagnez&nbsp;</span>
-          <span data-word className="inline-block hero-gradient-text">jusqu'à 370€</span>
+          <span data-word className="inline-block hero-gradient-text">jusqu'à 330€</span>
         </div>
         <div className="overflow-hidden">
           <span data-word className="text-white inline-block">grâce aux&nbsp;</span>
@@ -140,10 +138,10 @@ export function Hero() {
 
       {/* Stats */}
       <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-3xl px-2">
-        <StatCard icon={<TrendingUp size={14} />}   end={370}  suffix="€"         label="Max cumulable filleul"         color="#10b981" />
-        <StatCard icon={<span className="text-sm">🏦</span>} end={3} suffix=" banques" label="Banques actives avril 2026"  color="#0ea5e9" />
-        <StatCard icon={<span className="text-sm">🟡</span>} end={2} suffix=" crypto"  label="Exchanges vérifiés"          color="#6366f1" />
-        <StatCard icon={<span className="text-sm">📱</span>} end={2} suffix=" apps"    label="Apps cashback & récompenses" color="#f0b90b" />
+        <StatCard icon={<TrendingUp size={14} />}            end={330} suffix="€"        label="Max cumulable filleul"        color="#10b981" />
+        <StatCard icon={<span className="text-sm">🏦</span>} end={3}   suffix=" banques" label="Banques actives avril 2026" color="#0ea5e9" />
+        <StatCard icon={<span className="text-sm">🟡</span>} end={2}   suffix=" crypto"  label="Exchanges vérifiés"         color="#6366f1" />
+        <StatCard icon={<span className="text-sm">✅</span>} end={100} suffix="%"        label="Offres vérifiées en direct"  color="#f0b90b" />
       </div>
 
       {/* Scroll cue */}
