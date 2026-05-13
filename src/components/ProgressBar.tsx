@@ -19,7 +19,8 @@ export function ProgressBar() {
   return (
     <div
       ref={barRef}
-      className="fixed top-0 left-0 h-1 bg-gradient-to-r from-sky-500 to-indigo-500 z-[9998] transition-all duration-100"
+      className="fixed top-0 left-0 z-[9998] transition-all duration-100"
+      style={{ height: 2, background: 'linear-gradient(90deg, #f0b54a, #d4893a, #b8692a)' }}
       style={{ width: '0%' }}
     />
   );

@@ -10,12 +10,10 @@ export function Services() {
     <>
       <SocialProof />
 
-      <section id="parrainages" className="py-24 px-5 sm:px-8">
+      <section id="parrainages" className="py-28 px-5 sm:px-8" style={{ borderTop: '1px solid rgba(212,168,67,0.06)' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium mb-5 border border-[#d4a843]/20 bg-[#d4a843]/[0.06] text-[#d4a843]" style={{ borderRadius: 20 }}>
-              🎁 Parrainages actifs
-            </div>
+            <div className="section-label">🎁 Parrainages actifs</div>
             <h2 className="section-title">Mes parrainages</h2>
             <p className="section-sub mx-auto">Tous mes codes et liens parrain vérifiés — utilise-les pour encaisser ta prime dès aujourd'hui.</p>
           </div>

@@ -1,108 +1,89 @@
 import { PLATFORMS } from '../data/platforms';
-import { Check, Smartphone, Monitor, ExternalLink, AlertCircle, Info } from 'lucide-react';
+import { ExternalLink, TrendingUp, Zap, Shield } from 'lucide-react';
 import { PlatformLogo } from './PlatformLogo';
 
 export function Pricing() {
   return (
-    <section id="comparatif" className="py-24 px-5 sm:px-8">
+    <section id="comparatif" className="py-28 px-5 sm:px-8" style={{ borderTop: '1px solid rgba(212,168,67,0.06)' }}>
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-amber-500/30 bg-amber-500/10 text-amber-400">
-            📊 Comparatif complet
-          </div>
-          <h2 className="section-title">Tableau comparatif des parrainages</h2>
-          <p className="section-sub mx-auto">Toutes les offres côte à côte pour choisir les plus rentables selon ta situation.</p>
-          <div className="inline-flex items-center gap-2 mt-4 px-3 py-2 rounded-xl border border-amber-500/20 bg-amber-500/[0.06] text-amber-400/80 text-xs">
-            <AlertCircle size={12} />
-            Données vérifiées sur les sites officiels · Avril 2026 · Les montants peuvent changer à tout moment
-          </div>
+
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="section-label">📊 Comparatif</div>
+          <h2 className="section-title">Toutes les offres côte à côte</h2>
+          <p className="section-sub mx-auto">Choisissez les plus rentables selon votre situation — données vérifiées Avril 2026.</p>
         </div>
 
         {/* Desktop table */}
-        <div className="hidden md:block overflow-x-auto rounded-3xl border border-white/[0.06]">
+        <div className="hidden md:block overflow-hidden" style={{ borderRadius: 14, border: '1px solid rgba(212,168,67,0.1)', background: 'rgba(255,240,200,0.018)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)' }}>
           <table className="w-full">
             <thead>
-              <tr style={{ background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Plateforme</th>
-                <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Catégorie</th>
-                <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Tu reçois</th>
-                <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Parrain reçoit</th>
-                <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Total cumulable</th>
-                <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Dépôt min.</th>
-                <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Accès</th>
-                <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Source</th>
+              <tr style={{ borderBottom: '1px solid rgba(212,168,67,0.1)' }}>
+                {['Plateforme', 'Tu reçois', 'Parrain', 'Total', 'Dépôt min.', ''].map(h => (
+                  <th key={h} className="px-6 py-4 text-left text-[10px] font-semibold uppercase tracking-widest" style={{ color: '#4a3f32', background: 'rgba(212,168,67,0.04)' }}>
+                    {h}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
               {PLATFORMS.map((p, i) => (
                 <tr
                   key={p.id}
-                  className="transition-colors hover:bg-white/[0.02]"
-                  style={{ borderBottom: i < PLATFORMS.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}
+                  className="group transition-colors"
+                  style={{
+                    borderBottom: i < PLATFORMS.length - 1 ? '1px solid rgba(212,168,67,0.06)' : 'none',
+                  }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = 'rgba(212,168,67,0.03)'}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}
                 >
+                  {/* Plateforme */}
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-3">
-                      <PlatformLogo id={p.id} logo={p.logo} emoji={p.emoji} name={p.name} color={p.color} size={36} className="flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-semibold text-white text-sm">{p.name}</span>
+                      <PlatformLogo id={p.id} logo={p.logo} emoji={p.emoji} name={p.name} color={p.color} size={34} className="flex-shrink-0" />
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold text-[#f5ede0] text-sm">{p.name}</span>
                           {p.recommended && (
-                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                              ⭐ Recommandé
+                            <span className="text-[9px] font-bold px-1.5 py-0.5" style={{ borderRadius: 4, background: 'rgba(212,168,67,0.12)', color: '#d4a843', border: '1px solid rgba(212,168,67,0.2)' }}>
+                              ★ Top
                             </span>
                           )}
                         </div>
                         {p.reliability && (
-                          <div className="text-[10px] text-slate-500">
-                            Fiabilité: {p.reliability === 'élevée' ? '🟢 Élevée' : p.reliability === 'moyenne' ? '🟡 Moyenne' : '🔴 Basse'}
-                          </div>
+                          <span className="text-[10px]" style={{ color: p.reliability === 'élevée' ? '#5a9a6a' : '#9a7a4a' }}>
+                            {p.reliability === 'élevée' ? '● Fiable' : '● Moyenne'}
+                          </span>
                         )}
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-5 text-center">
-                    <span className="text-xs px-2 py-1 rounded-full font-medium"
-                      style={{
-                        background: p.category === 'bank' ? '#e8952a15' : p.category === 'crypto' ? '#f0b90b15' : '#c47a3a15',
-                        color: p.category === 'bank' ? '#e8952a' : p.category === 'crypto' ? '#fbbf24' : '#c47a3a',
-                      }}>
-                      {p.category === 'bank' ? '🏦 Banque' : p.category === 'crypto' ? '🟡 Crypto' : '📱 App'}
-                    </span>
+
+                  {/* Tu reçois */}
+                  <td className="px-6 py-5">
+                    <span className="font-black text-base" style={{ color: p.color }}>{p.bonusFilleul}</span>
                   </td>
-                  <td className="px-4 py-5 text-center relative group">
-                    <div className="flex items-center justify-center gap-2">
-                      <span className="font-black text-base" style={{ color: p.color }}>{p.bonusFilleul}</span>
-                      {p.offerNote && (
-                        <>
-                          <Info size={14} className="text-slate-500 cursor-help flex-shrink-0" />
-                          <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block bg-slate-900 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap border border-slate-700 z-50">
-                            {p.offerNote}
-                          </div>
-                        </>
-                      )}
-                    </div>
+
+                  {/* Parrain */}
+                  <td className="px-6 py-5">
+                    <span className="font-semibold text-sm text-[#7a6a55]">{p.bonusParrain}</span>
                   </td>
-                  <td className="px-4 py-5 text-center">
-                    <span className="font-semibold text-slate-300 text-sm">{p.bonusParrain}</span>
+
+                  {/* Total */}
+                  <td className="px-6 py-5">
+                    <span className="font-black text-base" style={{ color: '#d4a843' }}>{p.bonusTotal}</span>
                   </td>
-                  <td className="px-4 py-5 text-center">
-                    <span className="font-black text-base text-amber-400">{p.bonusTotal}</span>
+
+                  {/* Dépôt min */}
+                  <td className="px-6 py-5">
+                    <span className="text-xs text-[#5a4d3e]">{p.minDeposit}</span>
                   </td>
-                  <td className="px-4 py-5 text-center">
-                    {p.minDeposit === 'Aucun dépôt minimum' || p.minDeposit === 'Aucun dépôt minimum obligatoire'
-                      ? <span className="inline-flex items-center gap-1 text-amber-400 text-xs font-medium"><Check size={12} /> Aucun</span>
-                      : <span className="text-slate-400 text-xs">{p.minDeposit}</span>}
-                  </td>
-                  <td className="px-4 py-5 text-center">
-                    <span className="inline-flex items-center gap-1 text-slate-400 text-xs">
-                      {p.badge === 'App uniquement' ? <Smartphone size={11} /> : <Monitor size={11} />}
-                      {p.badge}
-                    </span>
-                  </td>
-                  <td className="px-4 py-5 text-center">
+
+                  {/* Source */}
+                  <td className="px-6 py-5 text-right">
                     <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer"
-                      className="inline-flex items-center gap-0.5 text-[10px] text-slate-500 hover:text-slate-300 transition-colors">
-                      <ExternalLink size={9} /> Officielle
+                      className="inline-flex items-center gap-1 text-[10px] font-medium text-[#4a3f32] hover:text-[#d4a843] transition-colors">
+                      <ExternalLink size={10} /> Officielle
                     </a>
                   </td>
                 </tr>
@@ -112,97 +93,63 @@ export function Pricing() {
         </div>
 
         {/* Mobile cards */}
-        <div className="md:hidden space-y-4">
+        <div className="md:hidden space-y-3">
           {PLATFORMS.map(p => (
-            <div key={p.id} className="rounded-2xl border p-5" style={{ borderColor: `${p.color}20`, background: `${p.color}05` }}>
-              <div className="flex items-start justify-between gap-3 mb-4">
-                <div className="flex items-center gap-3 flex-1">
-                  <PlatformLogo id={p.id} logo={p.logo} emoji={p.emoji} name={p.name} color={p.color} size={40} className="flex-shrink-0" />
-                  <div className="flex-1">
-                    <p className="font-bold text-white text-sm">{p.name}</p>
-                    <p className="text-xs text-slate-500">{p.category === 'bank' ? '🏦 Banque' : p.category === 'crypto' ? '🟡 Crypto' : '📱 App'}</p>
+            <div key={p.id} className="p-5 overflow-hidden" style={{ borderRadius: 12, border: `1px solid ${p.color}18`, background: 'rgba(255,240,200,0.02)' }}>
+              <div className="flex items-center gap-3 mb-4">
+                <PlatformLogo id={p.id} logo={p.logo} emoji={p.emoji} name={p.name} color={p.color} size={38} className="flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <p className="font-bold text-[#f5ede0] text-sm truncate">{p.name}</p>
+                    {p.recommended && <span className="text-[9px] font-bold px-1.5 py-0.5 flex-shrink-0" style={{ borderRadius: 4, background: 'rgba(212,168,67,0.12)', color: '#d4a843' }}>★ Top</span>}
                   </div>
+                  <p className="text-xs text-[#5a4d3e]">{p.minDeposit}</p>
                 </div>
-                {p.recommended && (
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex-shrink-0">
-                    ⭐
-                  </span>
-                )}
-              </div>
-              {p.reliability && (
-                <p className="text-xs text-slate-500 mb-3">
-                  Fiabilité: {p.reliability === 'élevée' ? '🟢 Élevée' : p.reliability === 'moyenne' ? '🟡 Moyenne' : '🔴 Basse'}
-                </p>
-              )}
-              <div className="grid grid-cols-3 gap-2 mb-4">
-                <div className="text-center p-2 rounded-xl relative group" style={{ background: `${p.color}10` }}>
-                  <p className="text-[9px] text-slate-500 mb-0.5">Tu reçois</p>
-                  <p className="font-black text-sm" style={{ color: p.color }}>{p.bonusFilleul}</p>
-                  {p.offerNote && (
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 hidden group-hover:block bg-slate-900 text-white text-xs px-2 py-1 rounded-lg whitespace-nowrap border border-slate-700 z-50 pointer-events-none">
-                      {p.offerNote}
-                    </div>
-                  )}
-                </div>
-                <div className="text-center p-2 rounded-xl bg-white/[0.03]">
-                  <p className="text-[9px] text-slate-500 mb-0.5">Parrain</p>
-                  <p className="font-bold text-xs text-slate-300">{p.bonusParrain}</p>
-                </div>
-                <div className="text-center p-2 rounded-xl bg-emerald-500/10">
-                  <p className="text-[9px] text-slate-500 mb-0.5">Total</p>
-                  <p className="font-black text-sm text-amber-400">{p.bonusTotal}</p>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-slate-500 flex items-center gap-1">
-                  {p.badge === 'App uniquement' ? <Smartphone size={10} /> : <Monitor size={10} />}
-                  {p.badge}
-                </span>
-                <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-slate-300 transition-colors">
-                  <ExternalLink size={10} /> Officielle
+                <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 text-[#4a3f32] hover:text-[#d4a843] transition-colors">
+                  <ExternalLink size={13} />
                 </a>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                <div className="text-center py-2.5 px-2" style={{ borderRadius: 8, background: `${p.color}0d` }}>
+                  <p className="text-[9px] text-[#5a4d3e] mb-1 uppercase tracking-wider">Tu reçois</p>
+                  <p className="font-black text-base leading-none" style={{ color: p.color }}>{p.bonusFilleul}</p>
+                </div>
+                <div className="text-center py-2.5 px-2" style={{ borderRadius: 8, background: 'rgba(255,255,255,0.025)' }}>
+                  <p className="text-[9px] text-[#5a4d3e] mb-1 uppercase tracking-wider">Parrain</p>
+                  <p className="font-bold text-sm leading-none text-[#7a6a55]">{p.bonusParrain}</p>
+                </div>
+                <div className="text-center py-2.5 px-2" style={{ borderRadius: 8, background: 'rgba(212,168,67,0.06)' }}>
+                  <p className="text-[9px] text-[#5a4d3e] mb-1 uppercase tracking-wider">Total</p>
+                  <p className="font-black text-base leading-none" style={{ color: '#d4a843' }}>{p.bonusTotal}</p>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Summary highlight */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-5">
-          <SummaryCard
-            emoji="🏆"
-            title="Meilleur bonus total"
-            value="OKX"
-            sub="jusqu'à 300€ filleul · 80€/ami pour le parrain"
-            color="#f0b90b"
-          />
-          <SummaryCard
-            emoji="💚"
-            title="Meilleure banque active"
-            value="Fortuneo"
-            sub="80€ à 160€ selon la carte choisie"
-            color="#00c07f"
-          />
-          <SummaryCard
-            emoji="⚡"
-            title="Le plus rapide"
-            value="Revolut"
-            sub="5 min, 100% app, bonus immédiat"
-            color="#7c3aed"
-          />
+        {/* Summary highlights */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <Highlight icon={<TrendingUp size={15} />} label="Meilleur bonus total" name="OKX" detail="jusqu'à 300€ filleul + 80€ parrain" color="#f0b90b" />
+          <Highlight icon={<Shield size={15} />} label="Banque la plus fiable" name="Fortuneo" detail="80€ filleul · 80€ parrain · code 14133207" color="#00c07f" />
+          <Highlight icon={<Zap size={15} />} label="Le plus rapide" name="Revolut" detail="5 min, 100% app, bonus immédiat" color="#7c3aed" />
         </div>
+
       </div>
     </section>
   );
 }
 
-function SummaryCard({ emoji, title, value, sub, color }: { emoji: string; title: string; value: string; sub: string; color: string }) {
+function Highlight({ icon, label, name, detail, color }: { icon: React.ReactNode; label: string; name: string; detail: string; color: string }) {
   return (
-    <div className="rounded-2xl p-5 border text-center" style={{ borderColor: `${color}25`, background: `${color}08` }}>
-      <div className="text-3xl mb-2">{emoji}</div>
-      <p className="text-xs text-slate-500 mb-1 uppercase tracking-wider">{title}</p>
-      <p className="font-black text-lg text-white mb-1">{value}</p>
-      <p className="text-xs" style={{ color }}>{sub}</p>
+    <div className="p-5 flex items-start gap-4" style={{ borderRadius: 12, border: '1px solid rgba(212,168,67,0.1)', background: 'rgba(255,240,200,0.018)' }}>
+      <div className="flex-shrink-0 w-9 h-9 flex items-center justify-center" style={{ borderRadius: 8, background: `${color}15`, color }}>
+        {icon}
+      </div>
+      <div>
+        <p className="text-[10px] text-[#5a4d3e] uppercase tracking-widest font-medium mb-1">{label}</p>
+        <p className="font-bold text-[#f5ede0] text-base leading-tight mb-0.5">{name}</p>
+        <p className="text-xs text-[#7a6a55] leading-snug">{detail}</p>
+      </div>
     </div>
   );
 }

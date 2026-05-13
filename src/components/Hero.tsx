@@ -75,7 +75,7 @@ export function Hero() {
         style={{ backgroundImage: 'radial-gradient(circle, rgba(212,168,67,0.04) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
       {/* Live badge */}
-      <div ref={badgeRef} className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#d4a843]/20 bg-[#d4a843]/[0.06] text-[#d4a843] text-xs font-medium tracking-wide mb-8 sm:mb-10">
+      <div ref={badgeRef} className="inline-flex items-center gap-2 px-3.5 py-1.5 text-[11px] font-semibold tracking-widest uppercase mb-8 sm:mb-10" style={{ borderRadius: 20, border: '1px solid rgba(212,168,67,0.2)', background: 'rgba(212,168,67,0.07)', color: '#d4a843', letterSpacing: '0.1em' }}>
         <span className="relative flex h-1.5 w-1.5">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4a843] opacity-60" />
           <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#d4a843]" />
