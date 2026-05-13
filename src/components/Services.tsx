@@ -122,6 +122,16 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
           </div>
         )}
 
+        {/* TikTok contact (when contactUrl is set) */}
+        {p.contactUrl && (
+          <a href={p.contactUrl} target="_blank" rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold transition-all hover:opacity-85 mb-3"
+            style={{ borderRadius: 8, background: 'rgba(255,255,255,0.04)', color: '#ede8df', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.28 8.28 0 0 0 4.83 1.55V6.79a4.85 4.85 0 0 1-1.06-.1z"/></svg>
+            Contacte-moi sur TikTok pour le lien
+          </a>
+        )}
+
         {/* Referral link (when no code) */}
         {p.referralUrl && !p.referralCode && (
           <a href={p.referralUrl} target="_blank" rel="noopener noreferrer"
