@@ -1,9 +1,9 @@
-import { ArrowRight, TrendingUp, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useCountUp } from '../hooks';
 
-const PLATFORMS = [
+const PILLS = [
   { name: 'Hello bank!',    color: '#0ea5e9', href: '#parrainages' },
   { name: 'Fortuneo',       color: '#00c07f', href: '#parrainages' },
   { name: 'Revolut',        color: '#7c3aed', href: '#parrainages' },
@@ -13,166 +13,178 @@ const PLATFORMS = [
 ];
 
 export function Hero() {
-  const sectionRef  = useRef<HTMLDivElement>(null);
-  const titleRef    = useRef<HTMLHeadingElement>(null);
-  const badgeRef    = useRef<HTMLDivElement>(null);
-  const subRef      = useRef<HTMLParagraphElement>(null);
-  const pillsRef    = useRef<HTMLDivElement>(null);
-  const ctaRef      = useRef<HTMLDivElement>(null);
-  const statsRef    = useRef<HTMLDivElement>(null);
-  const orb1Ref     = useRef<HTMLDivElement>(null);
-  const orb2Ref     = useRef<HTMLDivElement>(null);
-  const orb3Ref     = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const titleRef   = useRef<HTMLDivElement>(null);
+  const badgeRef   = useRef<HTMLDivElement>(null);
+  const subRef     = useRef<HTMLParagraphElement>(null);
+  const pillsRef   = useRef<HTMLDivElement>(null);
+  const ctaRef     = useRef<HTMLDivElement>(null);
+  const statsRef   = useRef<HTMLDivElement>(null);
+  const orb1Ref    = useRef<HTMLDivElement>(null);
+  const orb2Ref    = useRef<HTMLDivElement>(null);
 
-  /* Parallax orbs on mousemove */
+  /* Parallax orbs */
   useEffect(() => {
     const el = sectionRef.current; if (!el) return;
     const move = (e: MouseEvent) => {
-      const rx = (e.clientX / window.innerWidth  - 0.5) * 30;
-      const ry = (e.clientY / window.innerHeight - 0.5) * 30;
-      gsap.to(orb1Ref.current, { x: rx * 1.2, y: ry * 1.2, duration: 1.2, ease: 'power2.out' });
-      gsap.to(orb2Ref.current, { x: -rx * 0.8, y: -ry * 0.8, duration: 1.5, ease: 'power2.out' });
-      gsap.to(orb3Ref.current, { x: rx * 0.5, y: ry * 0.5, duration: 1.8, ease: 'power2.out' });
+      const rx = (e.clientX / window.innerWidth  - 0.5) * 25;
+      const ry = (e.clientY / window.innerHeight - 0.5) * 25;
+      gsap.to(orb1Ref.current, { x: rx * 1.1, y: ry * 1.1, duration: 1.4, ease: 'power2.out' });
+      gsap.to(orb2Ref.current, { x: -rx * 0.7, y: -ry * 0.7, duration: 1.8, ease: 'power2.out' });
     };
     window.addEventListener('mousemove', move, { passive: true });
     return () => window.removeEventListener('mousemove', move);
   }, []);
 
-  /* Entrance animations */
+  /* Entrance */
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.fromTo(badgeRef.current,  { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
-      .fromTo(titleRef.current?.querySelectorAll('[data-word]') ?? [],
-        { y: 60, opacity: 0, rotateX: -20 },
-        { y: 0, opacity: 1, rotateX: 0, duration: 0.85, stagger: 0.08 }, '-=0.2')
-      .fromTo(subRef.current,    { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.4')
+    tl.fromTo(badgeRef.current,  { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
+      .fromTo(titleRef.current?.children ?? [],
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.12 }, '-=0.2')
+      .fromTo(subRef.current,    { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.4')
       .fromTo(pillsRef.current?.children ?? [],
-        { y: 16, opacity: 0, scale: 0.9 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.45, stagger: 0.05 }, '-=0.3')
+        { y: 14, opacity: 0, scale: 0.94 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.4, stagger: 0.04 }, '-=0.3')
       .fromTo(ctaRef.current?.children ?? [],
-        { y: 20, opacity: 0 },
+        { y: 18, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.5, stagger: 0.1 }, '-=0.3')
-      .fromTo(statsRef.current?.children ?? [],
-        { y: 24, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.08 }, '-=0.2');
+      .fromTo(statsRef.current,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5 }, '-=0.2');
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-28 pb-16 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center text-center px-5 sm:px-8 pt-24 pb-16 overflow-hidden"
     >
-      {/* Background orbs */}
+      {/* Ambient orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div ref={orb1Ref} className="absolute top-[15%] left-[10%] w-[500px] sm:w-[700px] h-[500px] sm:h-[700px] rounded-full opacity-[0.07] blur-[120px]"
-          style={{ background: 'radial-gradient(circle, #e8952a, #c47a3a)' }} />
-        <div ref={orb2Ref} className="absolute bottom-[10%] right-[5%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full opacity-[0.05] blur-[100px]"
-          style={{ background: 'radial-gradient(circle, #9a6b3e, #6b3a1e)' }} />
-        <div ref={orb3Ref} className="absolute top-[55%] left-[50%] w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-full opacity-[0.04] blur-[90px]"
-          style={{ background: 'radial-gradient(circle, #f0c060, #c47a3a)' }} />
+        <div ref={orb1Ref}
+          className="absolute rounded-full"
+          style={{ top: '10%', left: '8%', width: 700, height: 700, background: 'radial-gradient(circle, rgba(232,149,42,0.07) 0%, transparent 65%)', filter: 'blur(60px)' }} />
+        <div ref={orb2Ref}
+          className="absolute rounded-full"
+          style={{ bottom: '8%', right: '6%', width: 550, height: 550, background: 'radial-gradient(circle, rgba(154,107,62,0.06) 0%, transparent 65%)', filter: 'blur(80px)' }} />
       </div>
 
-      {/* Dot grid */}
+      {/* Subtle dot grid */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: 'radial-gradient(circle, rgba(232,149,42,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+        style={{ backgroundImage: 'radial-gradient(circle, rgba(212,168,67,0.04) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
-      {/* Noise overlay for texture */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.015]"
-        style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
-
-      {/* Badge */}
-      <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/25 bg-amber-500/[0.08] text-amber-400 text-xs sm:text-sm mb-7 sm:mb-8">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
+      {/* Live badge */}
+      <div ref={badgeRef} className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#d4a843]/20 bg-[#d4a843]/[0.06] text-[#d4a843] text-xs font-medium tracking-wide mb-8 sm:mb-10">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4a843] opacity-60" />
+          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#d4a843]" />
         </span>
-        Mis à jour — Offres vérifiées Avril 2026
+        Offres vérifiées — Avril 2026
       </div>
 
-      {/* Headline */}
-      <h1
-        ref={titleRef}
-        className="font-black tracking-tight leading-[1.04] mb-5 sm:mb-6 max-w-4xl"
-        style={{ fontSize: 'clamp(2.6rem, 7vw, 5rem)', perspective: '600px' }}
-      >
-        <div className="overflow-hidden mb-1">
-          <span data-word className="text-white inline-block">Gagnez&nbsp;</span>
-          <span data-word className="inline-block hero-gradient-text">jusqu'à 510€</span>
-        </div>
+      {/* Headline — DM Serif Display */}
+      <div ref={titleRef} className="mb-6 sm:mb-7">
         <div className="overflow-hidden">
-          <span data-word className="text-white inline-block">grâce aux&nbsp;</span>
-          <span data-word className="inline-block hero-gradient-text">parrainages</span>
+          <h1
+            className="text-[#f5ede0] block"
+            style={{
+              fontFamily: "'DM Serif Display', Georgia, serif",
+              fontSize: 'clamp(3.2rem, 8.5vw, 6rem)',
+              fontWeight: 400,
+              lineHeight: 1.0,
+              letterSpacing: '-0.02em',
+            }}
+          >
+            Gagnez{' '}
+            <span className="hero-gradient-text">jusqu'à 510€</span>
+          </h1>
         </div>
-      </h1>
+        <div className="overflow-hidden mt-1">
+          <h1
+            className="text-[#f5ede0] block"
+            style={{
+              fontFamily: "'DM Serif Display', Georgia, serif",
+              fontSize: 'clamp(3.2rem, 8.5vw, 6rem)',
+              fontWeight: 400,
+              lineHeight: 1.0,
+              letterSpacing: '-0.02em',
+            }}
+          >
+            grâce aux{' '}
+            <span className="hero-gradient-text">parrainages</span>
+          </h1>
+        </div>
+      </div>
 
-      <p ref={subRef} className="text-slate-400 text-base sm:text-lg max-w-xl sm:max-w-2xl mb-7 sm:mb-8 leading-relaxed px-2">
-        Codes & liens parrain prêts à l'emploi pour encaisser les meilleures primes — banques en ligne, crypto et apps.
+      <p ref={subRef} className="text-[#7a6a55] text-base sm:text-lg max-w-lg mb-8 sm:mb-10 leading-relaxed">
+        Codes &amp; liens parrain vérifiés — banques, crypto et apps. Prêts à l'emploi pour encaisser tes primes aujourd'hui.
       </p>
 
       {/* Platform pills */}
-      <div ref={pillsRef} className="flex items-center gap-2 sm:gap-3 mb-9 sm:mb-10 flex-wrap justify-center px-2">
-        {PLATFORMS.map(p => (
+      <div ref={pillsRef} className="flex items-center gap-2 mb-9 sm:mb-10 flex-wrap justify-center">
+        {PILLS.map(p => (
           <a key={p.name} href={p.href}
-            className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold border transition-all hover:scale-105"
-            style={{ borderColor: `${p.color}33`, background: `${p.color}11`, color: p.color }}
-            onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = `0 0 14px ${p.color}30`}
-            onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = 'none'}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold border transition-all hover:scale-105"
+            style={{
+              borderRadius: 6,
+              borderColor: `${p.color}28`,
+              background: `${p.color}0e`,
+              color: p.color,
+              letterSpacing: '0.01em',
+            }}
           >
-            <LogoPill name={p.name} color={p.color} />
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: p.color, opacity: 0.7, flexShrink: 0 }} />
             {p.name}
           </a>
         ))}
       </div>
 
       {/* CTAs */}
-      <div ref={ctaRef} className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-16 sm:mb-20 w-full sm:w-auto px-4">
+      <div ref={ctaRef} className="flex flex-col sm:flex-row items-center gap-3 mb-16 sm:mb-20 w-full sm:w-auto px-4">
         <a href="#parrainages"
-          className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 sm:px-8 py-4 rounded-2xl text-sm sm:text-base font-bold text-white transition-all hover:scale-[1.03] active:scale-95"
-          style={{ background: 'linear-gradient(135deg,#e8952a,#c47a3a)', boxShadow: '0 8px 32px rgba(232,149,42,0.35), inset 0 1px 0 rgba(255,255,255,0.1)' }}>
-          Voir les offres <ArrowRight size={17} />
+          className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold text-[#0e0b08] transition-all hover:scale-[1.03] active:scale-95"
+          style={{
+            borderRadius: 8,
+            background: 'linear-gradient(135deg, #f0b54a, #d4893a)',
+            boxShadow: '0 4px 24px rgba(212,168,67,0.3)',
+          }}>
+          Voir les offres <ArrowRight size={15} />
         </a>
         <a href="#comparatif"
-          className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 sm:px-8 py-4 rounded-2xl text-sm sm:text-base font-medium text-slate-300 border border-white/[0.08] hover:border-white/[0.18] hover:text-white transition-all bg-white/[0.03] hover:bg-white/[0.06]">
+          className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-medium text-[#7a6a55] border border-white/[0.08] hover:border-white/[0.16] hover:text-[#ede8df] transition-all bg-white/[0.02] hover:bg-white/[0.04]"
+          style={{ borderRadius: 8 }}>
           Tableau comparatif
         </a>
       </div>
 
-      {/* Stats */}
-      <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-3xl px-2">
-        <StatCard icon={<TrendingUp size={14} />}            end={510} suffix="€"       label="Max cumulable filleul"       color="#e8952a" />
-        <StatCard icon={<span className="text-sm">🎁</span>} end={6}   suffix=" offres" label="Parrainages actifs"           color="#c47a3a" />
-        <StatCard icon={<span className="text-sm">✅</span>} end={100} suffix="%"       label="Offres vérifiées en direct"  color="#d4b080" />
-        <StatCard icon={<span className="text-sm">🔒</span>} end={100} suffix="%"       label="Liens officiels vérifiés"    color="#9a6b3e" />
+      {/* Stats bar */}
+      <div ref={statsRef} className="w-full max-w-2xl px-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px rounded-xl overflow-hidden border border-white/[0.06]"
+          style={{ background: 'rgba(255,240,200,0.018)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)' }}>
+          <StatCell end={510} suffix="€" label="Max cumulable" />
+          <StatCell end={6} suffix="" label="Offres actives" />
+          <StatCell end={100} suffix="%" label="Vérifiées" />
+          <StatCell end={100} suffix="+" label="Parrainages" />
+        </div>
       </div>
 
       {/* Scroll cue */}
-      <a href="#parrainages" className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-600 hover:text-slate-400 transition-colors animate-bounce-slow" aria-label="Scroll">
-        <ChevronDown size={22} />
+      <a href="#parrainages" className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[#4a3f32] hover:text-[#7a6a55] transition-colors animate-bounce-slow" aria-label="Scroll">
+        <ChevronDown size={20} />
       </a>
     </section>
   );
 }
 
-function LogoPill({ name, color }: { name: string; color: string }) {
-  return (
-    <span style={{ width: 14, height: 14, borderRadius: 3, background: `${color}30`, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontWeight: 800 }}>
-      {name[0]}
-    </span>
-  );
-}
-
-function StatCard({ icon, end, suffix, label, color }: { icon: React.ReactNode; end: number; suffix: string; label: string; color: string }) {
+function StatCell({ end, suffix, label }: { end: number; suffix: string; label: string }) {
   const ref = useCountUp(end, { duration: 2 });
   return (
-    <div className="group px-4 py-3 sm:py-4 rounded-2xl bg-white/[0.025] border border-white/[0.06] text-center transition-all duration-300 hover:bg-white/[0.05] hover:border-white/[0.1] hover:scale-[1.02]"
-      style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)' }}>
-      <div className="flex items-center justify-center gap-1.5 mb-1" style={{ color }}>
-        {icon}
-        <p className="text-lg sm:text-xl font-black tabular-nums">
-          <span ref={ref}>0</span>{suffix}
-        </p>
-      </div>
-      <p className="text-[10px] sm:text-xs text-slate-600 leading-snug">{label}</p>
+    <div className="flex flex-col items-center justify-center py-5 px-4 text-center" style={{ background: 'rgba(255,240,200,0.012)' }}>
+      <p className="font-black text-xl sm:text-2xl text-[#d4a843] tabular-nums leading-none mb-1">
+        <span ref={ref}>0</span>{suffix}
+      </p>
+      <p className="text-[10px] text-[#5a4d3e] uppercase tracking-wider font-medium">{label}</p>
     </div>
   );
 }

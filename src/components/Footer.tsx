@@ -15,11 +15,11 @@ export function Footer() {
           <div className="lg:col-span-2">
             <a href="#" className="flex items-center gap-2.5 mb-4">
               <Logo size={34} />
-              <span className="font-extrabold text-xl tracking-tight">
-                Parrain<span style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Boost</span>
+              <span className="font-bold text-xl tracking-tight" style={{ color: '#f5ede0' }}>
+                Parrain<span style={{ background: 'linear-gradient(120deg,#f0b54a,#d4893a)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Boost</span>
               </span>
             </a>
-            <p className="text-slate-500 text-sm leading-relaxed mb-4">
+            <p className="text-[#7a6a55] text-sm leading-relaxed mb-4">
               Guide des meilleures offres de parrainage bancaires, crypto et apps en France. Conditions et alertes bonus.
             </p>
             <div className="p-3 rounded-xl border border-amber-500/20 bg-amber-500/[0.05]">
@@ -32,11 +32,11 @@ export function Footer() {
           {/* Links */}
           {Object.entries(LINKS).map(([section, items]) => (
             <div key={section}>
-              <h4 className="text-white font-semibold text-sm mb-4">{section}</h4>
+              <h4 className="text-[#d4a843] font-semibold text-xs uppercase tracking-wider mb-4">{section}</h4>
               <ul className="space-y-2.5">
                 {items.map(item => (
                   <li key={item}>
-                    <a href="#" className="text-slate-500 text-sm hover:text-slate-300 transition-colors">{item}</a>
+                    <a href="#" className="text-[#7a6a55] text-sm hover:text-[#f5ede0] transition-colors">{item}</a>
                   </li>
                 ))}
               </ul>
@@ -45,9 +45,9 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-7 border-t border-white/[0.05]">
-          <p className="text-slate-600 text-xs">© {new Date().getFullYear()} ParrainBoost. Tous droits réservés. Site indépendant, non affilié aux plateformes mentionnées.</p>
-          <p className="text-slate-700 text-xs">Les montants des offres sont susceptibles de changer — vérifiez toujours sur le site officiel.</p>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 border-t border-white/[0.05]">
+          <p className="text-[#4a3f32] text-xs">© {new Date().getFullYear()} ParrainBoost · Site indépendant, non affilié aux plateformes mentionnées.</p>
+          <p className="text-[#3a3028] text-xs">Offres susceptibles de changer — vérifiez toujours sur le site officiel.</p>
         </div>
       </div>
     </footer>

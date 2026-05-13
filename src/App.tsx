@@ -10,7 +10,6 @@ import { Footer } from './components/Footer';
 import { Splash } from './components/Splash';
 import { ProgressBar } from './components/ProgressBar';
 import { CanvasParticleBackground } from './components/CanvasParticleBackground';
-import { InteractiveMeshGradient } from './components/InteractiveMeshGradient';
 import { ScrollVelocityEffect } from './components/ScrollVelocityEffect';
 
 export default function App() {
@@ -31,9 +30,8 @@ export default function App() {
       {showSplash && <Splash onDone={onDone} />}
       <ProgressBar />
       <CanvasParticleBackground />
-      <InteractiveMeshGradient />
       <ScrollVelocityEffect />
-      <div className="min-h-screen bg-[#0d0b08] text-white overflow-x-hidden relative">
+      <div className="min-h-screen bg-[#0e0b08] text-white overflow-x-hidden relative">
         <Nav scrolled={scrolled} />
         <Hero />
         <Services />

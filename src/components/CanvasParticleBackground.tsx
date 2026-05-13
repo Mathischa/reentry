@@ -92,15 +92,15 @@ export function CanvasParticleBackground() {
     }
 
     // Create particles
-    const particleCount = 40;
+    const particleCount = 22;
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.5 + 0.2,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.3 + 0.08,
         noiseOffset: Math.random() * 1000,
       });
     }
@@ -119,7 +119,7 @@ export function CanvasParticleBackground() {
       time += 0.01;
 
       // Clear canvas with fade
-      ctx.fillStyle = 'rgba(7, 8, 15, 0.02)';
+      ctx.fillStyle = 'rgba(14, 11, 8, 0.04)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Update and draw particles
@@ -153,16 +153,16 @@ export function CanvasParticleBackground() {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
-        // Draw particle with glow
-        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 3);
-        gradient.addColorStop(0, `rgba(14, 165, 233, ${p.opacity})`);
-        gradient.addColorStop(1, `rgba(14, 165, 233, 0)`);
+        // Draw particle with warm gold glow
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
+        gradient.addColorStop(0, `rgba(212, 168, 67, ${p.opacity})`);
+        gradient.addColorStop(1, `rgba(212, 168, 67, 0)`);
 
         ctx.fillStyle = gradient;
-        ctx.fillRect(p.x - p.size * 3, p.y - p.size * 3, p.size * 6, p.size * 6);
+        ctx.fillRect(p.x - p.size * 4, p.y - p.size * 4, p.size * 8, p.size * 8);
 
         // Draw particle core
-        ctx.fillStyle = `rgba(99, 102, 241, ${p.opacity * 0.8})`;
+        ctx.fillStyle = `rgba(240, 200, 100, ${p.opacity * 0.7})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -177,9 +177,9 @@ export function CanvasParticleBackground() {
           const dy = p1.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 150) {
-            ctx.strokeStyle = `rgba(14, 165, 233, ${0.1 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.5;
+          if (dist < 120) {
+            ctx.strokeStyle = `rgba(212, 168, 67, ${0.06 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.4;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);

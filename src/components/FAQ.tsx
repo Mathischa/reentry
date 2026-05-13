@@ -51,7 +51,7 @@ export function FAQ() {
     <section id="faq" className="py-24 px-5 sm:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-cyan-500/30 bg-cyan-500/10 text-cyan-400">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-5 border border-[#d4a843]/20 bg-[#d4a843]/[0.06] text-[#d4a843]">
             ❓ Questions fréquentes
           </div>
           <h2 className="section-title">FAQ Parrainages</h2>
@@ -64,16 +64,16 @@ export function FAQ() {
               key={i}
               className="rounded-2xl border transition-all duration-300"
               style={{
-                borderColor: open === i ? 'rgba(16,185,129,0.25)' : 'rgba(255,255,255,0.06)',
-                background: open === i ? 'rgba(16,185,129,0.04)' : 'rgba(255,255,255,0.02)',
+                borderColor: open === i ? 'rgba(212,168,67,0.22)' : 'rgba(255,220,160,0.07)',
+                background: open === i ? 'rgba(212,168,67,0.04)' : 'rgba(255,240,200,0.018)',
               }}
             >
               <button
                 className="w-full flex items-center justify-between px-6 py-5 text-left"
                 onClick={() => setOpen(open === i ? null : i)}
               >
-                <span className="font-semibold text-white text-sm sm:text-base pr-4 leading-snug">{faq.q}</span>
-                <span className="flex-shrink-0" style={{ color: open === i ? '#10b981' : '#475569' }}>
+                <span className="font-semibold text-[#f5ede0] text-sm sm:text-base pr-4 leading-snug">{faq.q}</span>
+                <span className="flex-shrink-0" style={{ color: open === i ? '#d4a843' : '#4a3f32' }}>
                   {open === i ? <Minus size={18} /> : <Plus size={18} />}
                 </span>
               </button>
@@ -87,12 +87,12 @@ export function FAQ() {
         </div>
 
         {/* Still have questions */}
-        <div className="mt-12 text-center p-6 rounded-3xl border border-white/[0.05] bg-white/[0.02]">
-          <p className="text-slate-400 text-sm mb-3">Tu as une question qui n'est pas listée ici ?</p>
-          <a href="#newsletter"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)' }}>
-            Inscris-toi aux alertes → on répond par email
+        <div className="mt-10 text-center p-6 border border-[#d4a843]/10 bg-[#d4a843]/[0.03]" style={{ borderRadius: 12 }}>
+          <p className="text-[#7a6a55] text-sm mb-4">Une question non listée ? Contacte-moi directement.</p>
+          <a href="#contact"
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-[#0e0b08] transition-all hover:opacity-90"
+            style={{ borderRadius: 8, background: 'linear-gradient(120deg,#f0b54a,#d4893a)' }}>
+            Poser ma question
           </a>
         </div>
       </div>

@@ -12,14 +12,14 @@ export function Services() {
 
       <section id="parrainages" className="py-24 px-5 sm:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-amber-500/30 bg-amber-500/10 text-amber-400">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium mb-5 border border-[#d4a843]/20 bg-[#d4a843]/[0.06] text-[#d4a843]" style={{ borderRadius: 20 }}>
               🎁 Parrainages actifs
             </div>
             <h2 className="section-title">Mes parrainages</h2>
             <p className="section-sub mx-auto">Tous mes codes et liens parrain vérifiés — utilise-les pour encaisser ta prime dès aujourd'hui.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {PLATFORMS.map((p, i) => <PlatformCard key={p.id} platform={p} index={i} />)}
           </div>
         </div>
@@ -30,7 +30,7 @@ export function Services() {
 
 function PlatformCard({ platform: p, index }: { platform: Platform; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [, inView] = useInView(ref, { threshold: 0.1 });
+  const [, inView] = useInView(ref, { threshold: 0.08 });
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
@@ -44,108 +44,134 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
   return (
     <div
       ref={ref}
-      className="group relative rounded-3xl border bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 overflow-hidden"
+      className="group relative overflow-hidden flex flex-col"
       style={{
-        borderColor: `${p.color}22`,
+        borderRadius: 14,
+        border: `1px solid ${p.color}1a`,
+        background: 'rgba(255,240,200,0.022)',
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 12px rgba(0,0,0,0.3)',
         opacity: inView ? 1 : 0,
-        transform: inView ? 'translateY(0)' : 'translateY(32px)',
-        transition: `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s, background 0.3s`,
+        transform: inView ? 'translateY(0)' : 'translateY(28px)',
+        transition: `opacity 0.55s ease ${index * 0.07}s, transform 0.55s ease ${index * 0.07}s, border-color 0.3s, box-shadow 0.3s`,
       }}
-      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = `0 0 40px -12px ${p.color}33`; }}
-      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 0 0 0 transparent'; }}
+      onMouseEnter={e => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = `${p.color}35`;
+        el.style.boxShadow = `inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.4), 0 0 0 1px ${p.color}10`;
+      }}
+      onMouseLeave={e => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = `${p.color}1a`;
+        el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 12px rgba(0,0,0,0.3)';
+      }}
     >
-      <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background: p.gradient }} />
+      {/* Top accent line */}
+      <div className="absolute top-0 inset-x-0 h-[1.5px]" style={{ background: p.gradient }} />
 
-      <div className="p-7">
-        <div className="flex items-start justify-between mb-5">
-          <div className="flex items-center gap-3">
-            <PlatformLogo id={p.id} logo={p.logo} emoji={p.emoji} name={p.name} color={p.color} size={48} className="rounded-2xl flex-shrink-0" />
-            <div>
-              <h3 className="font-bold text-white text-lg leading-tight">{p.name}</h3>
-              <span className="text-[10px] font-medium px-2 py-0.5 rounded-full mt-1 inline-flex items-center gap-1"
-                style={{ color: p.badgeColor, background: `${p.badgeColor}15`, border: `1px solid ${p.badgeColor}30` }}>
-                {p.badge === 'App uniquement'
-                  ? <><Smartphone size={9} />App uniquement</>
-                  : <><Monitor size={9} />Web & App</>}
-              </span>
-            </div>
+      <div className="p-6 flex flex-col flex-1">
+
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-6">
+          <PlatformLogo id={p.id} logo={p.logo} emoji={p.emoji} name={p.name} color={p.color} size={46} className="flex-shrink-0" />
+          <div className="min-w-0">
+            <h3 className="font-bold text-[#f5ede0] text-base leading-tight truncate">{p.name}</h3>
+            <span
+              className="inline-flex items-center gap-1 text-[9px] font-semibold px-1.5 py-0.5 mt-1"
+              style={{ color: p.badgeColor, background: `${p.badgeColor}12`, border: `1px solid ${p.badgeColor}22`, borderRadius: 4 }}
+            >
+              {p.badge === 'App uniquement' ? <><Smartphone size={8} />App</> : <><Monitor size={8} />Web &amp; App</>}
+            </span>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 mb-5">
-          <div className="rounded-2xl p-3 text-center" style={{ background: `${p.color}0d`, border: `1px solid ${p.color}20` }}>
-            <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Tu reçois</p>
-            <p className="font-black text-xl leading-tight" style={{ color: p.color }}>{p.bonusFilleul}</p>
+        {/* Bonus amounts — the star of the show */}
+        <div className="flex gap-4 mb-5 pb-5 border-b border-white/[0.05]">
+          <div className="flex-1">
+            <p className="text-[9px] text-[#5a4d3e] uppercase tracking-widest font-medium mb-1.5">Tu reçois</p>
+            <p className="font-black leading-none" style={{ fontSize: '1.9rem', color: p.color }}>{p.bonusFilleul}</p>
           </div>
-          <div className="rounded-2xl p-3 text-center" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
-            <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Parrain reçoit</p>
-            <p className="font-black text-xl leading-tight text-slate-300">{p.bonusParrain}</p>
+          <div className="w-px bg-white/[0.05]" />
+          <div className="flex-1">
+            <p className="text-[9px] text-[#5a4d3e] uppercase tracking-widest font-medium mb-1.5">Parrain reçoit</p>
+            <p className="font-bold leading-none text-[#7a6a55]" style={{ fontSize: '1.5rem' }}>{p.bonusParrain}</p>
           </div>
         </div>
 
-        <p className="text-slate-400 text-sm leading-relaxed mb-4">{p.highlight}</p>
+        {/* Highlight */}
+        <p className="text-[#7a6a55] text-sm leading-relaxed mb-5 flex-1">{p.highlight}</p>
 
+        {/* Referral code */}
         {p.referralCode && (
-          <div className="flex items-center justify-between gap-2 mb-4 px-3 py-2 rounded-xl border border-white/[0.08] bg-white/[0.03]">
+          <div className="flex items-center justify-between gap-2 mb-4 px-3.5 py-2.5 border border-white/[0.06]" style={{ borderRadius: 8, background: 'rgba(255,240,200,0.025)' }}>
             <div>
-              <p className="text-[9px] text-slate-500 uppercase tracking-wider mb-0.5">Code parrain</p>
+              <p className="text-[8px] text-[#5a4d3e] uppercase tracking-widest mb-0.5 font-medium">Code parrain</p>
               <span className="font-mono font-bold text-sm tracking-widest" style={{ color: p.color }}>{p.referralCode}</span>
             </div>
             <button
               onClick={handleCopy}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[10px] font-semibold transition-all"
-              style={{ background: copied ? '#10b98120' : `${p.color}15`, color: copied ? '#10b981' : p.color, border: `1px solid ${copied ? '#10b98130' : `${p.color}30`}` }}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] font-semibold transition-all"
+              style={{
+                borderRadius: 6,
+                background: copied ? 'rgba(212,168,67,0.15)' : `${p.color}12`,
+                color: copied ? '#d4a843' : p.color,
+                border: `1px solid ${copied ? 'rgba(212,168,67,0.25)' : `${p.color}25`}`,
+              }}
             >
               {copied ? <><Check size={10} /> Copié</> : <><Copy size={10} /> Copier</>}
             </button>
           </div>
         )}
+
+        {/* Referral link (when no code) */}
         {p.referralUrl && !p.referralCode && (
           <a href={p.referralUrl} target="_blank" rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold transition-all hover:opacity-90 mb-4"
-            style={{ background: `${p.color}18`, color: p.color, border: `1px solid ${p.color}30` }}>
+            className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold transition-all hover:opacity-85 mb-4"
+            style={{ borderRadius: 8, background: `${p.color}15`, color: p.color, border: `1px solid ${p.color}28` }}>
             🔗 S'inscrire avec mon lien parrain
           </a>
         )}
 
+        {/* Expand toggle */}
         <button
           onClick={() => setExpanded(v => !v)}
-          className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold transition-all mb-1"
-          style={{ background: `${p.color}10`, color: p.color, border: `1px solid ${p.color}25` }}
+          className="w-full flex items-center justify-center gap-1.5 py-2 text-xs font-medium transition-all"
+          style={{ borderRadius: 6, background: 'rgba(255,240,200,0.03)', color: '#7a6a55', border: '1px solid rgba(255,255,255,0.06)' }}
         >
-          {expanded ? 'Réduire' : 'Voir les détails'}
-          <ChevronDown size={13} style={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} />
+          {expanded ? 'Réduire' : 'Voir les conditions'}
+          <ChevronDown size={12} style={{ transform: expanded ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
         </button>
 
-        <div style={{ display: expanded ? 'block' : 'none' }}>
-          <div className="pt-4">
-            <div className="space-y-2 mb-5">
-              <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Conditions clés</p>
+        {/* Expanded details */}
+        {expanded && (
+          <div className="pt-5 mt-1 border-t border-white/[0.05]">
+            <p className="text-[9px] text-[#5a4d3e] uppercase tracking-widest font-medium mb-3">Conditions clés</p>
+            <div className="space-y-2 mb-4">
               {p.conditions.slice(0, 3).map((c, i) => (
                 <div key={i} className="flex items-start gap-2">
-                  <CheckCircle size={12} className="mt-0.5 flex-shrink-0" style={{ color: p.color }} />
-                  <span className="text-slate-400 text-xs leading-snug">{c}</span>
+                  <CheckCircle size={11} className="mt-0.5 flex-shrink-0" style={{ color: p.color }} />
+                  <span className="text-[#7a6a55] text-xs leading-snug">{c}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex items-center justify-between text-xs border-t border-white/[0.05] pt-4 mb-4">
-              <span className="text-slate-500">{p.minDeposit}</span>
-              <span className="text-slate-600 text-[10px]">{p.timeline.slice(0, 35)}...</span>
+            <div className="flex items-center justify-between text-[11px] border-t border-white/[0.04] pt-3 mb-3">
+              <span className="text-[#5a4d3e]">{p.minDeposit}</span>
+              <span className="text-[#4a3f32]">{p.timeline.slice(0, 32)}…</span>
             </div>
 
             {p.lastChecked && (
-              <p className="text-[10px] text-slate-600 flex items-center gap-1 mb-3">
-                <CalendarClock size={9} /> Vérifié sur site officiel · {p.lastChecked}
+              <p className="text-[9px] text-[#4a3f32] flex items-center gap-1 mb-3">
+                <CalendarClock size={9} /> Vérifié · {p.lastChecked}
               </p>
             )}
 
             <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-1.5 py-2 rounded-2xl text-xs font-semibold text-slate-400 border border-white/[0.07] hover:border-white/20 hover:text-slate-200 transition-all mt-2">
-              <ExternalLink size={11} /> Voir l'offre officielle
+              className="w-full flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-[#5a4d3e] border border-white/[0.06] hover:border-white/[0.14] hover:text-[#ede8df] transition-all"
+              style={{ borderRadius: 6 }}>
+              <ExternalLink size={10} /> Offre officielle
             </a>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
