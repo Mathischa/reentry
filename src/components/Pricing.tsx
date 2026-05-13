@@ -30,7 +30,7 @@ export function Pricing() {
                 <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Total cumulable</th>
                 <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Dépôt min.</th>
                 <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Accès</th>
-                <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Tuto</th>
+                <th className="text-center px-4 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Source</th>
               </tr>
             </thead>
             <tbody>
@@ -62,9 +62,11 @@ export function Pricing() {
                   </td>
                   <td className="px-4 py-5 text-center">
                     <span className="text-xs px-2 py-1 rounded-full font-medium"
-                      style={{ background: p.category === 'bank' ? '#0ea5e915' : '#f59e0b15',
-                               color: p.category === 'bank' ? '#38bdf8' : '#fbbf24' }}>
-                      {p.category === 'bank' ? '🏦 Banque' : '🎯 Paris'}
+                      style={{
+                        background: p.category === 'bank' ? '#0ea5e915' : p.category === 'crypto' ? '#f0b90b15' : '#a855f715',
+                        color: p.category === 'bank' ? '#38bdf8' : p.category === 'crypto' ? '#fbbf24' : '#c084fc',
+                      }}>
+                      {p.category === 'bank' ? '🏦 Banque' : p.category === 'crypto' ? '🟡 Crypto' : '📱 App'}
                     </span>
                   </td>
                   <td className="px-4 py-5 text-center relative group">
@@ -98,17 +100,10 @@ export function Pricing() {
                     </span>
                   </td>
                   <td className="px-4 py-5 text-center">
-                    <div className="flex flex-col items-center gap-1.5">
-                      <a href={`#tuto-${p.id}`}
-                        className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-xl transition-all hover:opacity-90"
-                        style={{ background: p.gradient, color: 'white' }}>
-                        Tuto →
-                      </a>
-                      <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer"
-                        className="inline-flex items-center gap-0.5 text-[10px] text-slate-600 hover:text-slate-400 transition-colors">
-                        <ExternalLink size={9} /> Source officielle
-                      </a>
-                    </div>
+                    <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center gap-0.5 text-[10px] text-slate-500 hover:text-slate-300 transition-colors">
+                      <ExternalLink size={9} /> Officielle
+                    </a>
                   </td>
                 </tr>
               ))}
@@ -125,7 +120,7 @@ export function Pricing() {
                   <PlatformLogo logo={p.logo} emoji={p.emoji} name={p.name} color={p.color} size={40} className="flex-shrink-0" />
                   <div className="flex-1">
                     <p className="font-bold text-white text-sm">{p.name}</p>
-                    <p className="text-xs text-slate-500">{p.category === 'bank' ? '🏦 Banque' : '🎯 Paris'}</p>
+                    <p className="text-xs text-slate-500">{p.category === 'bank' ? '🏦 Banque' : p.category === 'crypto' ? '🟡 Crypto' : '📱 App'}</p>
                   </div>
                 </div>
                 {p.recommended && (
@@ -163,10 +158,9 @@ export function Pricing() {
                   {p.badge === 'App uniquement' ? <Smartphone size={10} /> : <Monitor size={10} />}
                   {p.badge}
                 </span>
-                <a href={`#tuto-${p.id}`}
-                  className="text-xs font-bold px-3 py-1.5 rounded-xl"
-                  style={{ background: p.gradient, color: 'white' }}>
-                  Tutoriel →
+                <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-slate-300 transition-colors">
+                  <ExternalLink size={10} /> Officielle
                 </a>
               </div>
             </div>
@@ -178,9 +172,9 @@ export function Pricing() {
           <SummaryCard
             emoji="🏆"
             title="Meilleur bonus total"
-            value="Winamax"
-            sub="20€ parrainage + 350€ bienvenue cumulables"
-            color="#d97706"
+            value="OKX"
+            sub="jusqu'à 200€ de bonus de bienvenue"
+            color="#f0b90b"
           />
           <SummaryCard
             emoji="💚"

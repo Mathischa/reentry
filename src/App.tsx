@@ -3,8 +3,6 @@ import { useLenis } from './hooks';
 import { Nav } from './components/Nav';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
-import { Process } from './components/Process';
-import { Portfolio } from './components/Portfolio';
 import { Pricing } from './components/Pricing';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
@@ -41,8 +39,6 @@ export default function App() {
         <Nav scrolled={scrolled} />
         <Hero />
         <Services />
-        <Process />
-        <Portfolio />
         <Pricing />
         <FAQ />
         <Contact />

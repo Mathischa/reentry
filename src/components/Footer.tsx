@@ -1,10 +1,10 @@
 import { Logo } from './Logo';
 
 const LINKS = {
-  Banques: ['Boursorama', 'Fortuneo', 'Revolut'],
-  'Paris Sportifs': ['Betclic', 'Winamax'],
-  Navigation: ['Comment ça marche', 'Tutoriels', 'Comparatif', 'FAQ'],
-  Légal: ['Mentions légales', 'Politique de confidentialité', 'Jeu responsable'],
+  Banques: ['Fortuneo', 'Revolut', 'Hello bank!'],
+  Crypto: ['Trade Republic', 'OKX'],
+  Navigation: ['Comparatif', 'FAQ'],
+  Légal: ['Mentions légales', 'Politique de confidentialité'],
 };
 
 export function Footer() {
@@ -21,7 +21,7 @@ export function Footer() {
               </span>
             </a>
             <p className="text-slate-500 text-sm leading-relaxed mb-4">
-              Guide complet des meilleures offres de parrainage bancaires et de paris sportifs en France. Tutoriels, conditions et alertes bonus.
+              Guide des meilleures offres de parrainage bancaires, crypto et apps en France. Conditions et alertes bonus.
             </p>
             <div className="p-3 rounded-xl border border-amber-500/20 bg-amber-500/[0.05]">
               <p className="text-amber-500/70 text-xs leading-relaxed">
@@ -48,7 +48,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-7 border-t border-white/[0.05]">
           <p className="text-slate-600 text-xs">© {new Date().getFullYear()} ParrainBoost. Tous droits réservés. Site indépendant, non affilié aux plateformes mentionnées.</p>
-          <p className="text-slate-700 text-xs">18+ — Jeux d'argent interdits aux mineurs</p>
+          <p className="text-slate-700 text-xs">Les montants des offres sont susceptibles de changer — vérifiez toujours sur le site officiel.</p>
         </div>
       </div>
     </footer>

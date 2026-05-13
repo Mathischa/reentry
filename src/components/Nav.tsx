@@ -4,13 +4,11 @@ import { Logo } from './Logo';
 import gsap from 'gsap';
 
 const LINKS = [
-  { href: '#banques',    label: 'Banques'          },
-  { href: '#crypto',     label: 'Crypto'            },
-  { href: '#paris',      label: 'Paris Sportifs'    },
-  { href: '#comment',    label: 'Comment ça marche' },
-  { href: '#tutoriels',  label: 'Tutoriels'         },
-  { href: '#comparatif', label: 'Comparatif'        },
-  { href: '#faq',        label: 'FAQ'               },
+  { href: '#banques',    label: 'Banques'    },
+  { href: '#crypto',     label: 'Crypto'     },
+  { href: '#autres',     label: 'Autres apps'},
+  { href: '#comparatif', label: 'Comparatif' },
+  { href: '#faq',        label: 'FAQ'        },
 ];
 
 export function Nav({ scrolled }: { scrolled: boolean }) {

@@ -16,11 +16,11 @@ const FAQS = [
   },
   {
     q: 'Combien de temps faut-il attendre pour recevoir sa prime ?',
-    a: 'Ça dépend de la plateforme. Pour les banques (Monabanq, BNP, Fortuneo) : 2-3 mois après validation. Pour Trade Republic & Revolut : sous 30 jours. Pour les paris sportifs (Betclic, Winamax, PMU) : 72h à 30 jours. Pour PMU : crédit immédiat le jour de l\'inscription.',
+    a: 'Ça dépend de la plateforme. Pour les banques (Fortuneo, Hello bank!) : 2-3 mois après validation. Pour Trade Republic & Revolut : sous 30 jours. Pour OKX : progressivement selon l\'activité de trading.',
   },
   {
     q: 'Est-ce que je dois déclarer ces primes aux impôts ?',
-    a: 'Les primes de parrainage bancaires sont considérées comme des avantages ponctuels et ne sont généralement pas imposables si leur montant total reste modéré. Au-delà de certains seuils ou en cas de parrainage massif "professionnel", une déclaration peut être nécessaire. Pour les plateformes de jeux, les gains sont soumis à des règles spécifiques selon le type de jeu.',
+    a: 'Les primes de parrainage bancaires sont considérées comme des avantages ponctuels et ne sont généralement pas imposables si leur montant total reste modéré. Au-delà de certains seuils ou en cas de parrainage massif "professionnel", une déclaration peut être nécessaire. Pour les cryptomonnaies, les plus-values sont soumises à la flat tax de 30%.',
   },
   {
     q: 'Que faire si le lien de parrainage ne fonctionne pas ?',
@@ -40,7 +40,7 @@ const FAQS = [
   },
   {
     q: 'Est-ce qu\'il faut un compte bancaire existant pour s\'inscrire sur ces plateformes ?',
-    a: 'Pour les banques en ligne (Boursorama, Fortuneo), un RIB d\'une autre banque est souvent demandé pour effectuer un premier virement ou vérifier ton identité bancaire, mais aucun dépôt n\'est requis. Pour Revolut, aucun RIB n\'est nécessaire. Pour les sites de paris, un RIB est indispensable pour les retraits, mais pas forcément pour l\'inscription.',
+    a: 'Pour les banques en ligne (Fortuneo, Hello bank!), un RIB d\'une autre banque est souvent demandé pour effectuer un premier virement ou vérifier ton identité bancaire, mais aucun dépôt n\'est requis. Pour Revolut, aucun RIB n\'est nécessaire. Pour les exchanges crypto (OKX, Trade Republic), une pièce d\'identité suffit pour l\'inscription.',
   },
 ];
 

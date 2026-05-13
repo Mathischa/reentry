@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useInView } from '../hooks';
-import { BANKS, BETTING, CRYPTO, OTHER, type Platform } from '../data/platforms';
+import { BANKS, CRYPTO, OTHER, type Platform } from '../data/platforms';
 import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock, ExternalLink, Copy, Check, ChevronDown } from 'lucide-react';
 import { PlatformLogo } from './PlatformLogo';
 import { SocialProof } from './SocialProof';
@@ -41,27 +41,6 @@ export function Services() {
             <p className="text-yellow-400/80 text-sm flex items-center justify-center gap-2">
               <AlertTriangle size={15} />
               Les cryptomonnaies sont des actifs volatils. Investissez de manière responsable.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* PARIS SPORTIFS */}
-      <section id="paris" className="py-24 px-5 sm:px-8" style={{ background: 'rgba(255,255,255,0.01)' }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHeader
-            badge="🎯 Paris Sportifs"
-            badgeColor="#f59e0b"
-            title="Offres de parrainage paris & poker"
-            sub="Profite des offres de bienvenue et des primes de parrainage sur les plateformes de jeux agréées ANJ (ex-ARJEL)."
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {BETTING.map((p, i) => <PlatformCard key={p.id} platform={p} index={i} />)}
-          </div>
-          <div className="mt-8 p-4 rounded-2xl border border-amber-500/20 bg-amber-500/[0.04] max-w-2xl mx-auto text-center">
-            <p className="text-amber-400/80 text-sm flex items-center justify-center gap-2">
-              <AlertTriangle size={15} />
-              Jeux d'argent réservés aux majeurs (18+). Jouez de manière responsable.
             </p>
           </div>
         </div>
@@ -227,11 +206,6 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
             )}
 
             {/* CTA */}
-            <a href={`#tuto-${p.id}`}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-bold transition-all hover:opacity-90 active:scale-95"
-              style={{ background: p.gradient, color: 'white' }}>
-              Voir le tutoriel complet →
-            </a>
             <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-1.5 py-2 rounded-2xl text-xs font-semibold text-slate-400 border border-white/[0.07] hover:border-white/20 hover:text-slate-200 transition-all mt-2">
               <ExternalLink size={11} /> Voir l'offre officielle
