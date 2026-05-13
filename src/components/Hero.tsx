@@ -159,13 +159,16 @@ export function Hero() {
       </div>
 
       {/* Stats bar */}
-      <div ref={statsRef} className="w-full max-w-2xl px-4">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px rounded-xl overflow-hidden border border-white/[0.06]"
+      <div ref={statsRef} className="w-full max-w-xl px-4">
+        <div className="flex items-center justify-center gap-0 rounded-xl overflow-hidden border border-white/[0.06]"
           style={{ background: 'rgba(255,240,200,0.018)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)' }}>
           <StatCell end={510} suffix="€" label="Max cumulable" />
+          <div className="w-px self-stretch" style={{ background: 'rgba(255,255,255,0.05)' }} />
           <StatCell end={6} suffix="" label="Offres actives" />
-          <StatCell end={100} suffix="%" label="Vérifiées" />
+          <div className="w-px self-stretch" style={{ background: 'rgba(255,255,255,0.05)' }} />
           <StatCell end={100} suffix="+" label="Parrainages" />
+          <div className="w-px self-stretch" style={{ background: 'rgba(255,255,255,0.05)' }} />
+          <StatCell end={100} suffix="%" label="Vérifiées" />
         </div>
       </div>
 
@@ -180,11 +183,11 @@ export function Hero() {
 function StatCell({ end, suffix, label }: { end: number; suffix: string; label: string }) {
   const ref = useCountUp(end, { duration: 2 });
   return (
-    <div className="flex flex-col items-center justify-center py-5 px-4 text-center" style={{ background: 'rgba(255,240,200,0.012)' }}>
-      <p className="font-black text-xl sm:text-2xl text-[#d4a843] tabular-nums leading-none mb-1">
+    <div className="flex-1 flex flex-col items-center justify-center py-5 px-3 text-center">
+      <p className="font-black text-lg sm:text-xl tabular-nums leading-none mb-1" style={{ color: '#d4a843' }}>
         <span ref={ref}>0</span>{suffix}
       </p>
-      <p className="text-[10px] text-[#5a4d3e] uppercase tracking-wider font-medium">{label}</p>
+      <p className="text-[9px] text-[#4a3f32] uppercase tracking-widest font-semibold">{label}</p>
     </div>
   );
 }
