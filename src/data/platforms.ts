@@ -59,7 +59,7 @@ export const PLATFORMS: Platform[] = [
     sourceUrl: 'https://www.fortuneo.fr/parrainage',
     reliability: 'élevée',
     recommended: true,
-    referralCode: '140641174',
+    referralCode: '14133207',
     offerNote: 'Parrain : 150 € (Gold CB), 100 € (AV), 80 € (Fosfo/PEA), 30 € (CTO). Filleul : 120 € (AV, versement initial ≥ 1 000 €). Autres filleuls non précisés officiellement.',
     conditions: [
       'Ne jamais avoir souscrit aucun produit Fortuneo',
