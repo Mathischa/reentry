@@ -25,7 +25,6 @@ export type Platform = {
   steps: Step[];
   tips: string[];
   warning?: string;
-  suspended?: boolean;
   lastChecked: string;
   sourceUrl: string;
   reliability?: 'élevée' | 'moyenne' | 'basse';
@@ -190,49 +189,44 @@ export const PLATFORMS: Platform[] = [
     warning: 'Seul le parrain reçoit une prime (80 €). Le filleul ne reçoit AUCUNE prime.',
   },
 
-  /* ─── BOURSOBANK ──────────────────────────────────────── */
+  /* ─── ROBINHOOD ──────────────────────────────────────── */
   {
-    id: 'boursorama',
-    name: 'BoursoBank',
+    id: 'robinhood',
+    name: 'Robinhood',
     category: 'bank',
-    emoji: '🏦',
-    logo: 'https://logo.clearbit.com/boursobank.com',
-    color: '#00b4d8',
-    gradient: 'linear-gradient(135deg, #0077b6 0%, #00b4d8 100%)',
-    bonusFilleul: '—',
-    bonusParrain: '—',
-    bonusTotal: 'Suspendu',
-    highlight: 'Programme de parrainage totalement suspendu en avril 2026. Aucune prime disponible pour les nouvelles ouvertures.',
-    badge: 'Web & App',
-    badgeColor: '#64748b',
-    minDeposit: 'N/A — programme suspendu',
-    timeline: 'N/A',
-    suspended: true,
-    lastChecked: 'Avril 2026',
-    sourceUrl: 'https://www.boursobank.com/bon-plan/parrainage-boursobank',
-    reliability: 'basse',
+    emoji: '🟢',
+    color: '#00c400',
+    gradient: 'linear-gradient(135deg, #006400 0%, #00c400 100%)',
+    bonusFilleul: '40 €',
+    bonusParrain: '60 €',
+    bonusTotal: '100 €',
+    highlight: '40 € pour le filleul et 60 € pour le parrain après inscription et premier investissement.',
+    badge: 'App uniquement',
+    badgeColor: '#00c400',
+    minDeposit: 'Aucun minimum',
+    timeline: 'Prime versée après inscription et 1er investissement',
+    lastChecked: 'Mai 2026',
+    sourceUrl: 'https://robinhood.com',
+    reliability: 'élevée',
+    recommended: true,
     conditions: [
-      'Programme de parrainage SUSPENDU — BoursoBank n\'propose plus de prime pour les nouvelles ouvertures',
-      'Aucune date de reprise communiquée officiellement',
-      'L\'ouverture de compte BoursoBank reste possible mais sans prime de parrainage',
-      'À surveiller : BoursoBank relance régulièrement des offres boostées (souvent en fin d\'année)',
+      'Créer un compte via le lien de parrainage',
+      'Vérifier son identité',
+      'Effectuer un premier investissement pour débloquer la prime',
     ],
     documents: [
-      'Pièce d\'identité valide (CNI recto-verso ou passeport)',
-      'Justificatif de domicile de moins de 3 mois',
-      'RIB d\'un autre établissement',
-      'Numéro de téléphone mobile français',
+      'Pièce d\'identité valide (CNI ou passeport)',
+      'Adresse email et numéro de téléphone',
     ],
     steps: [
-      { num: 1, title: 'Vérifie si une offre est relancée', desc: 'IMPORTANT : le programme est suspendu. Avant de t\'inscrire, vérifie sur boursobank.com si une nouvelle offre est disponible. Inscris-toi aux alertes ParrainBoost.', tag: 'Web' },
-      { num: 2, title: 'Attends une offre boostée', desc: 'BoursoBank relance régulièrement ses offres (souvent 80€+ en fin d\'année ou lors de campagnes ponctuelles). L\'attente en vaut la peine.', tag: 'Web' },
+      { num: 1, title: 'Inscris-toi via le lien parrain', desc: 'Clique sur le lien de parrainage — obligatoire pour que le parrainage soit comptabilisé.', tag: 'App' },
+      { num: 2, title: 'Vérifie ton identité', desc: 'Remplis le formulaire et envoie ta pièce d\'identité. Validation rapide.', tag: 'App' },
+      { num: 3, title: 'Effectue ton 1er investissement', desc: 'Dépose et investis pour débloquer les 40 € filleul. Le parrain reçoit 60 € simultanément.', tag: 'App' },
     ],
     tips: [
-      'Surveille les alertes ParrainBoost — BoursoBank relance ses offres plusieurs fois par an',
-      'La banque reste la n°1 en France et vaut le coup à terme, même sans prime immédiate',
-      'Les offres boostées atteignaient 80€ à 150€+ par le passé',
+      'Saisis le lien de parrainage dès l\'inscription — impossible de l\'ajouter après',
+      'L\'investissement minimum peut être très faible (quelques euros suffisent)',
     ],
-    warning: 'Programme de parrainage TOTALEMENT SUSPENDU en avril 2026. Aucune prime disponible. Source : site officiel BoursoBank.',
   },
 
   /* ─── HELLO BANK ──────────────────────────────────────── */
@@ -337,5 +331,3 @@ export const PLATFORMS: Platform[] = [
 
 ];
 
-export const BANKS = PLATFORMS.filter(p => p.category === 'bank');
-export const CRYPTO = PLATFORMS.filter(p => p.category === 'crypto');

@@ -1,6 +1,18 @@
 import { useState } from 'react';
+import fortuneoImg    from '../img/fortuneo.png';
+import helloBankImg   from '../img/hellobank.png';
+import okxImg         from '../img/okx.png';
+import robinhoodImg   from '../img/robinhood.png';
+
+const LOCAL: Record<string, string> = {
+  fortuneo:      fortuneoImg,
+  hellobank:     helloBankImg,
+  okx:           okxImg,
+  robinhood:     robinhoodImg,
+};
 
 interface PlatformLogoProps {
+  id: string;
   logo?: string;
   emoji: string;
   name: string;
@@ -9,13 +21,14 @@ interface PlatformLogoProps {
   className?: string;
 }
 
-export function PlatformLogo({ logo, emoji, name, color, size = 36, className = '' }: PlatformLogoProps) {
+export function PlatformLogo({ id, logo, emoji, name, color, size = 36, className = '' }: PlatformLogoProps) {
   const [error, setError] = useState(false);
+  const src = LOCAL[id] || logo;
 
-  if (logo && !error) {
+  if (src && !error) {
     return (
       <img
-        src={logo}
+        src={src}
         alt={name}
         width={size}
         height={size}

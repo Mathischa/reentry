@@ -1,14 +1,15 @@
 import { ArrowRight, TrendingUp, ChevronDown } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useCountUp } from '../hooks';
 
 const PLATFORMS = [
-  { name: 'Hello bank!',    color: '#0ea5e9', logo: 'https://logo.clearbit.com/hellobank.fr',      href: '#banques' },
-  { name: 'Fortuneo',       color: '#00c07f', logo: 'https://logo.clearbit.com/fortuneo.fr',       href: '#banques' },
-  { name: 'Revolut',        color: '#7c3aed', logo: 'https://logo.clearbit.com/revolut.com',       href: '#banques' },
-  { name: 'Trade Republic', color: '#6366f1', logo: 'https://logo.clearbit.com/traderepublic.com', href: '#crypto'  },
-  { name: 'OKX',            color: '#f0b90b', logo: 'https://logo.clearbit.com/okx.com',           href: '#crypto'  },
+  { name: 'Hello bank!',    color: '#0ea5e9', href: '#parrainages' },
+  { name: 'Fortuneo',       color: '#00c07f', href: '#parrainages' },
+  { name: 'Revolut',        color: '#7c3aed', href: '#parrainages' },
+  { name: 'OKX',            color: '#f0b90b', href: '#parrainages' },
+  { name: 'Trade Republic', color: '#6366f1', href: '#parrainages' },
+  { name: 'Robinhood',      color: '#00c400', href: '#parrainages' },
 ];
 
 export function Hero() {
@@ -96,7 +97,7 @@ export function Hero() {
       >
         <div className="overflow-hidden mb-1">
           <span data-word className="text-white inline-block">Gagnez&nbsp;</span>
-          <span data-word className="inline-block hero-gradient-text">jusqu'à 470€</span>
+          <span data-word className="inline-block hero-gradient-text">jusqu'à 510€</span>
         </div>
         <div className="overflow-hidden">
           <span data-word className="text-white inline-block">grâce aux&nbsp;</span>
@@ -117,7 +118,7 @@ export function Hero() {
             onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = `0 0 14px ${p.color}30`}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = 'none'}
           >
-            <LogoPill logo={p.logo} name={p.name} color={p.color} />
+            <LogoPill name={p.name} color={p.color} />
             {p.name}
           </a>
         ))}
@@ -125,7 +126,7 @@ export function Hero() {
 
       {/* CTAs */}
       <div ref={ctaRef} className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-16 sm:mb-20 w-full sm:w-auto px-4">
-        <a href="#banques"
+        <a href="#parrainages"
           className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 sm:px-8 py-4 rounded-2xl text-sm sm:text-base font-bold text-white transition-all hover:scale-[1.03] active:scale-95"
           style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', boxShadow: '0 8px 32px rgba(16,185,129,0.35), inset 0 1px 0 rgba(255,255,255,0.15)' }}>
           Voir les offres <ArrowRight size={17} />
@@ -138,24 +139,26 @@ export function Hero() {
 
       {/* Stats */}
       <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-3xl px-2">
-        <StatCard icon={<TrendingUp size={14} />}            end={470} suffix="€"        label="Max cumulable filleul"        color="#10b981" />
-        <StatCard icon={<span className="text-sm">🏦</span>} end={3}   suffix=" banques" label="Banques actives avril 2026" color="#0ea5e9" />
-        <StatCard icon={<span className="text-sm">🟡</span>} end={2}   suffix=" crypto"  label="Exchanges vérifiés"         color="#6366f1" />
-        <StatCard icon={<span className="text-sm">✅</span>} end={100} suffix="%"        label="Offres vérifiées en direct"  color="#f0b90b" />
+        <StatCard icon={<TrendingUp size={14} />}            end={510} suffix="€"       label="Max cumulable filleul"       color="#10b981" />
+        <StatCard icon={<span className="text-sm">🎁</span>} end={6}   suffix=" offres" label="Parrainages actifs"           color="#0ea5e9" />
+        <StatCard icon={<span className="text-sm">✅</span>} end={100} suffix="%"       label="Offres vérifiées en direct"  color="#6366f1" />
+        <StatCard icon={<span className="text-sm">🔒</span>} end={100} suffix="%"       label="Liens officiels vérifiés"    color="#f0b90b" />
       </div>
 
       {/* Scroll cue */}
-      <a href="#banques" className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-600 hover:text-slate-400 transition-colors animate-bounce-slow" aria-label="Scroll">
+      <a href="#parrainages" className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-600 hover:text-slate-400 transition-colors animate-bounce-slow" aria-label="Scroll">
         <ChevronDown size={22} />
       </a>
     </section>
   );
 }
 
-function LogoPill({ logo, name }: { logo: string; name: string; color: string }) {
-  const [err, setErr] = useState(false);
-  if (!err) return <img src={logo} alt={name} width={16} height={16} className="rounded-sm object-contain" style={{ width: 16, height: 16 }} onError={() => setErr(true)} />;
-  return <span style={{ fontSize: 13 }}>{name[0]}</span>;
+function LogoPill({ name, color }: { name: string; color: string }) {
+  return (
+    <span style={{ width: 14, height: 14, borderRadius: 3, background: `${color}30`, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontWeight: 800 }}>
+      {name[0]}
+    </span>
+  );
 }
 
 function StatCard({ icon, end, suffix, label, color }: { icon: React.ReactNode; end: number; suffix: string; label: string; color: string }) {

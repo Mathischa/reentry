@@ -7,11 +7,11 @@ export function SocialProof() {
         <div className="flex items-center justify-around gap-2 px-2 py-4 rounded-2xl border border-white/[0.05] bg-white/[0.02]">
           <Stat icon={<Users size={14} />} value="100+" label="parrainages" color="#10b981" />
           <div className="w-px h-7 bg-white/[0.07]" />
-          <Stat icon={<TrendingUp size={14} />} value="470 €" label="max cumulable" color="#0ea5e9" />
+          <Stat icon={<TrendingUp size={14} />} value="510 €" label="max cumulable" color="#0ea5e9" />
           <div className="w-px h-7 bg-white/[0.07]" />
           <Stat icon={<ShieldCheck size={14} />} value="100%" label="vérifiés" color="#6366f1" />
           <div className="w-px h-7 bg-white/[0.07]" />
-          <Stat icon={<Star size={14} />} value="5" label="plateformes actives" color="#f0b90b" />
+          <Stat icon={<Star size={14} />} value="6" label="plateformes actives" color="#f0b90b" />
         </div>
       </div>
     </section>

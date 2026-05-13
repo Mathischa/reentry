@@ -4,10 +4,9 @@ import { Logo } from './Logo';
 import gsap from 'gsap';
 
 const LINKS = [
-  { href: '#banques',    label: 'Banques'    },
-  { href: '#crypto',     label: 'Crypto'     },
-  { href: '#comparatif', label: 'Comparatif' },
-  { href: '#faq',        label: 'FAQ'        },
+  { href: '#parrainages', label: 'Mes parrainages' },
+  { href: '#comparatif',  label: 'Comparatif'      },
+  { href: '#faq',         label: 'FAQ'             },
 ];
 
 export function Nav({ scrolled }: { scrolled: boolean }) {
@@ -68,7 +67,7 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
 
         {/* CTA + burger */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <a href="#banques"
+          <a href="#parrainages"
             className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-[1.04] active:scale-95 whitespace-nowrap"
             style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', boxShadow: '0 0 20px rgba(16,185,129,0.25)' }}>
             Voir les bonus
@@ -92,7 +91,7 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
               {l.label}
             </a>
           ))}
-          <a href="#banques" onClick={() => setOpen(false)}
+          <a href="#parrainages" onClick={() => setOpen(false)}
             className="flex items-center justify-center mt-3 py-3.5 px-4 rounded-xl text-sm font-bold text-white transition-all active:scale-95"
             style={{ background: 'linear-gradient(135deg,#10b981,#0ea5e9)', boxShadow: '0 4px 16px rgba(16,185,129,0.3)' }}>
             Voir les bonus

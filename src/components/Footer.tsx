@@ -1,8 +1,7 @@
 import { Logo } from './Logo';
 
 const LINKS = {
-  Banques: ['Fortuneo', 'Revolut', 'Hello bank!'],
-  Crypto: ['Trade Republic', 'OKX'],
+  Parrainages: ['Fortuneo', 'Hello bank!', 'Revolut', 'OKX', 'Trade Republic', 'Robinhood'],
   Navigation: ['Comparatif', 'FAQ'],
   Légal: ['Mentions légales', 'Politique de confidentialité'],
 };

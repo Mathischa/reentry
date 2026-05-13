@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useInView } from '../hooks';
-import { BANKS, CRYPTO, type Platform } from '../data/platforms';
-import { CheckCircle, AlertTriangle, Smartphone, Monitor, PauseCircle, CalendarClock, ExternalLink, Copy, Check, ChevronDown } from 'lucide-react';
+import { PLATFORMS, type Platform } from '../data/platforms';
+import { CheckCircle, Smartphone, Monitor, CalendarClock, ExternalLink, Copy, Check, ChevronDown } from 'lucide-react';
 import { PlatformLogo } from './PlatformLogo';
 import { SocialProof } from './SocialProof';
 
@@ -10,56 +10,21 @@ export function Services() {
     <>
       <SocialProof />
 
-      {/* BANQUES */}
-      <section id="banques" className="py-24 px-5 sm:px-8">
+      <section id="parrainages" className="py-24 px-5 sm:px-8">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader
-            badge="🏦 Banques en ligne"
-            badgeColor="#0ea5e9"
-            title="Offres de parrainage bancaires"
-            sub="Ouvre un compte et reçois une prime sans condition de dépôt sur la plupart des offres. Aucun risque financier."
-          />
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+              🎁 Parrainages actifs
+            </div>
+            <h2 className="section-title">Mes parrainages</h2>
+            <p className="section-sub mx-auto">Tous mes codes et liens parrain vérifiés — utilise-les pour encaisser ta prime dès aujourd'hui.</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {BANKS.map((p, i) => <PlatformCard key={p.id} platform={p} index={i} />)}
+            {PLATFORMS.map((p, i) => <PlatformCard key={p.id} platform={p} index={i} />)}
           </div>
         </div>
       </section>
-
-      {/* CRYPTO */}
-      <section id="crypto" className="py-24 px-5 sm:px-8">
-        <div className="max-w-6xl mx-auto">
-          <SectionHeader
-            badge="🟡 Crypto"
-            badgeColor="#f0b90b"
-            title="Offres de parrainage crypto"
-            sub="Inscris-toi sur les plus grands exchanges et reçois des bonus de bienvenue. Investis uniquement ce que tu peux perdre."
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {CRYPTO.map((p, i) => <PlatformCard key={p.id} platform={p} index={i} />)}
-          </div>
-          <div className="mt-8 p-4 rounded-2xl border border-yellow-500/20 bg-yellow-500/[0.04] max-w-2xl mx-auto text-center">
-            <p className="text-yellow-400/80 text-sm flex items-center justify-center gap-2">
-              <AlertTriangle size={15} />
-              Les cryptomonnaies sont des actifs volatils. Investissez de manière responsable.
-            </p>
-          </div>
-        </div>
-      </section>
-
     </>
-  );
-}
-
-function SectionHeader({ badge, badgeColor, title, sub }: { badge: string; badgeColor: string; title: string; sub: string }) {
-  return (
-    <div className="text-center mb-14">
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border"
-        style={{ color: badgeColor, borderColor: `${badgeColor}33`, background: `${badgeColor}11` }}>
-        {badge}
-      </div>
-      <h2 className="section-title">{title}</h2>
-      <p className="section-sub mx-auto">{sub}</p>
-    </div>
   );
 }
 
@@ -89,20 +54,12 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
       onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = `0 0 40px -12px ${p.color}33`; }}
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 0 0 0 transparent'; }}
     >
-      {/* Top gradient line */}
-      <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background: p.suspended ? '#6b7280' : p.gradient }} />
-      {/* Suspended overlay badge */}
-      {p.suspended && (
-        <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-[10px] font-bold">
-          <PauseCircle size={10} /> Offre suspendue
-        </div>
-      )}
+      <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background: p.gradient }} />
 
       <div className="p-7">
-        {/* Header */}
         <div className="flex items-start justify-between mb-5">
           <div className="flex items-center gap-3">
-            <PlatformLogo logo={p.logo} emoji={p.emoji} name={p.name} color={p.color} size={48} className="rounded-2xl flex-shrink-0" />
+            <PlatformLogo id={p.id} logo={p.logo} emoji={p.emoji} name={p.name} color={p.color} size={48} className="rounded-2xl flex-shrink-0" />
             <div>
               <h3 className="font-bold text-white text-lg leading-tight">{p.name}</h3>
               <span className="text-[10px] font-medium px-2 py-0.5 rounded-full mt-1 inline-flex items-center gap-1"
@@ -115,7 +72,6 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
           </div>
         </div>
 
-        {/* Bonus amounts */}
         <div className="grid grid-cols-2 gap-3 mb-5">
           <div className="rounded-2xl p-3 text-center" style={{ background: `${p.color}0d`, border: `1px solid ${p.color}20` }}>
             <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Tu reçois</p>
@@ -127,10 +83,8 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
           </div>
         </div>
 
-        {/* Highlight */}
         <p className="text-slate-400 text-sm leading-relaxed mb-4">{p.highlight}</p>
 
-        {/* Referral code / link — always visible */}
         {p.referralCode && (
           <div className="flex items-center justify-between gap-2 mb-4 px-3 py-2 rounded-xl border border-white/[0.08] bg-white/[0.03]">
             <div>
@@ -154,7 +108,6 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
           </a>
         )}
 
-        {/* Toggle button */}
         <button
           onClick={() => setExpanded(v => !v)}
           className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold transition-all mb-1"
@@ -164,10 +117,8 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
           <ChevronDown size={13} style={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} />
         </button>
 
-        {/* Expandable content */}
         <div style={{ display: expanded ? 'block' : 'none' }}>
           <div className="pt-4">
-            {/* Key conditions */}
             <div className="space-y-2 mb-5">
               <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Conditions clés</p>
               {p.conditions.slice(0, 3).map((c, i) => (
@@ -178,20 +129,17 @@ function PlatformCard({ platform: p, index }: { platform: Platform; index: numbe
               ))}
             </div>
 
-            {/* Metadata */}
             <div className="flex items-center justify-between text-xs border-t border-white/[0.05] pt-4 mb-4">
               <span className="text-slate-500">{p.minDeposit}</span>
               <span className="text-slate-600 text-[10px]">{p.timeline.slice(0, 35)}...</span>
             </div>
 
-            {/* Last checked */}
             {p.lastChecked && (
               <p className="text-[10px] text-slate-600 flex items-center gap-1 mb-3">
                 <CalendarClock size={9} /> Vérifié sur site officiel · {p.lastChecked}
               </p>
             )}
 
-            {/* CTA */}
             <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-1.5 py-2 rounded-2xl text-xs font-semibold text-slate-400 border border-white/[0.07] hover:border-white/20 hover:text-slate-200 transition-all mt-2">
               <ExternalLink size={11} /> Voir l'offre officielle
