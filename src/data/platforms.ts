@@ -60,7 +60,6 @@ export const PLATFORMS: Platform[] = [
     reliability: 'élevée',
     recommended: true,
     referralCode: '14133207',
-    contactUrl: 'https://www.tiktok.com/@parrainboost',
     offerNote: 'Parrain : 150 € (Gold CB), 100 € (AV), 80 € (Fosfo/PEA), 30 € (CTO). Filleul : 120 € (AV, versement initial ≥ 1 000 €). Autres filleuls non précisés officiellement.',
     conditions: [
       'Ne jamais avoir souscrit aucun produit Fortuneo',
@@ -251,6 +250,7 @@ export const PLATFORMS: Platform[] = [
     timeline: 'Prime filleul créditée sous 20 jours après ouverture définitive',
     lastChecked: 'Avril 2026',
     sourceUrl: 'https://www.hellobank.fr/fr/votre-offre-parrainage/',
+    contactUrl: 'https://www.tiktok.com/@parrainboost',
     reliability: 'élevée',
     recommended: true,
     offerNote: 'Offre actuelle : inscription avant 07/04/2026 à 15h — compte finalisé avant 30/04/2026. Nouvelle offre à surveiller après cette date.',
