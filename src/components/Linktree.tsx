@@ -94,7 +94,7 @@ function LinkCard({ platform: p }: { platform: typeof PLATFORMS[number] }) {
       {/* Logo */}
       <div
         className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden"
-        style={{ background: `${p.color}14` }}
+        style={{ background: p.id === 'okx' ? '#000' : `${p.color}14` }}
       >
         {logo ? (
           <img src={logo} alt={p.name} className="w-8 h-8 rounded object-contain" />
