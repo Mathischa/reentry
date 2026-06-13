@@ -24,6 +24,7 @@ const CONDITIONS: Record<string, ConditionDetail> = {
     items: [
       'Ne pas être déjà client Hello bank!',
       'Ouvrir un Hello One via le lien parrain',
+      'Ils t\'envoient 10 € → faire 10 paiements avec',
       'Aucun dépôt minimum',
       'Max 10 parrainages par an',
     ],
@@ -33,7 +34,7 @@ const CONDITIONS: Record<string, ConditionDetail> = {
     delai: '7-10 jours',
     items: [
       'Ne jamais avoir souscrit à Fortuneo',
-      'Dépôt minimum 300 €',
+      'Prendre la carte Fosfo',
       'Résidents fiscaux français uniquement',
       'Max 10 filleuls par an',
     ],
@@ -53,7 +54,7 @@ const CONDITIONS: Record<string, ConditionDetail> = {
     items: [
       'Créer un compte via le lien ou code parrain',
       'Vérification KYC requise',
-      'Accomplir la tâche assignée par OKX',
+      'Laisser le dépôt pendant 30 jours',
       'Dépôt minimum 2 000 €',
     ],
   },
