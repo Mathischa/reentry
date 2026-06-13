@@ -9,9 +9,9 @@ import hellobankLogo from '../img/hellobank.png';
 const TIKTOK_URL = 'https://www.tiktok.com/@parrainboost';
 
 const TICKERS: Record<string, string> = {
-  hellobank:  '💰 Prime filleul : 80 €  ·  Aucun dépôt minimum  ·  Ouvrir un Hello One via le lien parrain  ·  Prime créditée sous 20 jours  ·  Max 10 parrainages/an  ·  Ne pas être déjà client Hello bank!',
-  fortuneo:   '💰 Prime filleul : 80 €  ·  Dépôt minimum 300 €  ·  Ne jamais avoir souscrit à Fortuneo  ·  Prime versée dans les 3 mois  ·  Max 10 filleuls/an  ·  Résidents fiscaux français uniquement',
-  robinhood:  '💰 Prime filleul : 50 € en crypto  ·  Dépôt minimum 50 €  ·  S\'inscrire via le lien parrain obligatoirement  ·  Prime versée après dépôt  ·  Excellent ROI : 50 € déposés → 50 € offerts',
+  hellobank:  '💰 Prime filleul : 80 €  ·  Aucun dépôt minimum  ·  Ouvrir un Hello One via le lien parrain  ·  Délai : 2-3 semaines  ·  Max 10 parrainages/an  ·  Ne pas être déjà client Hello bank!',
+  fortuneo:   '💰 Prime filleul : 80 €  ·  Dépôt minimum 300 €  ·  Ne jamais avoir souscrit à Fortuneo  ·  Délai : 7-10 jours  ·  Max 10 filleuls/an  ·  Résidents fiscaux français uniquement',
+  robinhood:  '💰 Prime filleul : 50 € en crypto  ·  Dépôt minimum 50 €  ·  S\'inscrire via le lien parrain obligatoirement  ·  Prime instantanée après dépôt  ·  Excellent ROI : 50 € déposés → 50 € offerts',
   okx:        '💰 Prime filleul : jusqu\'à 300 €  ·  Vérification KYC requise  ·  Accomplir la tâche assignée par OKX  ·  Code parrain : 49834320  ·  Dépôt minimum 2 000 €  ·  Paiement SEPA, Apple Pay, Visa, Mastercard',
 };
 
