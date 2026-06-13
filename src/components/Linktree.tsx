@@ -15,7 +15,7 @@ const LOCAL_LOGOS: Record<string, string> = {
   hellobank: hellobankLogo,
 };
 
-type ConditionDetail = { prime: string; delai: string; items: string[] };
+type ConditionDetail = { prime: string; delai: string; items: string[]; docs: string[] };
 
 const CONDITIONS: Record<string, ConditionDetail> = {
   hellobank: {
@@ -28,6 +28,7 @@ const CONDITIONS: Record<string, ConditionDetail> = {
       'Aucun dépôt minimum',
       'Max 10 parrainages par an',
     ],
+    docs: ['Pièce d\'identité', 'Justificatif de domicile de moins de 3 mois'],
   },
   fortuneo: {
     prime: '80 €',
@@ -38,6 +39,7 @@ const CONDITIONS: Record<string, ConditionDetail> = {
       'Résidents fiscaux français uniquement',
       'Max 10 filleuls par an',
     ],
+    docs: ['Pièce d\'identité'],
   },
   robinhood: {
     prime: '50 € en crypto',
@@ -47,6 +49,7 @@ const CONDITIONS: Record<string, ConditionDetail> = {
       'Dépôt minimum 50 €',
       'Prime versée en cryptomonnaie',
     ],
+    docs: ['Pièce d\'identité', 'NIF (Numéro d\'Identification Fiscale)'],
   },
   okx: {
     prime: "jusqu'à 300 €",
@@ -57,6 +60,7 @@ const CONDITIONS: Record<string, ConditionDetail> = {
       'Laisser le dépôt pendant 30 jours',
       'Dépôt minimum 2 000 €',
     ],
+    docs: ['Pièce d\'identité'],
   },
 };
 
@@ -208,11 +212,24 @@ function LinkCard({ platform: p }: { platform: typeof PLATFORMS[number] }) {
           <ul className="space-y-1.5">
             {cond.items.map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-xs text-gray-500">
-                <span className="mt-0.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: p.color, opacity: 0.7, marginTop: 4 }} />
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: p.color, opacity: 0.7, marginTop: 4 }} />
                 {item}
               </li>
             ))}
           </ul>
+
+          {/* Documents */}
+          <div>
+            <p className="text-[9px] text-gray-400 uppercase tracking-wide font-semibold mb-1.5">Documents requis</p>
+            <ul className="space-y-1.5">
+              {cond.docs.map((doc, i) => (
+                <li key={i} className="flex items-start gap-2 text-xs text-gray-500">
+                  <span className="flex-shrink-0 mt-0.5">📄</span>
+                  {doc}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </div>
