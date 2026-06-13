@@ -1,8 +1,19 @@
 import { useState } from 'react';
 import { Copy, Check, ExternalLink } from 'lucide-react';
 import { PLATFORMS } from '../data/platforms';
+import fortuneoLogo from '../img/fortuneo.png';
+import okxLogo from '../img/okx.png';
+import robinhoodLogo from '../img/robinhood.png';
+import hellobankLogo from '../img/hellobank.png';
 
 const TIKTOK_URL = 'https://www.tiktok.com/@parrainboost';
+
+const LOCAL_LOGOS: Record<string, string> = {
+  fortuneo: fortuneoLogo,
+  okx: okxLogo,
+  robinhood: robinhoodLogo,
+  hellobank: hellobankLogo,
+};
 
 const SHOWN_IDS = ['hellobank', 'fortuneo', 'robinhood', 'okx'];
 const platforms = PLATFORMS.filter(p => SHOWN_IDS.includes(p.id))
@@ -17,14 +28,12 @@ export function Linktree() {
         className="w-24 h-24 rounded-full mb-4 flex items-center justify-center text-3xl font-bold overflow-hidden"
         style={{ border: '2px solid #d4a843', background: '#fef9ec' }}
       >
-        {/* Remplace par <img src="/photo.jpg" alt="photo" className="w-full h-full object-cover" /> une fois la photo ajoutée */}
         <span style={{ color: '#d4a843' }}>M</span>
       </div>
 
-      <h1 className="text-gray-900 font-bold text-xl mb-1">ParrainBoost</h1>
-      <p className="text-gray-400 text-sm text-center mb-1">@parrainboost</p>
+      <h1 className="text-gray-900 font-bold text-xl mb-2">Mathis.gooddeals</h1>
       <p className="text-gray-400 text-xs text-center mb-8 max-w-xs">
-        Codes &amp; liens parrain vérifiés — jusqu'à 510 € offerts 💸
+        mes parrainages disponibles
       </p>
 
       {/* TikTok pill */}
@@ -43,6 +52,15 @@ export function Linktree() {
       <div className="w-full max-w-sm space-y-3">
         {platforms.map(p => <LinkCard key={p.id} platform={p} />)}
       </div>
+
+      {/* Green live dot — bottom right */}
+      <div className="fixed bottom-5 right-5 flex items-center gap-2">
+        <span className="text-[10px] text-gray-400 font-medium">En ligne</span>
+        <span className="relative flex h-2.5 w-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60" />
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
+        </span>
+      </div>
     </div>
   );
 }
@@ -59,6 +77,7 @@ function LinkCard({ platform: p }: { platform: typeof PLATFORMS[number] }) {
   }
 
   const href = p.contactUrl ?? p.referralUrl ?? p.sourceUrl;
+  const logo = LOCAL_LOGOS[p.id];
 
   return (
     <a
@@ -77,8 +96,8 @@ function LinkCard({ platform: p }: { platform: typeof PLATFORMS[number] }) {
         className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden"
         style={{ background: `${p.color}14` }}
       >
-        {p.logo ? (
-          <img src={p.logo} alt={p.name} className="w-7 h-7 rounded object-contain" />
+        {logo ? (
+          <img src={logo} alt={p.name} className="w-8 h-8 rounded object-contain" />
         ) : (
           <span className="text-2xl">{p.emoji}</span>
         )}
