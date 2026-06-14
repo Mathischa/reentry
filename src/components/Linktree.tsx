@@ -5,6 +5,7 @@ import fortuneoLogo from '../img/fortuneo.png';
 import okxLogo from '../img/okx.png';
 import robinhoodLogo from '../img/robinhood.png';
 import hellobankLogo from '../img/hellobank.png';
+import profilePic from '../img/IMG_9213.jpeg';
 
 const TIKTOK_URL = 'https://www.tiktok.com/@parrainboost';
 
@@ -74,10 +75,10 @@ export function Linktree() {
 
       {/* Avatar */}
       <div
-        className="w-24 h-24 rounded-full mb-4 flex items-center justify-center text-3xl font-bold overflow-hidden"
-        style={{ border: '2px solid #d4a843', background: '#fef9ec' }}
+        className="w-24 h-24 rounded-full mb-4 overflow-hidden"
+        style={{ border: '2px solid #d4a843' }}
       >
-        <span style={{ color: '#d4a843' }}>M</span>
+        <img src={profilePic} alt="Mathis" className="w-full h-full object-cover" />
       </div>
 
       <h1 className="text-gray-900 font-bold text-xl mb-2">Mathis.gooddeals</h1>
@@ -175,6 +176,17 @@ function LinkCard({ platform: p }: { platform: typeof PLATFORMS[number] }) {
           >
             {copied ? <><Check size={11} /> Copié</> : <><Copy size={11} /> {p.referralCode}</>}
           </button>
+        ) : p.codeBio ? (
+          <span
+            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold flex-shrink-0"
+            style={{
+              background: `${p.color}14`,
+              color: p.color,
+              border: `1px solid ${p.color}30`,
+            }}
+          >
+            code en bio
+          </span>
         ) : (
           <ExternalLink size={15} style={{ color: p.color, opacity: 0.5, flexShrink: 0 }} />
         )}
