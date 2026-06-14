@@ -76,7 +76,7 @@ export function Linktree() {
       {/* Avatar */}
       <div
         className="w-24 h-24 rounded-full mb-4 overflow-hidden"
-        style={{ border: '2px solid #d4a843' }}
+        style={{ border: '3px solid #3b82f6' }}
       >
         <img src={profilePic} alt="Mathis" className="w-full h-full object-cover" />
       </div>
